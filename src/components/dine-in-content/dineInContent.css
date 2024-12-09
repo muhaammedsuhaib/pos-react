@@ -1,0 +1,39 @@
+.mediumShadow {
+    box-shadow: 0 0 7px -2px black;
+}
+
+.allOrderCard {
+    height: calc(100vh - 300px);
+}
+
+.allDineInCards {
+    height: calc(100vh - 315px);
+}
+
+.allDineInCards::-webkit-scrollbar {
+    display: none;
+}
+
+/* sdfdsfsf */
+
+@media screen and (min-width:1700px) {
+    .dineInTableCardGrid {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+}
+
+.card-top-icon:hover {
+    border-color: #000;
+}
+
+.card-top-icon:active {
+    background: #000;
+}
+
+.card-wrapper:has(.card-top-icon:hover) {
+    border: none;
+}
+
+.card-wrapper:has(.card-top-icon:active) {
+    background: #fff
+}

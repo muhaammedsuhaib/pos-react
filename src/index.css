@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  font-family: 'Poppins', sans-serif !important;
+  box-sizing: border-box;
+}
+
+.ant-modal-root .ant-modal-wrap {
+  background-color: rgb(111, 110, 110, 0.7);
+}
+
+.pin_group_item-card:hover {
+  background: #FF5838;
+}
+
+.ant-modal-content {
+  background-color: #515151 !important;
+}
+
+.custom_height {
+  height: calc(100vh - 50px);
+}
+
+.center-div-height {
+  height: calc(100vh - 50px);
+}
+
+
+
+.custome-table-switch.ant-switch-checked {
+  background-color: green !important;
+}
+
+.custom-switch {
+  background-color: red !important;
+}
+
+.custome-table-switch.ant-switch-checked {
+  outline: 2px solid white;
+}
+
+.custome-table-switch:where(.css-dev-only-do-not-override-9lg8ad).ant-switch {
+  background-color: red;
+  outline: 2px solid white;
+}
+
+
+
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: 0;
+  /* Firefox */
+}
+
+
+.card-top-icon:hover {
+  border-color: #000;
+}
+
+.card-top-icon:active {
+  background: #000;
+}
+
+.card-wrapper:has(.card-top-icon:hover) {
+  border: none;
+}
+
+.card-wrapper:has(.card-top-icon:active) {
+  background: #fff
+}
+
+.card-wrapper:has(.qtyBtn:hover) {
+  border: none;
+}
+
+.card-wrapper:has(.qtyBtn:active) {
+  background: #fff
+}

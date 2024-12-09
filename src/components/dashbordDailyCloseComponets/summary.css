@@ -1,0 +1,31 @@
+/* .content-heading {
+  position: relative;
+}
+.content-heading::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 100%;
+  background-color: #f79e8d;
+  left: -20px;
+  top: -5px;
+} */
+
+.progress-container {
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.4);
+}
+.pregress-bar {
+  background: linear-gradient(to bottom, #9cb362 30%, #e1f7a7 45%, #5e6a40 80%);
+  /* background: linear-gradient(to bottom, #9cb362 30%, #e1f7a7 45%, #5e6a40 80%, #DDEAD2 98%); */
+  box-shadow: inset -5px 0 5px rgba(0, 0, 0, 0.5),
+    /* Right shadow */ inset 5px 0 5px #76854a; /* Left shadow */
+}
+.pregress-bar-orange {
+  background: linear-gradient(to bottom, #fd6033 30%, #fe9873 45%, #dc5134 80%);
+  box-shadow: inset -5px 0 5px rgba(0, 0, 0, 0.5),
+    /* Right shadow */ inset 5px 0 5px #d24230; /* Left shadow */
+}
+
+.dayClose-footer label {
+  color: #7D7D7D !important;
+}

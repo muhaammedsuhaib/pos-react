@@ -1,0 +1,54 @@
+
+.nav-sub-tabs button {
+    color: #595959;
+    font-size: 12px;
+    line-height: 0.1;
+    padding: 15px 20px;
+    background-color: #6e0101;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    z-index: 1; 
+    
+  }
+  
+  .nav-sub-tabs button:not(.active) {
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2), 2px 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  .nav-sub-tabs button {
+    --r: 20px;
+    border-inline: var(--r) solid #0000;
+    border-radius: calc(2 * var(--r)) calc(2 * var(--r)) 0 0 / var(--r);
+    mask: radial-gradient(var(--r) at var(--r) 0px, #0000 98%, #000 101%)
+        calc(-1 * var(--r)) 100%/100% var(--r) repeat-x,
+      conic-gradient(#000 0 0) padding-box;
+    background-color: #cbcbcb;
+    z-index: 1;
+  }
+  .nav-sub-tabs button.active {
+    --r: 20px;
+    /* margin: 0 20px; */
+    border-inline: var(--r) solid #8a565600;
+    border-radius: calc(2 * var(--r)) calc(2 * var(--r)) 0 0 / var(--r);
+    mask: radial-gradient(var(--r) at var(--r) 0, #0000 101%, #000 101%)
+        calc(-1 * var(--r)) 100%/100% var(--r) repeat-x,
+      conic-gradient(#000 0 0) padding-box;
+    background-color: #545454; 
+    color: white; 
+    z-index: 100 !important; 
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3), 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  
+  .nav-sub-tabs button.active {
+    background-color: #545454; 
+    color: white; 
+    z-index: 100 !important; 
+    box-shadow: -2px 0 10px rgba(149, 122, 122, 0.3), 2px 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  
+  .nav-sub-tabs button {
+    border-bottom: none; 
+  }

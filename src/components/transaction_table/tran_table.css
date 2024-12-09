@@ -1,0 +1,147 @@
+.tran_table table tbody tr.bg-black-row:active {
+  background-color: #000;
+  color: white;
+}
+
+.tran_table table thead tr:nth-child(2) th {
+  color: white;
+  font-weight: 400;
+  background-color: #f85333;
+  padding: 5px;
+}
+.tran_table table thead tr:nth-child(2) th,
+.tran_table table tbody tr td {
+  border: 1px solid white;
+}
+.tran_table table tbody tr:nth-child(odd) {
+  background-color: #f8e9e4;
+}
+.tran_table table tbody tr:nth-child(even) {
+  background-color: #f9d8cf;
+}
+.tran_table table tbody tr td {
+  padding: 2px 6px;
+  font-size: 14px;
+}
+.tran_table table tbody tr td:nth-child(1),
+.tran_table table tbody tr td:nth-child(5) {
+  background-color: #f8ae9e;
+}
+.tran_table table tbody tr td:nth-child(1),
+.tran_table table tbody tr td:nth-child(2),
+  .tran_table table tbody tr td:nth-child(3),
+  .tran_table table tbody tr td:nth-child(4),
+  .tran_table table tbody tr td:nth-child(6),
+  .tran_table table tbody tr td:nth-child(7),
+  .tran_table table tbody tr td:nth-child(9),
+  .tran_table table tbody tr td:nth-child(10),
+  .tran_table table tbody tr td:nth-child(13)
+  /* .tran_table table tbody tr td:nth-child(13), */
+  /* .tran_table table tbody tr td:nth-child(14) */ {
+  text-align: center;
+}
+
+.tran_table table tbody tr td:nth-child(5),
+.tran_table table tbody tr td:nth-child(12),
+.tran_table table tbody tr td:nth-child(14),
+.tran_table table tbody tr td:nth-child(15),
+.tran_table table tbody tr td:nth-child(16),
+.tran_table table tbody tr td:nth-child(17),
+.tran_table table tbody tr td:nth-child(18),
+.tran_table table tbody tr td:nth-child(19),
+.tran_table table tbody tr td:nth-child(20),
+.tran_table table tbody tr td:nth-child(21),
+.tran_table table tbody tr td:nth-child(22),
+.tran_table table tbody tr td:nth-child(23),
+.tran_table table tbody tr td:nth-child(24) {
+  text-align: right;
+}
+.tran_table table tfoot tr td.tfoot-data {
+  background-color: #f85333 !important;
+  color: white;
+  text-align: right;
+  padding: 2px 6px;
+  font-size: 14px;
+  border: 1px solid white;
+}
+
+.tran_table::-webkit-scrollbar {
+  height: 8px; /* Height for horizontal scrollbar */
+  background: #e0e0e0; /* Background color of the scrollbar track */
+}
+
+.tran_table::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded edges for the scrollbar thumb */
+}
+
+.tran_table::-webkit-scrollbar-thumb:hover {
+  background: #777777; /* Darker color on hover */
+}
+
+.tran_table::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track background color */
+  border-radius: 4px; /* Optional: rounded track edges */
+}
+
+/* .tran_table table tbody tr:nth-child(odd) td:nth-child(11),
+.tran_table table tbody tr:nth-child(even) td:nth-child(11), */
+.tran_table table thead tr th:nth-child(11),
+.tran_table table thead tr th:nth-child(20) {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.tax-invoice .ant-modal-content {
+  border-radius: 0 !important;
+  background-color: #f8f8f8 !important;
+  padding: 0 !important;
+}
+.tax-invoice .ant-modal-close {
+  border-radius: 50%;
+  background-color: #f60000 ;
+  padding: 0 !important;
+  color: white;
+  top: -10px;
+  right: -10px;
+  box-shadow: 0px 0px 5px 1px rgb(103, 103, 103);
+}
+
+.tax-invoice .ant-modal-close:hover {
+  background-color: #000;
+  /* border: 1px solid #f60000; */
+  color: white;
+}
+
+.tax-invoice .ant-modal-close:active {
+  background-color: white;
+  /* border: 1px solid #f60000; */
+  color: #f60000;
+}
+
+.invoice-table table tr th{
+  color: black !important;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  border-bottom: 2px solid black ;
+}
+.invoice-table table tr th:first-child{
+  text-align: left;
+}
+.invoice-table table tr td:first-child{
+  text-align: center;
+}
+.invoice-table table tr th:last-child,
+.invoice-table table tr td:last-child{
+  text-align: right;
+}
+.invoice-table table tr td{
+  font-size: 12px;
+}
+.invoice-table table tr td:not(:last-child){
+  font-weight: 800;
+}
+.invoice-table table tr td:last-child{
+  font-weight: 500;
+}

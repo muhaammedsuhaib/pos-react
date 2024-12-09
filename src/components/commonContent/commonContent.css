@@ -1,0 +1,17 @@
+/* .allOrderCards{
+    height: calc(100vh - 16.25rem);
+} */
+.allOrderCards::-webkit-scrollbar{
+    display: none;
+}
+.allOrderCard::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+@media screen and (min-width:1700px) {
+    .allOrderCards .allOrdersGridCards{
+        grid-template-columns: repeat(8, minmax(0, 1fr))
+    }
+}

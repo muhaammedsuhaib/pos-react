@@ -1,0 +1,37 @@
+thead.expense-head .ant-picker-outlined {
+    border: none;
+    padding: 0 !important;
+    background-color: #d5dbe4;
+}
+
+thead.expense-head .ant-picker .ant-picker-input {
+    padding: 0 !important;
+}
+
+thead.expense-head .ant-picker .ant-picker-input>input {
+    text-align: center;
+}
+
+thead.expense-head .ant-picker .ant-picker-suffix {
+    display: none;
+}
+
+thead.expense-head .anticon.anticon-close-circle {
+    color: #F44336;
+}
+
+.ant-picker-dropdown .ant-picker-panel-container {
+    background-color: #d4dae3;
+}
+
+thead.expense-head .ant-picker-range .ant-picker-range-separator {
+    padding: 0;
+}
+
+thead.expense-head .ant-picker .ant-picker-input>input {
+    font-size: 0.85rem;
+}
+
+thead.expense-head .ant-picker-range .ant-picker-active-bar {
+    display: none;
+}

@@ -1,0 +1,16 @@
+table.paid-table tr:nth-child(odd) {
+  background-color: #92c5ae;
+}
+table.paid-table tr:nth-child(even) {
+  background-color: #C2DED1;
+}
+table.paid-table tr td:nth-child(1) {
+  border-right: 1px solid white;
+}
+table.paid-table tr td:nth-child(2) {
+  text-align: right;
+}
+table.paid-table tr td {
+  padding: 0 5px;
+}
+

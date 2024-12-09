@@ -1,0 +1,23 @@
+.custom-black-radio2:where(.css-dev-only-do-not-override-1t55f74).ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+    border-color: rgb(0, 0, 0) !important;
+    background-color: white;
+    /* transform: scale(1.5) !important; */
+  }
+  
+  .custom-black-radio2:where(.css-dev-only-do-not-override-1t55f74).ant-radio-wrapper .ant-radio-checked .ant-radio-inner::after{
+    background-color: black !important;
+    transform: scale(0.7 ) !important;
+  }
+  
+  
+  .custom-black-radio2:where(.css-dev-only-do-not-override-1t55f74).ant-radio-wrapper .ant-radio-inner{
+    transform: scale(1.2) !important;
+    border-color: black !important;
+    background-color: transparent !important;
+  }
+  .custom-black-radio2:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper:hover .ant-radio-inner{
+    transform: scale(1.7) !important;
+    border-color: #FF5534 !important;
+    background-color: transparent !important;
+ 
+  }

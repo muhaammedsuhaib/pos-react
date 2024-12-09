@@ -1,0 +1,138 @@
+/* @import url("https://fonts.googleapis.com/css?family=Poppins"); */
+
+/* .orderTypePopup .modal-body{
+    border-radius: 0 0 50px 50px;
+} */
+/* 
+.posPopup .ant-modal-content {
+  border-radius: 18px;
+  border: 1px solid #f95433 !important;
+  padding: 0 !important;
+}
+.posPopup .ant-modal-content .ant-modal-header {
+  padding: 6px;
+  background-color: #f95433 !important;
+  margin-bottom: 0;
+  border-radius: 10px 10px 0 0;
+}
+.posPopup .ant-modal-content .ant-modal-header .ant-modal-title {
+  text-transform: uppercase !important;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.posPopup .ant-modal-content .ant-modal-close {
+  top: 5px;
+  background-color: #000;
+  width: 25px;
+  height: 25px;
+  color: white;
+  border-radius: 8px !important;
+  font-weight: 800;
+}
+
+.orderTypePopup .ant-modal-content {
+  background-color: #636363 !important;
+}
+
+.orderTypePopup .order-type-item {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+
+.orderTypePopup .order-type-item-box {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+}
+.order-type-item.active,
+.order-type-item.active .order-type-item-box {
+  background-color: #f65333 !important;
+}
+.deliveryPopup .delivery-tab.active {
+  background-color: #f65333;
+  color: white;
+}
+.deliveryPopup .delivery-tab.active .delivery-tab-check {
+  display: flex;
+}
+.deliveryPopup .delivery-address-details input::placeholder,
+.deliveryPopup .delivery-address-details textarea::placeholder{
+  font-family: "Poppins";
+  color: #a7a7a7;
+}
+.deliveryPopup .delivery-address-details button {
+  font-family: "Poppins";
+  box-shadow: 0px 0px 5px -2px #000;
+} */
+
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+/* .orderTypePopup .modal-body{
+    border-radius: 0 0 50px 50px;
+} */
+.posPopup .ant-modal-content {
+  border-radius: 18px;
+  border: 1px solid #f95433 !important;
+  padding: 0 !important;
+}
+.posPopup .ant-modal-content .ant-modal-header {
+  padding: 6px;
+  background-color: #f95433 !important;
+  margin-bottom: 0;
+  border-radius: 10px 10px 0 0;
+}
+.posPopup .ant-modal-content .ant-modal-header .ant-modal-title {
+  text-transform: uppercase !important;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.posPopup .ant-modal-content .ant-modal-close {
+  top: 5px;
+  background-color: #000;
+  width: 25px;
+  height: 25px;
+  color: white;
+  border-radius: 8px !important;
+  font-weight: 800;
+}
+
+.orderTypePopup .ant-modal-content, .aggregatorPopup .ant-modal-content{
+  background-color: #4b4b4b !important;
+}
+.ant-modal-content{
+  background-color: #4b4b4b !important;
+}
+.orderTypePopup .order-type-item {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+
+.orderTypePopup .order-type-item-box {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.9);
+}
+.order-type-item.active,
+.order-type-item.active .order-type-item-box {
+  background-color: #f65333 !important;
+}
+.deliveryPopup .delivery-tab.active {
+  background-color: #f65333;
+  color: white;
+}
+.deliveryPopup .delivery-tab.active .delivery-tab-check {
+  display: flex;
+}
+.deliveryPopup .delivery-address-details input::placeholder,
+.deliveryPopup .delivery-address-details textarea::placeholder{
+  font-family: "Poppins";
+  color: #a7a7a7;
+}
+.posPopup .confirm_details button {
+  font-family: "Poppins";
+  box-shadow: 0px 0px 6px -1px #000;
+  border: none;
+  /* padding: 2px 35px; */
+  height: 25px;
+}
+
+
+.aggregatorPopup .ant-modal-content{
+  width: 500px;
+}

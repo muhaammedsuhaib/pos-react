@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+/* .orderTypePopup .modal-body{
+    border-radius: 0 0 50px 50px;
+} */
+
+.posPopup .ant-modal-content {
+  border-radius: 18px;
+  border: 1px solid #FF5534 !important;
+  padding: 0 !important;
+  box-shadow: 0 0 10px 2px rgba(241, 241, 241, 0.7);
+}
+.posPopup .ant-modal-content .ant-modal-header {
+  padding: 6px;
+  background-color: #FF5534 !important;
+  margin-bottom: 0;
+  border-radius: 10px 10px 0 0;
+}
+.posPopup .ant-modal-content .ant-modal-header .ant-modal-title {
+  text-transform: uppercase !important;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.posPopup .ant-modal-content .ant-modal-close {
+  top: 5px;
+  background-color: #000;
+  width: 25px;
+  height: 25px;
+  color: white;
+  border-radius: 8px !important;
+  font-weight: 800;
+}
+
+.orderTypePopup .ant-modal-content {
+  background-color: #636363 !important;
+}
+
+.orderTypePopup .order-type-item {
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
+}
+
+.orderTypePopup .order-type-item-box {
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+}
+.order-type-item.active,
+.order-type-item.active .order-type-item-box {
+  background-color: #FF5534 !important;
+}
+
+.order-type-item:hover{
+	box-shadow: 0 0 10px 10px rgba(255, 85, 52, 0.5);
+}
+
+

@@ -1,0 +1,25 @@
+
+
+
+.list_sec{
+	/* height: calc(100vh - 480px); */
+
+	height: calc(100vh - 430px);
+
+}
+.list_sec::-webkit-scrollbar{
+	display: none;
+}
+
+
+#icon-container:active #icon-image {
+    content: url('../../../../public/EDIT\ ORAGE.svg');
+}
+
+.hoverEffect:hover{
+
+	padding: 4px;
+	border-radius: 50%;
+	border-width: 2px;
+	border-color: black;
+}

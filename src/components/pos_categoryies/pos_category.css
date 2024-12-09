@@ -1,0 +1,87 @@
+.category-btn-shadow {
+  box-shadow: 0 0 5px -2px black;
+}
+
+@media screen and (min-width:1700px) {
+  .category-btns {
+    gap: 45px !important;
+  }
+}
+
+.allOrderBtnDiv {
+  width: 100px !important;
+}
+
+.twoTabs button {
+  color: #595959;
+  font-size: 12px;
+  line-height: 1;
+  padding: 10px 30px;
+  background-color: #e8e8e8;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  /* z-index: 1; */
+}
+
+.twoTabs button:not(.active) {
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2), 2px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.twoTabs button {
+  --r: 30px;
+  /* border-inline: var(--r) solid #0000; */
+  border-inline: 15px solid #0000;
+  border-radius: 15px 15px 0 0;
+  /* border-radius: calc(2 * var(--r)) calc(2 * var(--r)) 0 0 / var(--r); */
+  /* mask: radial-gradient(var(--r) at var(--r) 0, #0000 98%, #000 101%)
+        calc(-1 * var(--r)) 100%/100% var(--r) repeat-x,
+      conic-gradient(#000 0 0) padding-box; */
+  background-color: #F0F1F1;
+  /* z-index: 1; */
+}
+
+/* .twoTabs button .active {
+    --r: 30px;
+    border-inline: var(--r) solid #0000;
+    border-radius: calc(2 * var(--r)) calc(2 * var(--r)) 0 0 / var(--r);
+    mask: radial-gradient(var(--r) at var(--r) 0, #0000 98%, #000 101%)
+        calc(-1 * var(--r)) 100%/100% var(--r) repeat-x,
+      conic-gradient(#000 0 0) padding-box;
+    background-color: #FF5634; 
+    color: white; 
+    z-index: 100 !important; 
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3), 2px 0 10px rgba(0, 0, 0, 0.3);
+  } */
+
+
+.twoTabs button.active {
+  background-color: #515151;
+  color: white;
+  /* z-index: 100 !important;  */
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3), 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.posCategoryWarapperDiv::-webkit-scrollbar {
+  display: none;
+}
+
+.twoTabs button {
+
+  border-bottom: none;
+}
+
+
+.plus-btn-hover:hover {
+  border-color: #000;
+  pointer-events: all;
+}
+
+.cat-item-wrapper:has(.plus-btn-hover:hover) {
+  border: none;
+}
+
+.cat-item-wrapper:has(.plus-btn-hover:active) {
+  background: #77B99C;
+}

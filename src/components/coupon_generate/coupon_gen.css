@@ -1,0 +1,94 @@
+.coupon_generate_modal:where(.css-dev-only-do-not-override-vryruh).ant-modal
+  .ant-modal-footer {
+  display: none;
+}
+
+
+.coupon_generate_modal .radio-btn-main input[type="radio"] + label {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  padding-left: 35px;
+  /* margin-right: 20px; */
+  /* font-size: 13px; */
+}
+.coupon_generate_modal .radio-btn-main input[type="radio"] + label:before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 28px;
+  /* margin-right: 14px; */
+  position: absolute;
+  top: -18px;
+  left: 0;
+  border: 2px solid #000000;
+  background-color: transparent;
+  border-radius: 50%;
+}
+.coupon_generate_modal .radio-btn-main input[type="radio"] {
+  display: none !important;
+  display: inline;
+}
+.coupon_generate_modal
+  .radio-btn-main
+  input[type="radio"]:checked
+  + label:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -11px;
+  left: 7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #000000;
+}
+
+
+.switch-outline.ant-switch-checked {
+    background-color: green !important;
+  }
+
+  .switch-outline {
+    background-color: red !important;
+    outline: 2px solid white;
+  }
+
+  .switch-outline.ant-switch-checked{
+    outline: 2px solid white;
+  }
+
+  .switch-outline:where(.css-dev-only-do-not-override-9lg8ad).ant-switch{
+     background-color: red ;
+     outline: 2px solid white !important;
+  }
+
+  #percentageInput::placeholder{
+    color: #000000;
+  }
+
+
+  .custom-white-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+    border-color:white !important;
+    background-color: white;
+    /* transform: scale(1.5) !important; */
+  }
+  
+  .custom-white-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-checked .ant-radio-inner::after{
+    background-color: white !important;
+    transform: scale(0.7 ) !important;
+  }
+  
+  
+  .custom-white-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-inner{
+    transform: scale(1.5) !important;
+    border-color: white !important;
+    background-color: transparent !important;
+  }
+  .custom-white-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper:hover .ant-radio-inner{
+    transform: scale(1.5) !important;
+    border-color: #FF5534 !important;
+    background-color: transparent !important;
+  }
+  
+  

@@ -1,0 +1,68 @@
+.scroll_indicator::-webkit-scrollbar{
+	display: none;
+}
+
+.my-table .ant-table-thead > tr > th {
+  background-color: #FF5534; /* Replace with your desired background color */
+  color: white; 
+  padding: 10	px !important;
+}
+
+.my-table .ant-table-cell{
+	padding: 5px !important;
+}
+
+table tr th {
+	color: #fff !important;
+}
+
+.custome_table_row .border{
+	border-color: #FDBCAF;
+	border-style: dotted;
+}
+.custome_table_row .left_td{
+	border-left: none;
+}
+
+.custome_table_row .right_td{
+	border-right: none;
+}
+
+
+.custome_th_style{
+	font-size: 15px;
+	font-weight: 400;
+}
+.custome_td_style{
+	font-size: 13px;
+}
+
+@media screen and (max-width:1400px) {
+	.custome_th_style{
+	font-size: 10px;
+	text-wrap: nowrap;
+}
+
+.custome_td_style{
+	font-size: 10px;
+}
+}
+
+.custome_table_row:hover{
+	background: #77B99C;
+}
+
+
+  .table-scroll-bar::-webkit-scrollbar{
+	display: none;
+}
+
+.tableInput::placeholder{
+	color: rgb(85, 85, 85) !important;
+}
+.tableInput .ant-picker .ant-picker-input::placeholder{
+	color: rgb(85, 85, 85) !important;
+}
+.tableInput:where(.css-dev-only-do-not-override-vryruh).ant-select .ant-select-selection-placeholder{
+	color: rgb(85, 85, 85) !important;
+}

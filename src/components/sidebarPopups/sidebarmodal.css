@@ -1,0 +1,128 @@
+.posPopupSettings .ant-modal-content {
+  border-radius: 18px;
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+.ant-modal-root .ant-modal-wrap {
+  z-index: 1600;
+}
+
+.posPopupSettings .ant-modal-content .ant-modal-header .ant-modal-title {
+  text-transform: uppercase !important;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.posPopupSettings .ant-modal-content .ant-modal-close {
+  top: 5px;
+  background-color: #000;
+  width: 25px;
+  height: 25px;
+  color: white;
+  border-radius: 8px !important;
+  font-weight: 800;
+}
+
+.settingsTab .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+  background-color: #FF5534 !important;
+  color: #f02424 !important;
+  border-bottom: none !important;
+}
+.settingsTab .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab {
+  color: #000;
+  text-transform: uppercase;
+  background-color: #F3EEE7;
+  padding: 8px 25px;
+}
+.settingsTab .ant-tabs-top > .ant-tabs-nav {
+  margin: 0 !important;
+}
+
+.theme-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper
+  .ant-radio-checked
+  .ant-radio-inner {
+  border-width: 3px;
+  border-color: #d1d7e0 !important;
+  background-color: white;
+  /* transform: scale(1.5) !important; */
+}
+
+.theme-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper
+  .ant-radio-checked
+  .ant-radio-inner::after {
+  background-color: #00ac4e !important;
+  transform: scale(0.7) !important;
+}
+
+.theme-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper
+  .ant-radio-inner {
+  transform: scale(1.5) !important;
+  border-width: 3px;
+  border-color: #d1d7e0 !important;
+  background-color: transparent !important;
+}
+.theme-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper:hover
+  .ant-radio-inner {
+  transform: scale(1.5) !important;
+  border-width: 3px;
+  border-color: #ff5534 !important;
+  background-color: transparent !important;
+}
+
+.settingsTab .ant-tabs-tabpane .general p {
+  color: #f95433;
+  font-weight: 600;
+}
+.settingsTab .ant-tabs-tabpane span {
+  letter-spacing: -0.5px;
+  font-weight: 600;
+}
+.settingsTab .ant-tabs-tabpane .kot-printer table thead th:not(:last-child) h6, 
+.settingsTab .ant-tabs-tabpane .kds-tab table thead th:not(:last-child) h6 {
+  color: #000 !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  font-size: 12px;
+  background-color: #f9d8d1;
+  border-radius: 15px;
+  margin: 0 6px;
+  padding: 3px;
+}
+.settingsTab .ant-tabs-tabpane .kot-printer table tbody td:not(:last-child) div,
+.settingsTab .ant-tabs-tabpane .kds-tab table tbody td:not(:last-child) div {
+  padding: 0 5px;
+  /* display: flex;
+  justify-content: center; */
+}
+.settingsTab
+  .ant-tabs-tabpane
+  .kot-printer
+  .dept-wise
+  table
+  tbody
+  td:not(:last-child)
+  div {
+  padding: 0 2px;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.settingsTab .ant-tabs-tabpane .kot-printer table tbody tr td,
+.settingsTab .ant-tabs-tabpane .kds-tab table tbody tr td {
+  padding-top: 5px !important;
+}
+.settingsTab .ant-tabs-tabpane .kot-printer table tbody tr td span,
+.settingsTab .ant-tabs-tabpane .kds-tab table tbody tr td span {
+  font-weight: 500;
+}
+
+.custom-select-dropdown {
+  z-index: 2000 !important; /* Ensure it’s higher than other elements */
+}
+.settingsTab :where(.css-dev-only-do-not-override-vryruh).ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn{
+  color: white !important;
+  /* background-color: #FF5534;
+  padding: 8px 25px;
+  border-radius: 8px 8px 0 0; */
+}

@@ -1,0 +1,33 @@
+thead.petty-cash-head .ant-picker-outlined {
+    border: none;
+    padding: 0 !important;
+    background-color: #d5dbe4;
+}
+
+thead.petty-cash-head .ant-picker .ant-picker-input {
+    padding: 0 !important;
+}
+
+thead.petty-cash-head .ant-picker .ant-picker-input>input {
+    text-align: center;
+}
+
+thead.petty-cash-head .ant-picker .ant-picker-suffix {
+    display: none;
+}
+
+thead.petty-cash-head .ant-picker-range .ant-picker-range-separator {
+    padding: 0;
+}
+
+thead.petty-cash-head .ant-picker .ant-picker-input>input {
+    font-size: 0.85rem;
+}
+
+thead.petty-cash-head .ant-picker-range .ant-picker-active-bar {
+    display: none;
+}
+
+.ant-picker-dropdown .ant-picker-panel-container {
+    background-color: #d4dae3;
+}

@@ -1,0 +1,64 @@
+.modalFooterDiv{
+    box-shadow: 0 -1px 5px -4px black;
+}
+.itemModalBoday::-webkit-scrollbar{
+    display: none ;
+}
+
+.itemTabSegment:where(.css-dev-only-do-not-override-vryruh).ant-segmented .ant-segmented-item-selected{
+    background-color: black;
+    color: white;
+}
+
+.itemModalRadio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-inner{
+    background-color: #B3B3B3;
+}
+
+.itemModalCheckBox :where(.css-dev-only-do-not-override-vryruh).ant-checkbox .ant-checkbox-inner{
+    background-color: #B3B3B3 !important;
+}
+
+.itemModalRadio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+    background-color: #FF5534;
+   }
+   .itemModalRadio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+       border-color: #FF5534;
+   }
+   .itemModalCheckBox :where(.css-dev-only-do-not-override-vryruh).ant-checkbox-checked .ant-checkbox-inner {
+    background-color: #FF5534 !important;
+    border-color: #FF5534;
+}
+
+
+
+.custom-item-orage-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-checked .ant-radio-inner{
+    border-color: rgb(0, 0, 0) !important;
+    background-color: white;
+  }
+  
+
+
+  .custom-item-orage-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-checked .ant-radio-inner::after{
+    background-color: #FF5534 !important;
+    transform: scale(0.3 ) !important;
+  }
+  
+
+  
+  .custom-item-orage-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper .ant-radio-inner{
+    transform: scale(1.1) !important;
+    border-color: #FF5534 !important;
+    background-color: transparent !important;
+  }
+
+
+
+  .custom-item-orage-radio:where(.css-dev-only-do-not-override-vryruh).ant-radio-wrapper:hover .ant-radio-inner{
+    transform: scale(1.1) !important;
+    border-color: #FF5534 !important;
+    background-color: transparent !important;
+  }
+
+  .orage-checkbox-orage :where(.css-dev-only-do-not-override-vryruh).ant-checkbox .ant-checkbox-inner{
+    border-color: #FF5534 !important;
+  }

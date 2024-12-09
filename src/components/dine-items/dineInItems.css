@@ -1,0 +1,74 @@
+.mediumShadow{
+    box-shadow: 0 0 7px -2px black;
+}
+.smallShadow{
+    box-shadow: 0 0 5px -2px black;
+}
+.itembtnShadow{
+    box-shadow: 0px -2px 7px -2px black;
+}
+
+@media screen and (min-width:1700px) {
+    .dineInProductItems{
+        width: 90%;
+    }
+    .productItemsGrid{
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+.dineInProductsItemsParent{
+    height: calc(100vh - 16.9rem);
+}
+.dineInProductsItemsParent::-webkit-scrollbar{
+  display: none;
+}
+
+.custom-switch .ant-switch-disabled:hover {
+    background-color: red !important; /* Red for false state */
+
+  }
+  :where(.css-dev-only-do-not-override-1eotyvy).ant-switch{
+    border: 2px solid white;
+  }
+  :where(.css-dev-only-do-not-override-1eotyvy).ant-switch .ant-switch-handle 
+  {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+
+:where(.css-dev-only-do-not-override-1eotyvy).ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled){
+    background-color: #00AF50 !important; /* Red for false state */
+}
+:where(.css-dev-only-do-not-override-1eotyvy).ant-switch:hover:not(.ant-switch-disabled){
+    background-color: red !important; /* Red for false state */
+}
+
+.itemFoodCard:has(.custom-switch:active){
+    background-color: #F6EFEB;
+}
+.itemFoodCard:has(.ItemEditIcon:active){
+    background-color: #F6EFEB;
+}
+.itemFoodCard:has(.itemNoteIcone:active){
+    background-color: #F6EFEB;
+}
+
+ #edit-icon-image:active {
+    content: url('../../../../public/EDIT\ ORAGE.svg');
+}
+
+.searchInput::placeholder{
+    color: white !important;
+}
+.searchInput:focus{
+    background:  #000 !important;
+}
+
+.text-shadow-out-of-stock {
+    text-shadow: 
+      -1px -1px 0 white,  
+       1px -1px 0 white,  
+      -1px  1px 0 white,  
+       1px  1px 0 white;
+  }

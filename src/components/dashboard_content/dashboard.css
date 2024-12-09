@@ -1,0 +1,24 @@
+.dashboard-container h4{
+    color: white;
+    position: relative;
+    font-size: 20px;
+    
+}
+.dashboard-container h4::before{
+    /* content: ""; */
+    position: absolute;
+    width: 5px ;
+    height: 20px;
+    background-color: #F65630;
+    margin-right: 30px;
+}
+
+.dashboard-container {
+  height: calc(100vh - 15rem);
+}
+
+@media (min-width: 1700px) {
+  .dashboard-container {
+    height: calc(100vh - 17rem);
+  }
+}

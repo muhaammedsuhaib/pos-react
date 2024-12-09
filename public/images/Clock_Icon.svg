@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #ccc;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #dbdbdb;
+      }
+
+      .cls-5 {
+        fill: #e81224;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="12" cy="12" r="12"/>
+  <circle class="cls-4" cx="12" cy="12" r="10.72"/>
+  <circle class="cls-3" cx="12" cy="12" r="9.52"/>
+  <g>
+    <g>
+      <path class="cls-2" d="M11.24,20.25c0-.42.34-.76.76-.76s.76.34.76.76-.34.76-.76.76-.76-.34-.76-.76Z"/>
+      <path class="cls-2" d="M11.24,3.75c0-.42.34-.76.76-.76s.76.34.76.76-.34.76-.76.76-.76-.34-.76-.76Z"/>
+    </g>
+    <g>
+      <circle class="cls-2" cx="7.88" cy="19.14" r=".76"/>
+      <circle class="cls-2" cx="16.12" cy="4.86" r=".76"/>
+    </g>
+    <g>
+      <circle class="cls-2" cx="4.86" cy="16.13" r=".76"/>
+      <circle class="cls-2" cx="19.14" cy="7.88" r=".76"/>
+    </g>
+    <g>
+      <path class="cls-2" d="M3.75,11.24c.42,0,.76.34.76.76s-.34.76-.76.76-.76-.34-.76-.76.34-.76.76-.76Z"/>
+      <circle class="cls-2" cx="20.25" cy="12" r=".76"/>
+    </g>
+    <g>
+      <circle class="cls-2" cx="4.86" cy="7.88" r=".76"/>
+      <circle class="cls-2" cx="19.14" cy="16.12" r=".76"/>
+    </g>
+    <g>
+      <circle class="cls-2" cx="7.87" cy="4.86" r=".76"/>
+      <circle class="cls-2" cx="16.12" cy="19.14" r=".76"/>
+    </g>
+    <g>
+      <circle class="cls-2" cx="12" cy="3.75" r=".76"/>
+      <circle class="cls-2" cx="12" cy="20.25" r=".76"/>
+    </g>
+  </g>
+  <path class="cls-1" d="M16.35,14.28l-3.85-2.28v-6.07c0-.28-.22-.5-.5-.5s-.5.22-.5.5v6.36s0,.04.01.06c0,.03,0,.07.02.1.01.03.02.06.04.09.02.03.03.05.05.08.02.03.05.05.08.07.02.01.03.03.04.04l4.1,2.42c.08.05.17.07.25.07.17,0,.34-.09.43-.25.14-.24.06-.54-.18-.68Z"/>
+  <circle class="cls-5" cx="12" cy="12" r="1.07"/>
+</svg>

@@ -1,0 +1,13 @@
+.sectionRightToDropDown{
+    max-height: calc(100vh - 14rem);
+    overflow-y: scroll;
+}
+.sectionRightToDropDown::-webkit-scrollbar{
+    display: none;
+}
+.order-history-box::-webkit-scrollbar{
+    display: none;
+}
+.order-history-box{
+    z-index: 2000 !important;
+}

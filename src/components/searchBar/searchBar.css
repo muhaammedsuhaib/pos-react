@@ -1,0 +1,25 @@
+.filterSearchDiv input::placeholder {
+    color: white;
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.filterSearchDiv select::placeholder {
+    color: white;
+    font-size: 13px;
+    font-weight: 200;
+}
+
+.searchInput .ant-select-selector {
+    background-color: #000 !important;
+    border: none !important;
+    border-radius: 20px;
+}
+
+.searchInput .ant-select-selection-placeholder {
+    color: white;
+}
+
+.searchInput .ant-select-selection-item {
+    color: #fff;
+}

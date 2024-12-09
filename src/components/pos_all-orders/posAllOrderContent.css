@@ -1,0 +1,36 @@
+.smallShadow{
+    box-shadow: 0 0 7px -4px black;
+}
+.mediumShadow{
+    box-shadow: 0 0 7px -2px black;
+}
+
+
+
+.allOrderCards::-webkit-scrollbar{
+    display: none;
+}
+.allOrderCard::-webkit-scrollbar{
+    display: none;
+}
+
+.filterSearchDiv input::placeholder{
+    color: white;
+    font-size: 13px;
+    font-weight: 200;
+}
+.filterSearchDiv select::placeholder{
+    color: white;
+    font-size: 13px;
+    font-weight: 200;
+}
+
+@media screen and (min-width:1700px) {
+    .allOrderCards .allOrdersGridCards{
+        grid-template-columns: repeat(8, minmax(0, 1fr))
+    }
+}
+
+
+
+

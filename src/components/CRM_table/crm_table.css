@@ -1,0 +1,57 @@
+.crm_table table thead tr:nth-child(2) th {
+  color: white;
+  font-weight: 400;
+  background-color: #f85333;
+  padding: 5px;
+}
+.crm_table table thead tr:nth-child(2) th,
+.crm_table table tbody tr td {
+  border: 1px solid white;
+}
+.crm_table table tbody tr:nth-child(odd) {
+  background-color: #f8e9e4;
+}
+.crm_table table tbody tr:nth-child(even) {
+  background-color: #f9d8cf;
+}
+.crm_table table tbody tr td{
+    padding: 2px 6px;
+    font-size: 14px;
+}
+.crm_table table tbody tr td:nth-child(1) {
+  background-color: #f8ae9e;
+}
+.crm_table table tbody tr td:nth-child(2),
+.crm_table table tbody tr td:nth-child(3),
+.crm_table table tbody tr td:nth-child(4),
+.crm_table table tbody tr td:nth-child(13),
+.crm_table table tbody tr td:nth-child(14)
+ {
+  text-align: center;
+}
+
+.crm_table table tbody tr td:nth-child(15),
+.crm_table table tbody tr td:nth-child(16)
+ {
+  text-align: right;
+}
+.crm_table::-webkit-scrollbar {
+    height: 8px; /* Height for horizontal scrollbar */
+    background: #e0e0e0; /* Background color of the scrollbar track */
+  }
+  
+  .crm_table::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px; /* Rounded edges for the scrollbar thumb */
+  }
+  
+  .crm_table::-webkit-scrollbar-thumb:hover {
+    background: #777777; /* Darker color on hover */
+  }
+  
+  .crm_table::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track background color */
+    border-radius: 4px; /* Optional: rounded track edges */
+  }
+  
+  
