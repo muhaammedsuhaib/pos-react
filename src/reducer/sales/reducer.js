@@ -21,6 +21,7 @@ const initialState = {
   OrderDiscounts: createInitialState(),
   ItemDiscounts: createInitialState(),
   OrdersCancelled: createInitialState(),
+  CustomerCredit: createInitialState(),
 };
 
 const salesSlice = createSlice({
@@ -405,6 +406,38 @@ const salesSlice = createSlice({
           },
         };
       });
+
+    // Customer Credit
+
+    builder
+      .addCase(actions.listCustomerCredit.fulfilled, (state, action) => {
+        const CustomerCredit = action.payload;
+        return {
+          ...state,
+          CustomerCredit: { ...CustomerCredit, loading: false },
+        };
+      })
+      .addCase(actions.listCustomerCredit.pending, (state) => {
+        return {
+          ...state,
+          CustomerCredit: {
+            ...state.CustomerCredit,
+            loading: true,
+          },
+        };
+      })
+      .addCase(actions.listCustomerCredit.rejected, (state, action) => {
+        const error = action.payload;
+        return {
+          ...state,
+          CustomerCredit: {
+            data: error,
+            status: false,
+            loading: false,
+            message: "Loaded with error or rejected",
+          },
+        };
+      });
   },
 });
 
@@ -420,3 +453,4 @@ export const selectTopSoldItems = (state) => state?.sales?.TopSoldItems;
 export const selectOrderDiscounts = (state) => state?.sales?.OrderDiscounts;
 export const selectItemDiscounts = (state) => state?.sales?.ItemDiscounts;
 export const selectOrdersCancelled = (state) => state?.sales?.OrdersCancelled;
+export const selectCustomerCredit = (state) => state?.sales?.CustomerCredit;

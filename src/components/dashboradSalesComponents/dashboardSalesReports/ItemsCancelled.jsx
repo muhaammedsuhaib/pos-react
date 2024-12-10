@@ -1,6 +1,6 @@
 import { Radio } from "antd"
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateBar from "../dateBar/DateBar";
 import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";

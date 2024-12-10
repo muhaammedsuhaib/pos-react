@@ -1,15 +1,40 @@
-import { Radio } from "antd"
+import { Radio } from "antd";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateBar from "../dateBar/DateBar";
 import Chart from "react-apexcharts";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCustomerCredit } from "../../../reducer/sales/reducer";
+import { listCustomerCredit } from "../../../reducer/sales/actions";
 
 function CustomerCredit() {
+  const dispatch = useDispatch();
+  const CustomerCreditSummary = useSelector(selectCustomerCredit);
+  const costomerprogress = CustomerCreditSummary?.progress ||[] ;
+  const total = CustomerCreditSummary?.total;
+
+
   const currentDate = dayjs();
-  const [selectedDate, setSelectedDate] = useState([
-    currentDate,
-    currentDate,
-  ]);
+  const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
+
+
+  const convertDateFormat = (date) => {
+    return date.format("YYYY-MM-DD");
+  };
+  useEffect(() => {
+    const fetchCustomercredit = () => {
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+      dispatch(
+        listCustomerCredit({
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
+        })
+      );
+    };
+
+    fetchCustomercredit();
+  }, [selectedDate, dispatch]);
 
   const chartOptions = {
     chart: {
@@ -22,18 +47,18 @@ function CustomerCredit() {
       position: "bottom",
     },
     dataLabels: {
-      enabled: false, 
+      enabled: false,
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475]; 
+  const chartSeries = [525, 5000, 1579, 3475];
   return (
     <div>
-        <div className="flex w-[70%] justify-between h-[30px] mt-5 items-center">
+      <div className="flex w-[70%] justify-between h-[30px] mt-5 items-center">
         <div className="flex space-x-[10px] items-center">
           <div className="w-[7px] h-9 bg-primeryFirst "></div>
           <h1 className="text-white text-[1rem] font-medium">
-          Customer Credit
+            Customer Credit
           </h1>
         </div>
         <div className="ml-auto">
@@ -43,232 +68,169 @@ function CustomerCredit() {
           />
         </div>
       </div>
- <div className="mt-[20px] w-full flex items-center">
-   <div className="w-[70%] bg-[#EEEEF1] rounded-[20px] p-[10px] flex flex-col gap-y-[10px]">
-       {/* bar start */}
-     <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-       <div className="w-[30%]">
-         <p className=" font-medium text-sm xl:text-[14px]">
-         Mohammed(+971546255)
-         </p>
-       </div>
-       <div className="w-[52%] flex gap-[5px] items-center">
-         <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-           <div className="w-[65%] h-full rounded-[30px] pregress-bar-orange "></div>
-           <p className="text-[#3C6325] font-semibold ">65%</p>
-         </div>
-         <p className="font-semibold text-primeryFirst">75</p>
-       </div>
-       <div className="w-[20%] flex justify-end">
-         <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
-       </div>
-     </div>
-      {/* bar */}
-     <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-       <div className="w-[30%]">
-       <p className=" font-medium text-sm xl:text-[14px]">
-         Rashed(+971546255)
-         </p>
-       </div>
-       <div className="w-[52%] flex gap-[5px] items-center">
-         <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-           <div className="w-[13%] h-full rounded-[30px] pregress-bar-orange "></div>
-           <p className="text-[#3C6325] font-semibold ">13%</p>
-         </div>
-         <p className="font-semibold text-primeryFirst">15</p>
-       </div>
-       <div className="w-[20%] flex justify-end">
-         <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
-       </div>
-     </div>
-      {/* bar */}
-     <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-       <div className="w-[30%]">
-       <p className=" font-medium text-sm xl:text-[14px]">
-         Peter(+971546255)
-         </p>
-       </div>
-       <div className="w-[52%] flex gap-[5px] items-center">
-         <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-           <div className="w-[21%] h-full rounded-[30px] pregress-bar-orange "></div>
-           <p className="text-[#3C6325] font-semibold ">25%</p>
-         </div>
-         <p className="font-semibold text-primeryFirst">25</p>
-       </div>
-       <div className="w-[20%] flex justify-end">
-         <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
-       </div>
-     </div>
-      {/* bar */}
-     <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-       <div className="w-[30%]">
-       <p className=" font-medium text-sm xl:text-[14px]">
-         Antony(+971546255)
-         </p>
-       </div>
-       <div className="w-[52%] flex gap-[5px] items-center">
-         <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-           <div className="w-[21%] h-full rounded-[30px] pregress-bar-orange "></div>
-           <p className="text-[#3C6325] font-semibold ">25%</p>
-         </div>
-         <p className="font-semibold text-primeryFirst">25</p>
-       </div>
-       <div className="w-[20%] flex justify-end">
-         <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
-       </div>
-     </div>
-      {/* bar */}
-     <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-       <div className="w-[30%]">
-         <p className=" font-medium text-sm xl:text-[16px]">
-         others
-         </p>
-       </div>
-       <div className="w-[52%] flex gap-[5px] items-center">
-         <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-           <div className="w-[15%] h-full rounded-[30px] pregress-bar-orange "></div>
-           <p className="text-[#3C6325] font-semibold ">15%</p>
-         </div>
-         <p className="font-semibold text-primeryFirst">15</p>
-       </div>
-       <div className="w-[20%] flex justify-end">
-         <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
-       </div>
-     </div>
-    
+      <div className="mt-[20px] w-full flex items-center">
+        <div className="w-[70%] bg-[#EEEEF1] rounded-[20px] p-[10px] flex flex-col gap-y-[10px]">
+          {/* bar start */}
 
-      {/* bar */}
-     <div className="h-[35px] bg-black text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-       <div className="w-[30%]">
-         <p className="uppercase font-medium text-sm xl:text-[16px]">
-           total 
-         </p>
-       </div>
-       <div className="w-[52%] flex gap-[5px] items-center">
-         <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-           <div className="w-[100%] h-full rounded-[30px] pregress-bar-orange "></div>
-           <p className="text-[#3C6325] font-semibold hidden">100%</p>
-         </div>
-         <p className="font-semibold text-primeryFirst">150</p>
-       </div>
-       <div className="w-[20%] flex justify-end">
-         <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
-       </div>
-     </div>
 
-     <div className="w-full pl-[20px] mt-[10px]">
-     <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
-                <div className="flex flex-col gap-y-[20px] justify-between">
-                    <div className="flex items-center space-x-[10px]">
-                      <Radio className="custom-black-radio"/>
-                      <h1>Summary</h1>
-                    </div>
-                    <div className="flex items-center space-x-[10px]">
-                    <Radio className="custom-black-radio"/>
-                    <h1>Details</h1>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-y-[20px]">
-                    <div className="flex items-center space-x-[10px]">
-                      <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
-                        <img src="/public/images/dashboradSales/screen_5621734.svg" alt=""  className="w-[20px]"/>
-                      </div>
-                      <h1>Show & Print</h1>
-                    </div>
-                    <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
-                      <img src="/public/images/dashboradSales/folder.svg" alt=""  className="w-[20px]"/>
-                    </div>
-                    <h1>Export to Excel</h1>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-y-[20px]">
-                    <div className="flex items-center space-x-[10px]">
-                      <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
-                        <img src="/public/images/dashboradSales/whatsapp.svg" alt=""  className="w-[20px]"/>
-                      </div>
-                      <h1>Share WhatsApp</h1>
-                    </div>
-                    <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
-                      <img src="/public/images/dashboradSales/folder.svg" alt=""  className="w-[20px]"/>
-                    </div>
-                    <h1>Export to PDF</h1>
-                    </div>
-                </div>
-                
-              </div>
-       </div>
-
-   </div>
-
-   <div className="mb-20  grid place-content-center">
-   <div className="h-[295px] w-auto relative ml-32">
-          <img
-            src="./public/images/dashboradSales/Pie chart base-1.png"
-            alt=""
-            className="h-full w-full"
-          />
-          <div className="absolute top-[55px] left-[37px]">
-            <div
-              style={{
-                display: "inline-block",
-                // transform: `rotateX(65deg)`,
-                transformOrigin: "center center",
-                // transition: "transform 0.5s ease",
-              }}
-            >
-              <Chart
-                options={chartOptions}
-                series={chartSeries}
-                type="pie"
-                style={{
-                  width: "220px",
-                  margin: "auto",
-                  textAlign: "center",
-                }}
-              />
-              
+          {costomerprogress?.map((item)=>(
+            <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className=" font-medium text-sm xl:text-[14px]">
+                {`${item?.name} (${'+'}${item.phone})`}
+              </p>
             </div>
-            
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div className=" h-full rounded-[30px] pregress-bar-orange " style={{width:`${item?.amount_percentage}`}}></div>
+                <p className="text-[#3C6325] font-semibold ">{item?.amount_percentage}</p>
+              </div>
+              <p className="font-semibold text-primeryFirst">{item?.total_orders}</p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">AED {item?.total_amount}</p>
+            </div>
           </div>
-          <div className="flex flex-col items-start mt-3 p-2 space-y-2 ml-10">
-  {/* First Row */}
-  <div className="flex items-center space-x-10">
-    <div className="flex items-center space-x-2">
-      <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm">CASH</span>
-    </div>
-    <div className="flex items-center space-x-2">
-      <div className="bg-green-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm"> AGGREGATORS </span>
-    </div>
-  </div>
-  {/* Second Row */}
-  <div className="flex items-center space-x-10">
-    <div className="flex items-center space-x-2">
-      <div className="bg-red-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm">CARD</span>
-    </div>
-    <div className="flex items-center space-x-2">
-      <div className="bg-blue-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm">OTHERS</span>
-    </div>
-  </div>
-</div>
+          ))}
 
 
 
+          {/* total bar */}
+          <div className="h-[35px] bg-black text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                total
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div className=" h-full rounded-[30px] pregress-bar-orange " style={{width:`${total?.total_amount_percentage}`}}></div>
+                <p className="text-[#3C6325] font-semibold hidden">{total?.totalAmountPercentage}</p>
+              </div>
+              <p className="font-semibold text-primeryFirst">{total?.total_orders}</p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">AED {total?.total_amount}</p>
+            </div>
+          </div>
 
-
+          <div className="w-full pl-[20px] mt-[10px]">
+            <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
+              <div className="flex flex-col gap-y-[20px] justify-between">
+                <div className="flex items-center space-x-[10px]">
+                  <Radio className="custom-black-radio" />
+                  <h1>Summary</h1>
+                </div>
+                <div className="flex items-center space-x-[10px]">
+                  <Radio className="custom-black-radio" />
+                  <h1>Details</h1>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-[20px]">
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/screen_5621734.svg"
+                      alt=""
+                      className="w-[20px]"
+                    />
+                  </div>
+                  <h1>Show & Print</h1>
+                </div>
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/folder.svg"
+                      alt=""
+                      className="w-[20px]"
+                    />
+                  </div>
+                  <h1>Export to Excel</h1>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-[20px]">
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/whatsapp.svg"
+                      alt=""
+                      className="w-[20px]"
+                    />
+                  </div>
+                  <h1>Share WhatsApp</h1>
+                </div>
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/folder.svg"
+                      alt=""
+                      className="w-[20px]"
+                    />
+                  </div>
+                  <h1>Export to PDF</h1>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-   </div>
- </div>
-
-
-</div>
-  )
+        <div className="mb-20  grid place-content-center">
+          <div className="h-[295px] w-auto relative ml-32">
+            <img
+              src="./public/images/dashboradSales/Pie chart base-1.png"
+              alt=""
+              className="h-full w-full"
+            />
+            <div className="absolute top-[55px] left-[37px]">
+              <div
+                style={{
+                  display: "inline-block",
+                  // transform: `rotateX(65deg)`,
+                  transformOrigin: "center center",
+                  // transition: "transform 0.5s ease",
+                }}
+              >
+                <Chart
+                  options={chartOptions}
+                  series={chartSeries}
+                  type="pie"
+                  style={{
+                    width: "220px",
+                    margin: "auto",
+                    textAlign: "center",
+                  }}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col items-start mt-3 p-2 space-y-2 ml-10">
+              {/* First Row */}
+              <div className="flex items-center space-x-10">
+                <div className="flex items-center space-x-2">
+                  <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm">CASH</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-green-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm"> AGGREGATORS </span>
+                </div>
+              </div>
+              {/* Second Row */}
+              <div className="flex items-center space-x-10">
+                <div className="flex items-center space-x-2">
+                  <div className="bg-red-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm">CARD</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-blue-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm">OTHERS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default CustomerCredit
+export default CustomerCredit;

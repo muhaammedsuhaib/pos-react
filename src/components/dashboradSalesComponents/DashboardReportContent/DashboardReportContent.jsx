@@ -72,13 +72,13 @@ function DashboardReportContent({ saleSub, setSaleSub }) {
         <OrdersCancelled />
       </div>
       <div ref={refs["items-cancelled"]}>
-        {/* <ItemsCancelled /> */}
+        <ItemsCancelled />
       </div>
       <div ref={refs["customer-credits"]}>
-        {/* <CustomerCredit /> */}
+        <CustomerCredit />
       </div>
       <div ref={refs["free-food"]}>
-        {/* <FreeFood /> */}
+        <FreeFood />
       </div>
     </div>
   );

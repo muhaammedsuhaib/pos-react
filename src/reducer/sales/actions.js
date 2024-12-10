@@ -190,6 +190,25 @@ export const listOrdersCancelled = createAsyncThunk(
   }
 );
 
+export const listCustomerCredit = createAsyncThunk(
+  "sales/customer-credit",
+  async (data) => {
+    try {
+      const response = await axios.get(
+        base_url + "/sales/customer-credit",
+        createAxiosConfig(data)
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error, "Error fetching customer credit");
+      if (error.response) {
+        return error.response.data;
+      } else {
+        return false;
+      }
+    }
+  }
+);
 
 // export const changeVendorStatus = createAsyncThunk(
 //   'pettycash/change-vendor-status',
