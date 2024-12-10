@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import DateBar from "../dateBar/DateBar";
 import dayjs from "dayjs";
 import Chart from "react-apexcharts";
-import { data } from "autoprefixer";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTopSoldItems } from "../../../reducer/sales/reducer";
 import { listTopSoldItems } from "../../../reducer/sales/actions";
@@ -12,8 +11,7 @@ import { listTopSoldItems } from "../../../reducer/sales/actions";
 function TopSoldItems() {
   const dispatch = useDispatch();
   const topSoldItemssummary = useSelector(selectTopSoldItems);
-  const topSoldItems = topSoldItemssummary?.data
-  console.log(topSoldItemssummary, "im suhaib...  ");
+  const topSoldItems = topSoldItemssummary?.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -26,15 +24,12 @@ function TopSoldItems() {
     const fetchTopsoldItemsData = () => {
       const formattedStartDate = convertDateFormat(selectedDate[0]);
       const formattedEndDate = convertDateFormat(selectedDate[1]);
-// console.log('hellooooooo');
-
       dispatch(
         listTopSoldItems({
           startDate: formattedStartDate,
           endDate: formattedEndDate,
         })
       );
-      console.log('ASHIQ');
     };
 
     fetchTopsoldItemsData();
@@ -81,7 +76,7 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[65%] h-full rounded-[30px] pregress-bar "></div>
+                <div className="w-[65%] h-full rounded-[30px] pregress-bar " style={{ width: `${topSoldItems?.lunch_buffet_27?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
                   {topSoldItems?.lunch_buffet_27?.percentage}
                 </p>
@@ -105,7 +100,7 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[60%] h-full rounded-[30px] pregress-bar "></div>
+                <div className=" h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.card_mastercard?.percentage}`}}></div>
                 <p className="text-[#3C6325] font-semibold ">
                   {topSoldItems?.card_mastercard?.percentage}
                 </p>
@@ -129,7 +124,7 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[55%] h-full rounded-[30px] pregress-bar "></div>
+                <div className="h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.grilled_bangus?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
                   {topSoldItems?.grilled_bangus?.percentage}
                 </p>
@@ -153,18 +148,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[50%] h-full rounded-[30px] pregress-bar "></div>
+                <div className=" h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.mixed_pancit?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.mixed_pancit?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.mixed_pancit?.total}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.mixed_pancit?.total}
               </p>
             </div>
           </div>
@@ -177,18 +172,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[45%] h-full rounded-[30px] pregress-bar "></div>
+                <div className="h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.aggregator?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.aggregator?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.aggregator?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.aggregator?.total}
               </p>
             </div>
           </div>
@@ -201,18 +196,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[40%] h-full rounded-[30px] pregress-bar "></div>
+                <div className="h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.water_small?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.water_small?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.water_small?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.water_small?.total}
               </p>
             </div>
           </div>
@@ -225,18 +220,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[30%] h-full rounded-[30px] pregress-bar "></div>
+                <div className="h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.service_charge_50?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.service_charge_50?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.service_charge_50?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.service_charge_50?.total}
               </p>
             </div>
           </div>
@@ -249,18 +244,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[21%] h-full rounded-[30px] pregress-bar "></div>
+                <div className="h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.lumpia_shanghai?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.lumpia_shanghai?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.lumpia_shanghai?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.lumpia_shanghai?.total}
               </p>
             </div>
           </div>
@@ -273,18 +268,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[15%] h-full rounded-[30px] pregress-bar "></div>
+                <div className=" h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.grilled_stuffed_squid?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.grilled_stuffed_squid?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.grilled_stuffed_squid?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.grilled_stuffed_squid?.total}
               </p>
             </div>
           </div>
@@ -297,18 +292,18 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[45%] h-full rounded-[30px] pregress-bar "></div>
+                <div className=" h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.others?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.others?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.others?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.others?.total}
               </p>
             </div>
           </div>
@@ -322,18 +317,19 @@ function TopSoldItems() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[100%] h-full rounded-[30px] pregress-bar "></div>
+                <div className=" h-full rounded-[30px] pregress-bar "  style={{ width: `${topSoldItems?.total_sales?.percentage}` }}></div>
                 <p className="text-[#3C6325] font-semibold hidden">
-                  {topSoldItems?.lunch_buffet_27?.total}
+                  {topSoldItems?.total_sales?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.lunch_buffet_27?.total}
+                {topSoldItems?.total_sales?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.lunch_buffet_27?.total}
+              <p className="font-bold text-sm xl:text-[16px]  overflow-auto">
+                <div className="w-32">{topSoldItems?.total_sales?.total}</div>
+                
               </p>
             </div>
           </div>

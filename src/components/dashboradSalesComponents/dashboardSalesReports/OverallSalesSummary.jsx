@@ -9,7 +9,7 @@ import { listOverallSalesSummary } from "../../../reducer/sales/actions";
 function OverallSalesSummary() {
   const dispatch = useDispatch();
   const overallsalesdetails = useSelector(selectSalesSummary);
-  const salesData = overallsalesdetails?.data?.data;
+  const salesData = overallsalesdetails?.data;
 
   const currentDate = dayjs();
 

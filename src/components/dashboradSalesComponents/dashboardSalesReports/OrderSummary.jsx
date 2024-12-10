@@ -10,7 +10,7 @@ import { listOrderSummary } from "../../../reducer/sales/actions";
 function OrderSummary() {
   const dispatch = useDispatch();
   const orderdatas = useSelector(selectOrderSummary);
-  const orderSummardata = orderdatas?.data?.data;
+  const orderSummardata = orderdatas?.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -30,9 +30,9 @@ function OrderSummary() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475]; // Data values
+  const chartSeries = [525, 5000, 1579, 3475]; 
 
-  console.log(orderSummardata, "im order summary");
+ 
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");

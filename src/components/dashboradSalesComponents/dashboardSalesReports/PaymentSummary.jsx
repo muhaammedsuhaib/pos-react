@@ -10,7 +10,7 @@ import { listPaymentSummary } from "../../../reducer/sales/actions";
 function PaymentSummary() {
   const dispatch = useDispatch();
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
-  const SummaryData = paymentSummarydatas.data.data;
+  const SummaryData = paymentSummarydatas?.data;
 
   const currentDate = dayjs();
 
@@ -80,7 +80,7 @@ function PaymentSummary() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div
-                  className="w-[65%] h-full rounded-[30px] pregress-bar "
+                  className=" h-full rounded-[30px] pregress-bar "
                   style={{ width: `${SummaryData?.cash?.percentage}` }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">

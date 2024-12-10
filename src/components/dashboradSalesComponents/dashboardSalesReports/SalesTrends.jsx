@@ -9,8 +9,9 @@ import { listAllSalesTrend } from "../../../reducer/sales/actions";
 function SalesTrends() {
   const dispatch = useDispatch();
   const salestrenddatas = useSelector(selectSalesTrend);
+  
 
-
+  console.log(salestrenddatas.data, "im shu");
   const [categories, setCategories] = useState([]);
   const [data, setData] = useState([]);
   const currentDate = dayjs();
@@ -88,8 +89,9 @@ function SalesTrends() {
   }, [selectedDate, dispatch]);
 
   useEffect(() => {
-    if (salestrenddatas?.data?.data) {
-      const responseData = salestrenddatas.data; // Assuming response data is structured as a key-value map
+    if (salestrenddatas?.data) {
+      const responseData = salestrenddatas?.data;
+      console.log(responseData,'hello daaaa')
 
       // Generate data based on the response
       const data = categories.map((category) => {

@@ -3,14 +3,41 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import DateBar from "../dateBar/DateBar";
 import Chart from "react-apexcharts";
+import { useDispatch, useSelector } from "react-redux";
+import { selectOrdersCancelled } from "../../../reducer/sales/reducer";
+import { listOrdersCancelled } from "../../../reducer/sales/actions";
 
 function ItemsCancelled() {
 
+  const dispatch = useDispatch();
+  const ordersCancelle = useSelector(selectOrdersCancelled);
+  console.log(ordersCancelle,'im order can');
+  
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([
     currentDate,
     currentDate,
   ]);
+
+  const convertDateFormat = (date) => {
+    return date.format("YYYY-MM-DD");
+  };
+
+  useEffect(() => {
+    const fetchOrderCancelled = () => {
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+
+      dispatch(
+        listOrdersCancelled({
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
+        })
+      );
+    };
+
+    fetchOrderCancelled();
+  }, [selectedDate, dispatch]);
 
 
   const chartOptions = {

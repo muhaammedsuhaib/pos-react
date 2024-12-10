@@ -17,7 +17,10 @@ export const listAllSalesTrend = createAsyncThunk(
   "sales/sales-trend",
   async (data) => {
     try {
-      const response = await axios.get(base_url + "/sales/trends", createAxiosConfig(data));
+      const response = await axios.get(
+        base_url + "/sales/trends",
+        createAxiosConfig(data)
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -35,7 +38,10 @@ export const listOverallSalesSummary = createAsyncThunk(
   "sales/summary",
   async (data) => {
     try {
-      const response = await axios.get(base_url + "/sales/summary", createAxiosConfig(data));
+      const response = await axios.get(
+        base_url + "/sales/summary",
+        createAxiosConfig(data)
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -51,7 +57,10 @@ export const listPaymentSummary = createAsyncThunk(
   "sales/payment-summary",
   async (data) => {
     try {
-      const response = await axios.get(base_url + "/sales/payment-summary", createAxiosConfig(data));
+      const response = await axios.get(
+        base_url + "/sales/payment-summary",
+        createAxiosConfig(data)
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -67,7 +76,10 @@ export const listOrderSummary = createAsyncThunk(
   "sales/order-summary",
   async (data) => {
     try {
-      const response = await axios.get(base_url + "/sales/order-summary", createAxiosConfig(data));
+      const response = await axios.get(
+        base_url + "/sales/order-summary",
+        createAxiosConfig(data)
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -83,7 +95,10 @@ export const listExtraChargesSummary = createAsyncThunk(
   "sales/extra-charges-summary",
   async (data) => {
     try {
-      const response = await axios.get(base_url + "/sales/extra-charges-summary", createAxiosConfig(data, "multipart/form-data"));
+      const response = await axios.get(
+        base_url + "/sales/extra-charges-summary",
+        createAxiosConfig(data, "multipart/form-data")
+      );
       return response.data;
     } catch (error) {
       if (error.response) {
@@ -98,12 +113,14 @@ export const listExtraChargesSummary = createAsyncThunk(
 export const listTopSoldItems = createAsyncThunk(
   "sales/top-sold-items-summary",
   async (data) => {
-    console.log(data, 'Fetching top sold items');
     try {
-      const response = await axios.get(base_url + "/sales/top-sold-items-summary", createAxiosConfig(data));
+      const response = await axios.get(
+        base_url + "/sales/top-sold-items-summary",
+        createAxiosConfig(data)
+      );
       return response.data;
     } catch (error) {
-      console.error(error, 'Error fetching top sold items');
+      console.error(error, "Error fetching top sold items");
       if (error.response) {
         return error.response.data;
       } else {
@@ -112,6 +129,67 @@ export const listTopSoldItems = createAsyncThunk(
     }
   }
 );
+
+export const listOrderDiscounts = createAsyncThunk(
+  "sales/order-discount-summary",
+  async (data) => {
+    try {
+      const response = await axios.get(
+        base_url + "/sales/order-discount-summary",
+        createAxiosConfig(data)
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error, "Error fetching top sold items");
+      if (error.response) {
+        return error.response.data;
+      } else {
+        return false;
+      }
+    }
+  }
+);
+
+export const listItemDiscounts = createAsyncThunk(
+  "sales/item-discounts-summary",
+  async (data) => {
+    try {
+      const response = await axios.get(
+        base_url + "/sales/item-discounts-summary",
+        createAxiosConfig(data)
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error, "Error fetching top sold items");
+      if (error.response) {
+        return error.response.data;
+      } else {
+        return false;
+      }
+    }
+  }
+);
+
+export const listOrdersCancelled = createAsyncThunk(
+  "sales/orders-cancelled",
+  async (data) => {
+    try {
+      const response = await axios.get(
+        base_url + "/sales/orders-cancelled",
+        createAxiosConfig(data)
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error, "Error fetching top sold items");
+      if (error.response) {
+        return error.response.data;
+      } else {
+        return false;
+      }
+    }
+  }
+);
+
 
 // export const changeVendorStatus = createAsyncThunk(
 //   'pettycash/change-vendor-status',

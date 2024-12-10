@@ -10,7 +10,7 @@ import OrderSummary from "../dashboardSalesReports/OrderSummary";
 import OverallSalesSummary from "../dashboardSalesReports/OverallSalesSummary";
 import PaymentSummary from "../dashboardSalesReports/PaymentSummary";
 import SalesTrends from "../dashboardSalesReports/SalesTrends";
-// import TopSoldItems from "../dashboardSalesReports/TopSoldItems";
+import TopSoldItems from "../dashboardSalesReports/TopSoldItems";
 
 function DashboardReportContent({ saleSub, setSaleSub }) {
   // Create refs for each section
@@ -48,28 +48,28 @@ function DashboardReportContent({ saleSub, setSaleSub }) {
         <SalesTrends />
       </div>
       <div ref={refs["overall-summary"]}>
-        {/* <OverallSalesSummary /> */}
+        <OverallSalesSummary />
       </div>
       <div ref={refs["payment-types"]}>
-        {/* <PaymentSummary /> */}
+        <PaymentSummary />
       </div>
       <div ref={refs["order-types"]}>
-        {/* <OrderSummary /> */}
+        <OrderSummary />
       </div>
       <div ref={refs["extra-charges"]}>
-        {/* <ExtraCharges /> */}
+        <ExtraCharges />
       </div>
       <div ref={refs["top-selers"]}>
-        {/* <TopSoldItems /> */}
+        <TopSoldItems />
       </div>
       <div ref={refs["order-discounts"]}>
-        {/* <OrderDiscountsExtraCharges /> */}
+        <OrderDiscountsExtraCharges />
       </div>
       <div ref={refs["item-discounts"]}>
-        {/* <ItemDiscounts /> */}
+        <ItemDiscounts />
       </div>
       <div ref={refs["orders-cancelled"]}>
-        {/* <OrdersCancelled /> */}
+        <OrdersCancelled />
       </div>
       <div ref={refs["items-cancelled"]}>
         {/* <ItemsCancelled /> */}

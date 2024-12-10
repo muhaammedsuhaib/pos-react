@@ -10,7 +10,7 @@ import { listExtraChargesSummary } from "../../../reducer/sales/actions";
 function ExtraCharges() {
   const dispatch = useDispatch();
   const salestrenddatas = useSelector(selectExtraChargesSummary);
-  const extrachargedata = salestrenddatas.data.data;
+  const extrachargedata = salestrenddatas.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
