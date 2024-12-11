@@ -22,6 +22,7 @@ const initialState = {
   ItemDiscounts: createInitialState(),
   OrdersCancelled: createInitialState(),
   CustomerCredit: createInitialState(),
+  ItemsCancelled: createInitialState(),
 };
 
 const salesSlice = createSlice({
@@ -438,6 +439,37 @@ const salesSlice = createSlice({
           },
         };
       });
+
+    // items cancelled
+    builder
+      .addCase(actions.listItemCancelled.fulfilled, (state, action) => {
+        const ItemsCancelled = action.payload;
+        return {
+          ...state,
+          ItemsCancelled: { ...ItemsCancelled, loading: false },
+        };
+      })
+      .addCase(actions.listItemCancelled.pending, (state) => {
+        return {
+          ...state,
+          ItemsCancelled: {
+            ...state.ItemsCancelled,
+            loading: true,
+          },
+        };
+      })
+      .addCase(actions.listItemCancelled.rejected, (state, action) => {
+        const error = action.payload;
+        return {
+          ...state,
+          ItemsCancelled: {
+            data: error,
+            status: false,
+            loading: false,
+            message: "Loaded with error or rejected",
+          },
+        };
+      });
   },
 });
 
@@ -454,3 +486,4 @@ export const selectOrderDiscounts = (state) => state?.sales?.OrderDiscounts;
 export const selectItemDiscounts = (state) => state?.sales?.ItemDiscounts;
 export const selectOrdersCancelled = (state) => state?.sales?.OrdersCancelled;
 export const selectCustomerCredit = (state) => state?.sales?.CustomerCredit;
+export const selectItemCancelled = (state) => state?.sales?.ItemsCancelled;

@@ -19,8 +19,8 @@ function OrderSummary() {
     chart: {
       type: "pie",
     },
-    labels: ["Opening Balance", "Added", "Spent", "Cash on Hand"],
-    colors: ["#f97316", "#ADD713", "#01C793", "#F9BC00"],
+    labels: ["DINE-IN", "TAKE-AWAY", "BOOKING", "OTHERS"],
+    colors: ["#f97316", "#22c55e", "#ef4444", "#3b82f6"],
     legend: {
       show: false,
       position: "bottom",
@@ -30,7 +30,7 @@ function OrderSummary() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475]; 
+  const chartSeries = [orderSummardata?.dineIn?.count, orderSummardata?.takeAway?.count, orderSummardata?.booking?.count, orderSummardata?.overallSales?.count]; 
 
  
 

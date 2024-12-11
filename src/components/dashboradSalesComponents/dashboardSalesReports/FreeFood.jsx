@@ -16,8 +16,8 @@ function FreeFood() {
     chart: {
       type: "pie",
     },
-    labels: ["Opening Balance", "Added", "Spent", "Cash on Hand"],
-    colors: ["#F85631", "#ADD713", "#01C793", "#F9BC00"],
+    labels: ["DINE-IN", "TAKE-AWAY", "BOOKING", "OTHERS"],
+    colors: ["#f97316", "#22c55e", "#ef4444", "#3b82f6"],
     legend: {
       show: false,
       position: "bottom",

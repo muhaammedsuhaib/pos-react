@@ -40,8 +40,8 @@ function PaymentSummary() {
     chart: {
       type: "pie",
     },
-    labels: ["Opening Balance", "Added", "Spent", "Cash on Hand"],
-    colors: ["#F85631", "#ADD713", "#01C793", "#F9BC00"],
+    labels: ["CASH", "AGGREGATORS", "CARD", "OTHERS"],
+    colors: ["#f97316", "#22c55e", "#ef4444", "#3b82f6"],
     legend: {
       show: false,
       position: "bottom",
@@ -51,7 +51,12 @@ function PaymentSummary() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475];
+  const chartSeries = [
+    SummaryData?.cash?.count,
+    SummaryData?.aggregatorNoon?.count,
+    SummaryData?.cardMastercard?.count + SummaryData?.cardVisa?.count,
+    SummaryData?.overallSales?.count,
+  ];
   return (
     <div>
       <div className="flex w-[70%] justify-between h-[30px] mt-5 items-center">
@@ -252,7 +257,7 @@ function PaymentSummary() {
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${SummaryData?.overallSales?.percentage|| '0%'}`,
+                    width: `${SummaryData?.overallSales?.percentage || "0%"}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold hidden">
