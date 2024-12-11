@@ -180,7 +180,7 @@ export const listOrdersCancelled = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.error(error, "Error fetching top sold items");
+      console.error(error, "Error fetching order cancelled");
       if (error.response) {
         return error.response.data;
       } else {
