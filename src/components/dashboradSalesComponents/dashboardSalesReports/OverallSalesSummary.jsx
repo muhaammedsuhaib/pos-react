@@ -5,6 +5,9 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesSummary } from "../../../reducer/sales/reducer";
 import { listOverallSalesSummary } from "../../../reducer/sales/actions";
+import { base_url, getLoginToken } from "../../utils/utils";
+import axios from "axios";
+// import handleExportPdf from "./handleExportPdf";
 
 function OverallSalesSummary() {
   const dispatch = useDispatch();
@@ -14,10 +17,14 @@ function OverallSalesSummary() {
   const currentDate = dayjs();
 
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
+  const [isSvavingPdf, setIsSavingPdf] = useState(false);
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
   };
+  // const handleClick = async () => {
+  //   await handleExportPdf(`overallsummary`, selectedDate);
+  // };
 
   useEffect(() => {
     const fetchSalesTrendData = () => {
@@ -35,6 +42,32 @@ function OverallSalesSummary() {
     fetchSalesTrendData();
   }, [selectedDate, dispatch]);
 
+  const handleExportPdf = async () => {
+    const formattedStartDate = convertDateFormat(selectedDate[0]);
+    const formattedEndDate = convertDateFormat(selectedDate[1]);
+    setIsSavingPdf(true);
+    try {
+      const url = `${base_url}/sales/get-overall-url`;
+      const response = await axios.get(url, {
+        params: {
+          date: { startDate: formattedStartDate, endDate: formattedEndDate },
+          salesData,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${getLoginToken()}`,
+        },
+      });
+      if (response.data && response.data.data) {
+        window.open(response.data.data, "_blank");
+      }
+      setIsSavingPdf(false);
+    } catch (error) {
+      // console.log(error, 'error pdf');
+      setIsSavingPdf(false);
+    }
+  };
   return (
     <div>
       <div className="flex justify-between h-[30px] mt-5 items-center">
@@ -375,7 +408,10 @@ function OverallSalesSummary() {
                     <h1>Share WhatsApp</h1>
                   </div>
                   <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <div
+                      className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                      onClick={() => handleExportPdf()}
+                    >
                       <img
                         src="/public/images/dashboradSales/folder.svg"
                         alt=""
@@ -390,6 +426,11 @@ function OverallSalesSummary() {
           </div>
         </div>
       </div>
+      {isSvavingPdf && (
+        <div className="absolute top-0 left-0 w-full flex items-center justify-center h-screen bg-[#0000002f]">
+          <div className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-[#F95433]"></div>
+        </div>
+      )}
     </div>
   );
 }

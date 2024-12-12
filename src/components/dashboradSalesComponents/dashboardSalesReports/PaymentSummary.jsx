@@ -6,12 +6,14 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesPaymentSummary } from "../../../reducer/sales/reducer";
 import { listPaymentSummary } from "../../../reducer/sales/actions";
+import axios from "axios";
+import { base_url, getLoginToken } from "../../utils/utils";
 
 function PaymentSummary() {
   const dispatch = useDispatch();
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
   const SummaryData = paymentSummarydatas?.data;
-
+  const [isSvavingPdf, setIsSavingPdf] = useState(false);
   const currentDate = dayjs();
 
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -57,6 +59,33 @@ function PaymentSummary() {
     SummaryData?.cardMastercard?.count + SummaryData?.cardVisa?.count,
     SummaryData?.overallSales?.count,
   ];
+
+  const handleExportPdf = async () => {
+    const formattedStartDate = convertDateFormat(selectedDate[0]);
+    const formattedEndDate = convertDateFormat(selectedDate[1]);
+    setIsSavingPdf(true);
+    try {
+      const url = `${base_url}/sales/get-payment-summary-url`;
+
+      const response = await axios.get(url, {
+        params: {
+          date: { startDate: formattedStartDate, endDate: formattedEndDate },
+        },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${getLoginToken()}`,
+        },
+      });
+      if (response.data && response.data.data) {
+        window.open(response.data.data, "_blank");
+      }
+      setIsSavingPdf(false);
+    } catch (error) {
+      console.log(error, "error pdf");
+      setIsSavingPdf(false);
+    }
+  };
   return (
     <div>
       <div className="flex w-[70%] justify-between h-[30px] mt-5 items-center">
@@ -321,7 +350,10 @@ function PaymentSummary() {
                   <h1>Share WhatsApp</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                  <div
+                    className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                    onClick={() => handleExportPdf()}
+                  >
                     <img
                       src="/public/images/dashboradSales/folder.svg"
                       alt=""
@@ -390,6 +422,11 @@ function PaymentSummary() {
           </div>
         </div>
       </div>
+      {isSvavingPdf && (
+        <div className="absolute top-0 left-0 w-full flex items-center justify-center h-screen bg-[#0000002f]">
+          <div className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-[#F95433]"></div>
+        </div>
+      )}
     </div>
   );
 }

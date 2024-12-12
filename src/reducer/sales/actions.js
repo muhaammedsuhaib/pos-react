@@ -9,7 +9,7 @@ const createAxiosConfig = (data, contentType = "application/json") => ({
     "Content-Type": contentType,
     Accept: "application/json",
     // Uncomment the line below to add Authorization token
-    // 'Authorization': `Bearer ${getLoginToken()}`,
+    'Authorization': `Bearer ${getLoginToken()}`,
   },
 });
 
