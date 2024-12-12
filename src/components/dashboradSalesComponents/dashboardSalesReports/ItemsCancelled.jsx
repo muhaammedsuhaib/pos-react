@@ -10,8 +10,7 @@ import { listItemCancelled } from "../../../reducer/sales/actions";
 function ItemsCancelled() {
   const dispatch = useDispatch();
   const itemscancelledsummary = useSelector(selectItemCancelled);
- const data = itemscancelledsummary?.data
-console.log(data ,'im data ');
+ const data = itemscancelledsummary?.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -79,13 +78,13 @@ console.log(data ,'im data ');
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className=" h-full rounded-[30px] pregress-bar-orange " style={{width:`${data?.percentage}`}}></div>
-                <p className="text-[#3C6325] font-semibold ">{data?.percentage}</p>
+                <div className=" h-full rounded-[30px] pregress-bar-orange " style={{width:`${data?.cash?.percentage}`}}></div>
+                <p className="text-[#3C6325] font-semibold ">{data?.cash?.percentage}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">{data?.count}</p>
+              <p className="font-semibold text-primeryFirst">{data?.cash?.count}</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED {data?.cash}</p>
+              <p className="font-bold text-sm xl:text-[16px]">AED {data?.cash?.amount}</p>
             </div>
           </div>
           {/* bar */}
@@ -152,13 +151,13 @@ console.log(data ,'im data ');
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[100%] h-full rounded-[30px] pregress-bar-orange "></div>
-                <p className="text-[#3C6325] font-semibold hidden">100%</p>
+                <div className="h-full rounded-[30px] pregress-bar-orange " style={{width:`${data?.total?.percentage}`}}></div>
+                <p className="text-[#3C6325] font-semibold hidden">{data?.total?.percentage}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">150</p>
+              <p className="font-semibold text-primeryFirst">{data?.total?.count}</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
+              <p className="font-bold text-sm xl:text-[16px]">AED {data?.total?.amount}</p>
             </div>
           </div>
 
