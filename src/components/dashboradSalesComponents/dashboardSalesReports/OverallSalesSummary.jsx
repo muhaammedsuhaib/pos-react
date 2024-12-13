@@ -99,7 +99,7 @@ function OverallSalesSummary() {
                     className=" h-full rounded-[30px] pregress-bar "
                     style={{ width: `${salesData?.overallSales?.percentage}` }}
                   ></div>
-                  <p className="text-[#3C6325] font-semibold hidden">
+                  <p className="text-[#3C6325] font-semibold ">
                     {salesData?.overallSales?.percentage}
                   </p>
                 </div>

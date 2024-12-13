@@ -13,6 +13,8 @@ function PaymentSummary() {
   const dispatch = useDispatch();
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
   const SummaryData = paymentSummarydatas?.data;
+
+
   const [isSvavingPdf, setIsSavingPdf] = useState(false);
   const currentDate = dayjs();
 
@@ -289,7 +291,7 @@ function PaymentSummary() {
                     width: `${SummaryData?.overallSales?.percentage || "0%"}`,
                   }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold hidden">
+                <p className="text-[#3C6325] font-semibold">
                   {SummaryData?.overallSales?.percentage}
                 </p>
               </div>
