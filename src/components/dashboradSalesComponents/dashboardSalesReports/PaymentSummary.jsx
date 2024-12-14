@@ -8,8 +8,15 @@ import { selectSalesPaymentSummary } from "../../../reducer/sales/reducer";
 import { listPaymentSummary } from "../../../reducer/sales/actions";
 import axios from "axios";
 import { base_url, getLoginToken } from "../../utils/utils";
+import useExportPdf from "./hooks/useExportPdf";
 
 function PaymentSummary() {
+
+
+  const { isSavingPdf, exportPdf } = useExportPdf();
+
+  const [selectedOption, setSelectedOption] = useState("summary");                                                                                                                      
+
   const dispatch = useDispatch();
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
   const SummaryData = paymentSummarydatas?.data;
@@ -55,6 +62,12 @@ function PaymentSummary() {
     },
   };
 
+
+  const handleChange = (value) => {
+    setSelectedOption(value);
+  };
+
+
   const chartSeries = [
     SummaryData?.cash?.count,
     SummaryData?.aggregatorNoon?.count,
@@ -62,30 +75,19 @@ function PaymentSummary() {
     SummaryData?.overallSales?.count,
   ];
 
-  const handleExportPdf = async () => {
-    const formattedStartDate = convertDateFormat(selectedDate[0]);
-    const formattedEndDate = convertDateFormat(selectedDate[1]);
-    setIsSavingPdf(true);
+  const handleExportPdf = () => {
     try {
-      const url = `${base_url}/sales/get-payment-summary-url`;
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
 
-      const response = await axios.get(url, {
-        params: {
-          date: { startDate: formattedStartDate, endDate: formattedEndDate },
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${getLoginToken()}`,
-        },
-      });
-      if (response.data && response.data.data) {
-        window.open(response.data.data, "_blank");
-      }
-      setIsSavingPdf(false);
+      exportPdf(
+        formattedStartDate,
+        formattedEndDate,
+        selectedOption,
+        "get-payment-summary-url"
+      );
     } catch (error) {
-      console.log(error, "error pdf");
-      setIsSavingPdf(false);
+      console.log("Export error sales overall", error);
     }
   };
   return (
@@ -308,16 +310,26 @@ function PaymentSummary() {
 
           <div className="w-full pl-[20px] mt-[10px]">
             <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
-              <div className="flex flex-col gap-y-[20px] justify-between">
-                <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
-                  <h1>Summary</h1>
+            <div className="flex flex-col gap-y-[20px] justify-between">
+                  <div className="flex items-center space-x-[10px]">
+                    <Radio
+                      className="custom-black-radio"
+                      value="summary"
+                      checked={selectedOption === "summary"}
+                      onChange={() => handleChange("summary")}
+                    />
+                    <h1>Summary</h1>
+                  </div>
+                  <div className="flex items-center space-x-[10px]">
+                    <Radio
+                      className="custom-black-radio"
+                      value="details"
+                      checked={selectedOption === "details"}
+                      onChange={() => handleChange("details")}
+                    />
+                    <h1>Details</h1>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
-                  <h1>Details</h1>
-                </div>
-              </div>
               <div className="flex flex-col gap-y-[20px]">
                 <div className="flex items-center space-x-[10px]">
                   <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">

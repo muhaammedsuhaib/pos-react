@@ -5,10 +5,13 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesSummary } from "../../../reducer/sales/reducer";
 import { listOverallSalesSummary } from "../../../reducer/sales/actions";
-import LoadingOverlay from "./LoadingOverlay";
+import LoadingOverlay from "./components/LoadingOverlay";
 import useExportPdf from "./hooks/useExportPdf";
+import * as XLSX from 'xlsx';
 
 function OverallSalesSummary() {
+  const { isSavingPdf, exportPdf } = useExportPdf();
+
   const dispatch = useDispatch();
   const overallsalesdetails = useSelector(selectSalesSummary);
   const salesData = overallsalesdetails?.data;
@@ -18,8 +21,6 @@ function OverallSalesSummary() {
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
 
   const [selectedOption, setSelectedOption] = useState("summary");
-
-  const { isSavingPdf, exportPdf } = useExportPdf();
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
@@ -59,6 +60,55 @@ function OverallSalesSummary() {
       console.log("Export error sales overall", error);
     }
   };
+
+  const handleExportExl = () => {
+    // Define static information to be included in the Excel export
+    const restaurantInfo = [
+      ['Restaurant:', 'Mamas La Mesa Restaurant'],
+      ['Branch:', 'Mamas La Mesa Restaurant'],
+      ['Date Range:', '2024-12-14']
+    ];
+  
+    // Define headers for the table
+    const headers = ['Description', 'Value', 'Percentage'];
+  
+    // Prepare the data rows for the table
+    const data = [
+      ['Overall Sales', 'AED 0', '0%'],
+      ['Item Discounts', 'AED 0', '0%'],
+      ['Order Discounts', 'AED 0', '0%'],
+      ['Coupon Discounts', 'AED 0', '0%'],
+      ['Delivery Charges', 'AED 0', '0%'],
+      ['Tips', 'AED 0', '0%'],
+      ['Service Charges', 'AED 0', '0%'],
+      ['Net Sales Before Tax', 'AED 0', '0%'],
+      ['VAT Amount', 'AED 0', '0%'],
+      ['Net Sales After Tax', 'AED 0', '0%']
+    ];
+  
+    // Combine the static restaurant info and table data
+    const combinedData = [
+      ...restaurantInfo, // Restaurant info at the top
+      [], // Empty row for spacing
+      headers, // Table headers
+      ...data // Table rows
+    ];
+  
+    // Create a worksheet from the combined data
+    const worksheet = XLSX.utils.aoa_to_sheet(combinedData);
+  
+    // Create a new workbook and append the worksheet
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+  
+    // Write the workbook to a buffer and create a file
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const file = new Blob([excelBuffer], { type: 'application/octet-stream' });
+  
+    // Use FileSaver to save the file
+    saveAs(file, `expense_${dayjs().format('YYYY_MM_DD')}.xlsx`);
+  };
+
 
   return (
     <div>
@@ -388,7 +438,7 @@ function OverallSalesSummary() {
                     <h1>Show & Print</h1>
                   </div>
                   <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center" onClick={()=>handleExportExl()}>
                       <img
                         src="/public/images/dashboradSales/folder.svg"
                         alt=""
