@@ -1,16 +1,17 @@
 import axios from "axios";
 import { base_url, getLoginToken } from "../../utils/utils";
 
-const handleExportPdf = async (date1, date2, categorie) => {
+const handleExportPdf = async (date1, date2, path,category) => {
   console.log(date1,date2);
   
   try {
-    const url = `${base_url}/sales/${categorie}`;
+    const url = `${base_url}/sales/${path}`;
     console.log(url);
 
     const response = await axios.get(url, {
       params: {
-        date: { startDate: date1, endDate: date2 }
+        date: { startDate: date1, endDate: date2 },
+        category
       },
       headers: {
         "Content-Type": "application/json",

@@ -123,7 +123,7 @@ function TopSoldItems() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {topSoldItems?.totalRemainingAmount}
+                AED {topSoldItems?.totalRemainingAmount}
               </p>
             </div>
           </div>
@@ -141,17 +141,17 @@ function TopSoldItems() {
                   className=" h-full rounded-[30px] pregress-bar "
                   style={{ width: `${topSoldItems?.percentage}` }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold hidden">
-                  {topSoldItems?.topProductsPercentage}
+                <p className="text-[#3C6325] font-semibold ">
+                  {topSoldItems?.totalPercentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.topProductsPercentage}
+                {topSoldItems?.totalQty}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]  overflow-auto">
-                <div className="w-32">{topSoldItems?.totalTopAmount}</div>
+                <div className="w-32">AED {topSoldItems?.totalsalesamount}</div>
               </p>
             </div>
           </div>

@@ -5,9 +5,8 @@ import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesSummary } from "../../../reducer/sales/reducer";
 import { listOverallSalesSummary } from "../../../reducer/sales/actions";
-import { base_url, getLoginToken } from "../../utils/utils";
-import axios from "axios";
-// import handleExportPdf from "./handleExportPdf";
+import LoadingOverlay from "./LoadingOverlay";
+import useExportPdf from "./hooks/useExportPdf";
 
 function OverallSalesSummary() {
   const dispatch = useDispatch();
@@ -17,14 +16,17 @@ function OverallSalesSummary() {
   const currentDate = dayjs();
 
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
-  const [isSvavingPdf, setIsSavingPdf] = useState(false);
+
+  const [selectedOption, setSelectedOption] = useState("summary");
+
+  const { isSavingPdf, exportPdf } = useExportPdf();
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
   };
-  // const handleClick = async () => {
-  //   await handleExportPdf(`overallsummary`, selectedDate);
-  // };
+  const handleChange = (value) => {
+    setSelectedOption(value);
+  };
 
   useEffect(() => {
     const fetchSalesTrendData = () => {
@@ -42,32 +44,22 @@ function OverallSalesSummary() {
     fetchSalesTrendData();
   }, [selectedDate, dispatch]);
 
-  const handleExportPdf = async () => {
-    const formattedStartDate = convertDateFormat(selectedDate[0]);
-    const formattedEndDate = convertDateFormat(selectedDate[1]);
-    setIsSavingPdf(true);
+  const handleExportPdf = () => {
     try {
-      const url = `${base_url}/sales/get-overall-url`;
-      const response = await axios.get(url, {
-        params: {
-          date: { startDate: formattedStartDate, endDate: formattedEndDate },
-          salesData,
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${getLoginToken()}`,
-        },
-      });
-      if (response.data && response.data.data) {
-        window.open(response.data.data, "_blank");
-      }
-      setIsSavingPdf(false);
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+
+      exportPdf(
+        formattedStartDate,
+        formattedEndDate,
+        selectedOption,
+        "get-overall-url"
+      );
     } catch (error) {
-      // console.log(error, 'error pdf');
-      setIsSavingPdf(false);
+      console.log("Export error sales overall", error);
     }
   };
+
   return (
     <div>
       <div className="flex justify-between h-[30px] mt-5 items-center">
@@ -366,11 +358,21 @@ function OverallSalesSummary() {
               <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
                 <div className="flex flex-col gap-y-[20px] justify-between">
                   <div className="flex items-center space-x-[10px]">
-                    <Radio className="custom-black-radio" />
+                    <Radio
+                      className="custom-black-radio"
+                      value="summary"
+                      checked={selectedOption === "summary"}
+                      onChange={() => handleChange("summary")}
+                    />
                     <h1>Summary</h1>
                   </div>
                   <div className="flex items-center space-x-[10px]">
-                    <Radio className="custom-black-radio" />
+                    <Radio
+                      className="custom-black-radio"
+                      value="details"
+                      checked={selectedOption === "details"}
+                      onChange={() => handleChange("details")}
+                    />
                     <h1>Details</h1>
                   </div>
                 </div>
@@ -426,11 +428,7 @@ function OverallSalesSummary() {
           </div>
         </div>
       </div>
-      {isSvavingPdf && (
-        <div className="absolute top-0 left-0 w-full flex items-center justify-center h-screen bg-[#0000002f]">
-          <div className="w-10 h-10 border-4 border-dashed rounded-full animate-spin border-[#F95433]"></div>
-        </div>
-      )}
+      {isSavingPdf && <LoadingOverlay />}
     </div>
   );
 }
