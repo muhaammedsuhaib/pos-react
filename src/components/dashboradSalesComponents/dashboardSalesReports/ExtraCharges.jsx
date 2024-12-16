@@ -21,7 +21,7 @@ function ExtraCharges() {
     chart: {
       type: "pie",
     },
-    labels: ["DINE-IN", "TAKE-AWAY", "BOOKING", "OTHERS"],
+    labels: ["DELIVERY-CHARGES", "TIP", "SERVIECE-CHARGE", "OTHERS"],
     colors: ["#f97316", "#22c55e", "#ef4444", "#3b82f6"],
     legend: {
       show: false,
@@ -32,7 +32,12 @@ function ExtraCharges() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475]; // Data values
+  const chartSeries = [
+    extrachargedata?.delivery_charge?.count,
+    extrachargedata?.tip?.count,
+    extrachargedata?.service_charge?.count,
+    extrachargedata?.other?.count,
+  ]; 
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
@@ -61,7 +66,7 @@ function ExtraCharges() {
       const url = `${base_url}/sales/get-extra-charge-url`;
       const response = await axios.get(url, {
         params: {
-          date: { startDate: formattedStartDate, endDate: formattedEndDate }
+          date: { startDate: formattedStartDate, endDate: formattedEndDate },
         },
         headers: {
           "Content-Type": "application/json",
@@ -106,20 +111,20 @@ function ExtraCharges() {
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${extrachargedata?.delivery_charges?.percentage}`,
+                    width: `${extrachargedata?.delivery_charge?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {extrachargedata?.delivery_charges?.percentage}
+                  {extrachargedata?.delivery_charge?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {extrachargedata?.delivery_charges?.count}
+                {extrachargedata?.delivery_charge?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {extrachargedata?.delivery_charges?.value}
+                AED {extrachargedata?.delivery_charge?.amount}
               </p>
             </div>
           </div>
@@ -133,22 +138,22 @@ function ExtraCharges() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div
-                  className="w-[13%] h-full rounded-[30px] pregress-bar "
+                  className="h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${extrachargedata?.tips?.percentage}`,
+                    width: `${extrachargedata?.tip?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {extrachargedata?.tips?.percentage}
+                  {extrachargedata?.tip?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {extrachargedata?.tips?.count}
+                {extrachargedata?.tip?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {extrachargedata?.tips?.value}
+                AED {extrachargedata?.tip?.amount}
               </p>
             </div>
           </div>
@@ -162,22 +167,22 @@ function ExtraCharges() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div
-                  className="w-[21%] h-full rounded-[30px] pregress-bar "
+                  className=" h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${extrachargedata?.service_charges?.percentage}`,
+                    width: `${extrachargedata?.service_charge?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {extrachargedata?.service_charges?.percentage}
+                  {extrachargedata?.service_charge?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {extrachargedata?.service_charges?.count}
+                {extrachargedata?.service_charge?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {extrachargedata?.service_charges?.value}
+                AED {extrachargedata?.service_charge?.amount}
               </p>
             </div>
           </div>
@@ -193,20 +198,20 @@ function ExtraCharges() {
                 <div
                   className="w-[15%] h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${extrachargedata?.others?.percentage}`,
+                    width: `${extrachargedata?.other?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {extrachargedata?.others?.percentage}
+                  {extrachargedata?.other?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {extrachargedata?.others?.count}
+                {extrachargedata?.other?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {extrachargedata?.others?.value}
+                AED {extrachargedata?.other?.amount}
               </p>
             </div>
           </div>
@@ -223,20 +228,20 @@ function ExtraCharges() {
                 <div
                   className="w-[100%] h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${extrachargedata?.total_sales?.percentage}`,
+                    width: `${extrachargedata?.total?.percentage}`,
                   }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold hidden">
-                  {extrachargedata?.total_sales?.percentage}
+                <p className="text-[#3C6325] font-semibold ">
+                  {extrachargedata?.total?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {extrachargedata?.total_sales?.count}
+                {extrachargedata?.total?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {extrachargedata?.total_sales?.value}
+                AED {extrachargedata?.total?.amount}
               </p>
             </div>
           </div>
@@ -287,7 +292,10 @@ function ExtraCharges() {
                   <h1>Share WhatsApp</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"  onClick={() => handleExportPdf()}>
+                  <div
+                    className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                    onClick={() => handleExportPdf()}
+                  >
                     <img
                       src="/public/images/dashboradSales/folder.svg"
                       alt=""
@@ -334,22 +342,26 @@ function ExtraCharges() {
               <div className="flex items-center space-x-10">
                 <div className="flex items-center space-x-2">
                   <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm">CASH</span>
+                  <span className="text-white text-sm uppercase">
+                    delivery charges
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="bg-green-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm"> AGGREGATORS </span>
+                  <span className="text-white text-sm uppercase"> tips</span>
                 </div>
               </div>
               {/* Second Row */}
-              <div className="flex items-center space-x-10">
+              <div className="flex items-center space-x-5">
                 <div className="flex items-center space-x-2">
                   <div className="bg-red-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm">CARD</span>
+                  <span className="text-white text-sm uppercase">
+                    service charges
+                  </span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="bg-blue-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm">OTHERS</span>
+                  <span className="text-white text-sm uppercase">OTHERS</span>
                 </div>
               </div>
             </div>
