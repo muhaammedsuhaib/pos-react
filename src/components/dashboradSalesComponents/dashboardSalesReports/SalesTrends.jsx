@@ -104,6 +104,7 @@ function SalesTrends() {
     }
   }, [salestrenddatas, categories]);
 
+  if(!data) return <h1>Data not found</h1>
   const options = {
     chart: {
       type: "line",
