@@ -56,7 +56,7 @@ function ExtraCharges() {
         listExtraChargesSummary({
           startDate: formattedStartDate,
           endDate: formattedEndDate,
-        })
+        })  
       );
     };
 
