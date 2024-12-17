@@ -11,9 +11,7 @@ import { listTopSoldItems } from "../../../reducer/sales/actions";
 function TopSoldItems() {
   const dispatch = useDispatch();
   const topSoldItemssummary = useSelector(selectTopSoldItems);
-  const topSoldItems = topSoldItemssummary?.data;
-
-  console.log(topSoldItems, "im top sold item ");
+  const topSoldItems = topSoldItemssummary.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -111,19 +109,19 @@ function TopSoldItems() {
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
-                  style={{ width: `${topSoldItems?.topProductsPercentage}` }}
+                  style={{ width: `${topSoldItems?.other?.percentage}` }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.others?.percentage}
+                  {topSoldItems?.other?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.totalRemainingQty}
+                {topSoldItems?.other?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                AED {topSoldItems?.totalRemainingAmount}
+                AED {topSoldItems?.other?.amount}
               </p>
             </div>
           </div>
@@ -139,19 +137,19 @@ function TopSoldItems() {
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
-                  style={{ width: `${topSoldItems?.percentage}` }}
+                  style={{ width: `${topSoldItems?.total?.percentage}` }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {topSoldItems?.totalPercentage}
+                  {topSoldItems?.total?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {topSoldItems?.totalQty}
+                {topSoldItems?.total?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]  overflow-auto">
-                <div className="w-32">AED {topSoldItems?.totalsalesamount}</div>
+                <div className="w-32">AED {topSoldItems?.total?.amount}</div>
               </p>
             </div>
           </div>
