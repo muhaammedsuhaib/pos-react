@@ -7,7 +7,7 @@ import { selectSalesSummary } from "../../../reducer/sales/reducer";
 import { listOverallSalesSummary } from "../../../reducer/sales/actions";
 import LoadingOverlay from "./components/LoadingOverlay";
 import useExportPdf from "./hooks/useExportPdf";
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 
 function OverallSalesSummary() {
   const { isSavingPdf, exportPdf } = useExportPdf();
@@ -15,6 +15,8 @@ function OverallSalesSummary() {
   const dispatch = useDispatch();
   const overallsalesdetails = useSelector(selectSalesSummary);
   const salesData = overallsalesdetails?.data;
+
+  console.log(salesData, "im sales data");
 
   const currentDate = dayjs();
 
@@ -64,51 +66,53 @@ function OverallSalesSummary() {
   const handleExportExl = () => {
     // Define static information to be included in the Excel export
     const restaurantInfo = [
-      ['Restaurant:', 'Mamas La Mesa Restaurant'],
-      ['Branch:', 'Mamas La Mesa Restaurant'],
-      ['Date Range:', '2024-12-14']
+      ["Restaurant:", "Mamas La Mesa Restaurant"],
+      ["Branch:", "Mamas La Mesa Restaurant"],
+      ["Date Range:", "2024-12-14"],
     ];
-  
+
     // Define headers for the table
-    const headers = ['Description', 'Value', 'Percentage'];
-  
+    const headers = ["Description", "Value", "Percentage"];
+
     // Prepare the data rows for the table
     const data = [
-      ['Overall Sales', 'AED 0', '0%'],
-      ['Item Discounts', 'AED 0', '0%'],
-      ['Order Discounts', 'AED 0', '0%'],
-      ['Coupon Discounts', 'AED 0', '0%'],
-      ['Delivery Charges', 'AED 0', '0%'],
-      ['Tips', 'AED 0', '0%'],
-      ['Service Charges', 'AED 0', '0%'],
-      ['Net Sales Before Tax', 'AED 0', '0%'],
-      ['VAT Amount', 'AED 0', '0%'],
-      ['Net Sales After Tax', 'AED 0', '0%']
+      ["Overall Sales", "AED 0", "0%"],
+      ["Item Discounts", "AED 0", "0%"],
+      ["Order Discounts", "AED 0", "0%"],
+      ["Coupon Discounts", "AED 0", "0%"],
+      ["Delivery Charges", "AED 0", "0%"],
+      ["Tips", "AED 0", "0%"],
+      ["Service Charges", "AED 0", "0%"],
+      ["Net Sales Before Tax", "AED 0", "0%"],
+      ["VAT Amount", "AED 0", "0%"],
+      ["Net Sales After Tax", "AED 0", "0%"],
     ];
-  
+
     // Combine the static restaurant info and table data
     const combinedData = [
       ...restaurantInfo, // Restaurant info at the top
       [], // Empty row for spacing
       headers, // Table headers
-      ...data // Table rows
+      ...data, // Table rows
     ];
-  
+
     // Create a worksheet from the combined data
     const worksheet = XLSX.utils.aoa_to_sheet(combinedData);
-  
+
     // Create a new workbook and append the worksheet
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
-  
-    // Write the workbook to a buffer and create a file
-    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
-    const file = new Blob([excelBuffer], { type: 'application/octet-stream' });
-  
-    // Use FileSaver to save the file
-    saveAs(file, `expense_${dayjs().format('YYYY_MM_DD')}.xlsx`);
-  };
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
+    // Write the workbook to a buffer and create a file
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const file = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+    // Use FileSaver to save the file
+    saveAs(file, `expense_${dayjs().format("YYYY_MM_DD")}.xlsx`);
+  };
 
   return (
     <div>
@@ -139,15 +143,17 @@ function OverallSalesSummary() {
                 <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                   <div
                     className=" h-full rounded-[30px] pregress-bar "
-                    style={{ width: `${salesData?.overallSales?.percentage}` }}
+                    style={{ width: `${salesData?.other?.percentage}` }}
                   ></div>
                   <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.overallSales?.percentage}
+                    {salesData?.other?.percentage}
                   </p>
                 </div>
               </div>
               <div className="w-[20%] flex justify-end">
-                <p className="font-bold text-sm xl:text-[16px]">{`${salesData?.overallSales?.value}`}</p>
+                <p className="font-bold text-sm xl:text-[16px]">
+                  AED {`${salesData?.other?.amount}`}
+                </p>
               </div>
             </div>
             <div className="w-full grid grid-flow-row grid-cols-2 gap-[10px] mt-[10px]">
@@ -161,12 +167,12 @@ function OverallSalesSummary() {
                 <div className="w-[50%]">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.itemDiscounts?.percentage}
+                      {salesData?.item_discount?.percentage}
                     </p>
                     <div
                       className="h-full rounded-[30px] pregress-bar-orange"
                       style={{
-                        width: `${salesData?.itemDiscounts?.percentage}`,
+                        width: `${salesData?.item_discount?.percentage}`,
                       }}
                     ></div>
                   </div>
@@ -175,7 +181,7 @@ function OverallSalesSummary() {
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
                 <div className="w-[20%] flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.itemDiscounts?.value}
+                    AED {salesData?.item_discount?.amount}
                   </p>
                 </div>
               </div>
@@ -189,12 +195,12 @@ function OverallSalesSummary() {
                 <div className="w-[50%]">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.orderDiscounts?.percentage}
+                      {salesData?.order_discount?.percentage}
                     </p>
                     <div
                       className="w-[21%] h-full rounded-[30px] pregress-bar-orange"
                       style={{
-                        width: `${salesData?.orderDiscounts?.percentage}`,
+                        width: `${salesData?.order_discount?.percentage}`,
                       }}
                     ></div>
                   </div>
@@ -203,7 +209,7 @@ function OverallSalesSummary() {
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
                 <div className="w-[20%] flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.orderDiscounts?.value}
+                    AED {salesData?.order_discount?.amount}
                   </p>
                 </div>
               </div>
@@ -217,12 +223,12 @@ function OverallSalesSummary() {
                 <div className="w-[50%]">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.couponDiscounts?.percentage}
+                      {salesData?.coupon_discount?.percentage}
                     </p>
                     <div
                       className=" h-full rounded-[30px] pregress-bar-orange"
                       style={{
-                        width: `${salesData?.couponDiscounts?.percentage}`,
+                        width: `${salesData?.coupon_discount?.percentage}`,
                       }}
                     ></div>
                   </div>
@@ -231,7 +237,7 @@ function OverallSalesSummary() {
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
                 <div className="w-[20%] flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.couponDiscounts?.value}
+                    AED {salesData?.coupon_discount?.amount}
                   </p>
                 </div>
               </div>
@@ -250,17 +256,17 @@ function OverallSalesSummary() {
                     <div
                       className="h-full rounded-[30px] pregress-bar "
                       style={{
-                        width: `${salesData?.deliveryCharges?.percentage}`,
+                        width: `${salesData?.delivery_charge?.percentage}`,
                       }}
                     ></div>
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.deliveryCharges?.percentage}
+                      {salesData?.delivery_charge?.percentage}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.deliveryCharges?.value}
+                    AED {salesData?.delivery_charge?.amount}
                   </p>
                 </div>
               </div>
@@ -278,16 +284,16 @@ function OverallSalesSummary() {
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
                       className=" h-full rounded-[30px] pregress-bar "
-                      style={{ width: `${salesData?.tips?.percentage}` }}
+                      style={{ width: `${salesData?.tip?.percentage}` }}
                     ></div>
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.tips?.percentage}
+                      {salesData?.tip?.percentage}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.tips?.value}
+                    AED {salesData?.tip?.amount}
                   </p>
                 </div>
               </div>
@@ -306,17 +312,17 @@ function OverallSalesSummary() {
                     <div
                       className="w-[13%] h-full rounded-[30px] pregress-bar "
                       style={{
-                        width: `${salesData?.serviceCharges?.percentage}`,
+                        width: `${salesData?.service_charge?.percentage}`,
                       }}
                     ></div>
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.serviceCharges?.percentage}
+                      {salesData?.service_charge?.percentage}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.serviceCharges?.value}
+                    AED {salesData?.service_charge?.amount}
                   </p>
                 </div>
               </div>
@@ -335,17 +341,17 @@ function OverallSalesSummary() {
                   <div
                     className="h-full rounded-[30px] pregress-bar "
                     style={{
-                      width: `${salesData?.netSalesBeforeTax?.percentage}`,
+                      width: `${salesData?.sales_before_tax?.percentage}`,
                     }}
                   ></div>
                   <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.netSalesBeforeTax?.percentage}
+                    {salesData?.sales_before_tax?.percentage}
                   </p>
                 </div>
               </div>
               <div className="w-[20%] flex justify-end">
                 <p className="font-bold text-sm xl:text-[16px]">
-                  {salesData?.netSalesBeforeTax?.value}
+                  AED {salesData?.sales_before_tax?.amount}
                 </p>
               </div>
             </div>
@@ -360,11 +366,11 @@ function OverallSalesSummary() {
                 <div className="w-[50%]">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.vatAmount?.percentage}
+                      {salesData?.vat_amount?.percentage}
                     </p>
                     <div
                       className="h-full rounded-[30px] pregress-bar-orange "
-                      style={{ width: `${salesData?.vatAmount?.percentage}` }}
+                      style={{ width: `${salesData?.vat_amount?.percentage}` }}
                     ></div>
                   </div>
                 </div>
@@ -372,7 +378,7 @@ function OverallSalesSummary() {
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
                 <div className="w-[20%] flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    {salesData?.vatAmount?.value}
+                    AED {salesData?.vat_amount?.amount}
                   </p>
                 </div>
               </div>
@@ -389,17 +395,17 @@ function OverallSalesSummary() {
                   <div
                     className=" h-full rounded-[30px] pregress-bar "
                     style={{
-                      width: `${salesData?.netSalesAfterTax?.percentage}`,
+                      width: `${salesData?.sales_after_tax?.percentage}`,
                     }}
                   ></div>
                   <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.netSalesAfterTax?.percentage}
+                    {salesData?.sales_after_tax?.percentage}
                   </p>
                 </div>
               </div>
               <div className="w-[20%] flex justify-end">
                 <p className="font-bold text-sm xl:text-[16px]">
-                  {salesData?.netSalesAfterTax?.value}
+                  AED {salesData?.sales_after_tax?.amount}
                 </p>
               </div>
             </div>
@@ -438,7 +444,10 @@ function OverallSalesSummary() {
                     <h1>Show & Print</h1>
                   </div>
                   <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center" onClick={()=>handleExportExl()}>
+                    <div
+                      className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                      onClick={() => handleExportExl()}
+                    >
                       <img
                         src="/public/images/dashboradSales/folder.svg"
                         alt=""
