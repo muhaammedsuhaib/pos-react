@@ -4,7 +4,7 @@ import ExtraCharges from "../dashboardSalesReports/ExtraCharges";
 import FreeFood from "../dashboardSalesReports/FreeFood";
 import ItemDiscounts from "../dashboardSalesReports/ItemDiscounts";
 import ItemsCancelled from "../dashboardSalesReports/ItemsCancelled";
-import OrderDiscountsExtraCharges from "../dashboardSalesReports/OrderDiscountsExtraCharges";
+import OrderDiscountsExtraCharges from "../dashboardSalesReports/OrderDiscounts";
 import OrdersCancelled from "../dashboardSalesReports/OrdersCancelled";
 import OrderSummary from "../dashboardSalesReports/OrderSummary";
 import OverallSalesSummary from "../dashboardSalesReports/OverallSalesSummary";

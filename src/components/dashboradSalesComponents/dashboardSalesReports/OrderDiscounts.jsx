@@ -6,15 +6,23 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { selectOrderDiscounts } from "../../../reducer/sales/reducer";
 import { listOrderDiscounts } from "../../../reducer/sales/actions";
+import useExportPdf from "./hooks/useExportPdf";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 function OrderDiscountsExtraCharges() {
+  const { isSavingPdf, exportPdf } = useExportPdf();
+
   const dispatch = useDispatch();
   const orderDiscountsSummary = useSelector(selectOrderDiscounts);
   const datas = orderDiscountsSummary?.data;
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
+  const [selectedOption, setSelectedOption] = useState("summary");
 
-  
+  const handleChange = (value) => {
+    setSelectedOption(value);
+  };
+
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
   };
@@ -51,9 +59,25 @@ function OrderDiscountsExtraCharges() {
   const chartSeries = [
     datas?.discount?.count,
     datas?.coupon?.count,
-    datas?.gift?.count||0,
-    datas?.other?.count||0,
+    datas?.gift?.count || 0,
+    datas?.other?.count || 0,
   ];
+
+  const handleExportPdf = () => {
+    try {
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+
+      exportPdf(
+        formattedStartDate,
+        formattedEndDate,
+        selectedOption,
+        "get-discount-url"
+      );
+    } catch (error) {
+      console.log("Export error sales overall", error);
+    }
+  };
 
   return (
     <div>
@@ -61,7 +85,7 @@ function OrderDiscountsExtraCharges() {
         <div className="flex space-x-[10px] items-center">
           <div className="w-[7px] h-9 bg-primeryFirst "></div>
           <h1 className="text-white text-[1rem] font-medium">
-            Order Discounts 
+            Order Discounts
           </h1>
         </div>
         <div className="ml-auto">
@@ -82,13 +106,23 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="h-full rounded-[30px] pregress-bar-orange " style={{ width: `${datas?.discount?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.discount?.percentage}</p>
+                <div
+                  className="h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${datas?.discount?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {datas?.discount?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.discount?.count}</p>
+              <p className="font-semibold text-primeryFirst">
+                {datas?.discount?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]"> AED {datas?.discount?.amount}</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                {" "}
+                AED {datas?.discount?.amount}
+              </p>
             </div>
           </div>
           {/* bar */}
@@ -100,13 +134,22 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.coupon?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.coupon?.percentage}</p>
+                <div
+                  className="h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${datas?.coupon?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {datas?.coupon?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.coupon?.count}</p>
+              <p className="font-semibold text-primeryFirst">
+                {datas?.coupon?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED {datas?.coupon?.amount}</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {datas?.coupon?.amount}
+              </p>
             </div>
           </div>
           {/* bar */}
@@ -118,13 +161,22 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className=" h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.gift_cards?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.gift_cards?.percentage || '0%'}</p>
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${datas?.gift_cards?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {datas?.gift_cards?.percentage || "0%"}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.gift_cards?.count||0}</p>
+              <p className="font-semibold text-primeryFirst">
+                {datas?.gift_cards?.count || 0}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED {datas?.gift_cards?.total||0}</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {datas?.gift_cards?.total || 0}
+              </p>
             </div>
           </div>
           {/* bar */}
@@ -136,13 +188,22 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className=" h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.others?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.others?.percentage || '0%'}</p>
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${datas?.others?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {datas?.others?.percentage || "0%"}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.others?.count ||0 }</p>
+              <p className="font-semibold text-primeryFirst">
+                {datas?.others?.count || 0}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED {datas?.others?.total || 0}</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {datas?.others?.total || 0}
+              </p>
             </div>
           </div>
 
@@ -155,10 +216,17 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.total?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.total?.percentage}</p>
+                <div
+                  className="h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${datas?.total?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {datas?.total?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.total?.count}</p>
+              <p className="font-semibold text-primeryFirst">
+                {datas?.total?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
@@ -171,11 +239,21 @@ function OrderDiscountsExtraCharges() {
             <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
               <div className="flex flex-col gap-y-[20px] justify-between">
                 <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
+                  <Radio
+                    className="custom-black-radio"
+                    value="summary"
+                    checked={selectedOption === "summary"}
+                    onChange={() => handleChange("summary")}
+                  />
                   <h1>Summary</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
+                  <Radio
+                    className="custom-black-radio"
+                    value="details"
+                    checked={selectedOption === "details"}
+                    onChange={() => handleChange("details")}
+                  />
                   <h1>Details</h1>
                 </div>
               </div>
@@ -213,7 +291,10 @@ function OrderDiscountsExtraCharges() {
                   <h1>Share WhatsApp</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                  <div
+                    className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                    onClick={() => handleExportPdf()}
+                  >
                     <img
                       src="/public/images/dashboradSales/folder.svg"
                       alt=""
@@ -282,6 +363,7 @@ function OrderDiscountsExtraCharges() {
           </div>
         </div>
       </div>
+      {isSavingPdf && <LoadingOverlay />}
     </div>
   );
 }
