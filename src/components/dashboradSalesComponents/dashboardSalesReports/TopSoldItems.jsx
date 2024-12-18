@@ -7,14 +7,18 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { selectTopSoldItems } from "../../../reducer/sales/reducer";
 import { listTopSoldItems } from "../../../reducer/sales/actions";
+import useExportPdf from "./hooks/useExportPdf";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 function TopSoldItems() {
+  const { isSavingPdf, exportPdf } = useExportPdf();
   const dispatch = useDispatch();
   const topSoldItemssummary = useSelector(selectTopSoldItems);
   const topSoldItems = topSoldItemssummary.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
+  const [selectedOption, setSelectedOption] = useState("summary");
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
@@ -51,6 +55,28 @@ function TopSoldItems() {
   };
 
   const chartSeries = [525, 5000, 1579, 3475];
+
+  const handleChange = (value) => {
+    setSelectedOption(value);
+  };
+
+
+  const handleExportPdf = () => {
+    try {
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+
+      exportPdf(
+        formattedStartDate,
+        formattedEndDate,
+        selectedOption,
+        "get-top-sold-url"
+      );
+    } catch (error) {
+      console.log("Export error sales overall", error);
+    }
+  };
+
   return (
     <div>
       <div className="flex w-[70%] justify-between h-[30px] mt-5 items-center">
@@ -156,16 +182,26 @@ function TopSoldItems() {
 
           <div className="w-full pl-[20px] mt-[10px]">
             <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
-              <div className="flex flex-col gap-y-[20px] justify-between">
-                <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
-                  <h1>Summary</h1>
+            <div className="flex flex-col gap-y-[20px] justify-between">
+                  <div className="flex items-center space-x-[10px]">
+                    <Radio
+                      className="custom-black-radio"
+                      value="summary"
+                      checked={selectedOption === "summary"}
+                      onChange={() => handleChange("summary")}
+                    />
+                    <h1>Summary</h1>
+                  </div>
+                  <div className="flex items-center space-x-[10px]">
+                    <Radio
+                      className="custom-black-radio"
+                      value="details"
+                      checked={selectedOption === "details"}
+                      onChange={() => handleChange("details")}
+                    />
+                    <h1>Details</h1>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
-                  <h1>Details</h1>
-                </div>
-              </div>
               <div className="flex flex-col gap-y-[20px]">
                 <div className="flex items-center space-x-[10px]">
                   <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
@@ -200,7 +236,7 @@ function TopSoldItems() {
                   <h1>Share WhatsApp</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center" onClick={() => handleExportPdf()}>
                     <img
                       src="/public/images/dashboradSales/folder.svg"
                       alt=""
@@ -269,6 +305,7 @@ function TopSoldItems() {
           </div>
         </div>
       </div>
+      {isSavingPdf && <LoadingOverlay />}
     </div>
   );
 }
