@@ -14,9 +14,6 @@ function OrderDiscountsExtraCharges() {
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
 
-
-
-  console.log(datas,'order discount details ');
   
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
@@ -40,7 +37,7 @@ function OrderDiscountsExtraCharges() {
     chart: {
       type: "pie",
     },
-    labels: ["DINE-IN", "TAKE-AWAY", "BOOKING", "OTHERS"],
+    labels: ["DISCOUNTS", "COUPON", "GIFT", "OTHERS"],
     colors: ["#f97316", "#22c55e", "#ef4444", "#3b82f6"],
     legend: {
       show: false,
@@ -51,7 +48,12 @@ function OrderDiscountsExtraCharges() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475];
+  const chartSeries = [
+    datas?.discount?.count,
+    datas?.coupon?.count,
+    datas?.gift?.count||0,
+    datas?.other?.count||0,
+  ];
 
   return (
     <div>
@@ -59,7 +61,7 @@ function OrderDiscountsExtraCharges() {
         <div className="flex space-x-[10px] items-center">
           <div className="w-[7px] h-9 bg-primeryFirst "></div>
           <h1 className="text-white text-[1rem] font-medium">
-            Order Discounts & Extra Charges
+            Order Discounts 
           </h1>
         </div>
         <div className="ml-auto">
@@ -80,13 +82,13 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="h-full rounded-[30px] pregress-bar-orange " style={{ width: `${datas?.discounts?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.discounts?.percentage}</p>
+                <div className="h-full rounded-[30px] pregress-bar-orange " style={{ width: `${datas?.discount?.percentage}` }}></div>
+                <p className="text-[#3C6325] font-semibold ">{datas?.discount?.percentage}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.discounts?.count}</p>
+              <p className="font-semibold text-primeryFirst">{datas?.discount?.count}</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">{datas?.discounts?.total}</p>
+              <p className="font-bold text-sm xl:text-[16px]"> AED {datas?.discount?.amount}</p>
             </div>
           </div>
           {/* bar */}
@@ -98,13 +100,13 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.coupon_discounts?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.coupon_discounts?.percentage}</p>
+                <div className="h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.coupon?.percentage}` }}></div>
+                <p className="text-[#3C6325] font-semibold ">{datas?.coupon?.percentage}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.coupon_discounts?.count}</p>
+              <p className="font-semibold text-primeryFirst">{datas?.coupon?.count}</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">{datas?.coupon_discounts?.total}</p>
+              <p className="font-bold text-sm xl:text-[16px]">AED {datas?.coupon?.amount}</p>
             </div>
           </div>
           {/* bar */}
@@ -117,12 +119,12 @@ function OrderDiscountsExtraCharges() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div className=" h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.gift_cards?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.gift_cards?.percentage}</p>
+                <p className="text-[#3C6325] font-semibold ">{datas?.gift_cards?.percentage || '0%'}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.gift_cards?.count}</p>
+              <p className="font-semibold text-primeryFirst">{datas?.gift_cards?.count||0}</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">{datas?.gift_cards?.total}</p>
+              <p className="font-bold text-sm xl:text-[16px]">AED {datas?.gift_cards?.total||0}</p>
             </div>
           </div>
           {/* bar */}
@@ -135,12 +137,12 @@ function OrderDiscountsExtraCharges() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div className=" h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.others?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold ">{datas?.others?.percentage}</p>
+                <p className="text-[#3C6325] font-semibold ">{datas?.others?.percentage || '0%'}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.others?.count}</p>
+              <p className="font-semibold text-primeryFirst">{datas?.others?.count ||0 }</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">{datas?.others?.total}</p>
+              <p className="font-bold text-sm xl:text-[16px]">AED {datas?.others?.total || 0}</p>
             </div>
           </div>
 
@@ -153,15 +155,14 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.total_sales?.percentage}` }}></div>
-                <p className="text-[#3C6325] font-semibold hidden">{datas?.total_sales?.percentage}</p>
+                <div className="h-full rounded-[30px] pregress-bar-orange "  style={{ width: `${datas?.total?.percentage}` }}></div>
+                <p className="text-[#3C6325] font-semibold ">{datas?.total?.percentage}</p>
               </div>
-              <p className="font-semibold text-primeryFirst">{datas?.total_sales?.count}</p>
+              <p className="font-semibold text-primeryFirst">{datas?.total?.count}</p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]  overflow-auto">
-                <div className="w-32">{datas?.total_sales?.total}</div>
-                
+              <p className="font-bold text-sm xl:text-[16px]">
+                {datas?.total?.amount}
               </p>
             </div>
           </div>
@@ -256,21 +257,21 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="flex flex-col items-start mt-3 p-2 space-y-2 ml-10">
               {/* First Row */}
-              <div className="flex items-center space-x-10">
+              <div className="flex items-center space-x-7">
                 <div className="flex items-center space-x-2">
                   <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm">CASH</span>
+                  <span className="text-white text-sm">DISCOUNTS</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="bg-green-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm"> AGGREGATORS </span>
+                  <span className="text-white text-sm">COUPON</span>
                 </div>
               </div>
               {/* Second Row */}
-              <div className="flex items-center space-x-10">
+              <div className="flex items-center space-x-20">
                 <div className="flex items-center space-x-2">
                   <div className="bg-red-500 w-4 h-4 rounded-md"></div>
-                  <span className="text-white text-sm">CARD</span>
+                  <span className="text-white text-sm">GIFT</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="bg-blue-500 w-4 h-4 rounded-md"></div>
