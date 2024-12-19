@@ -250,7 +250,7 @@ function OrderSummary() {
                     width: `${orderSummardata?.overallSales?.percentage}`,
                   }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold hidden">
+                <p className="text-[#3C6325] font-semibold ">
                   {orderSummardata?.overallSales?.percentage}
                 </p>
               </div>

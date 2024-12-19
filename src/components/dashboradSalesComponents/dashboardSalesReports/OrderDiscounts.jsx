@@ -229,7 +229,7 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {datas?.total?.amount}
+              AED {datas?.total?.amount}
               </p>
             </div>
           </div>
