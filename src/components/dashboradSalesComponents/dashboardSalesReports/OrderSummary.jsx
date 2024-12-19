@@ -18,7 +18,6 @@ function OrderSummary() {
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
   const [selectedOption, setSelectedOption] = useState("summary");
-
   const handleChange = (value) => {
     setSelectedOption(value);
   };

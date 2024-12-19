@@ -6,8 +6,6 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesPaymentSummary } from "../../../reducer/sales/reducer";
 import { listPaymentSummary } from "../../../reducer/sales/actions";
-import axios from "axios";
-import { base_url, getLoginToken } from "../../utils/utils";
 import useExportPdf from "./hooks/useExportPdf";
 
 function PaymentSummary() {
@@ -17,7 +15,7 @@ function PaymentSummary() {
 
   const dispatch = useDispatch();
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
-  const SummaryData = paymentSummarydatas?.data ;
+  const SummaryData = paymentSummarydatas?.data;
 
   const [isSvavingPdf, setIsSavingPdf] = useState(false);
   const currentDate = dayjs();
@@ -25,9 +23,8 @@ function PaymentSummary() {
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
 
   const convertDateFormat = (date) => {
-    return date.format("YYYY-MM-DD");
+    return date?.format("YYYY-MM-DD");
   };
-
   useEffect(() => {
     const fetchpaymentsummary = () => {
       const formattedStartDate = convertDateFormat(selectedDate[0]);
@@ -58,9 +55,6 @@ function PaymentSummary() {
       enabled: false,
     },
   };
-
-  if (!SummaryData) return <div className="">Loading...</div>;
-
   const handleChange = (value) => {
     setSelectedOption(value);
   };

@@ -13,10 +13,11 @@ function OverallSalesSummary() {
   const { isSavingPdf, exportPdf } = useExportPdf();
 
   const dispatch = useDispatch();
-  const overallsalesdetails = useSelector(selectSalesSummary);
-  const salesData = overallsalesdetails?.data;
+  const data = useSelector(selectSalesSummary);
 
-  console.log(salesData, "im sales data");
+  console.log(data.loading, "hello im njan suhiab");
+
+  const salesData = data?.data;
 
   const currentDate = dayjs();
 
@@ -114,6 +115,8 @@ function OverallSalesSummary() {
     saveAs(file, `expense_${dayjs().format("YYYY_MM_DD")}.xlsx`);
   };
 
+  // if(data?.loading) return <LoadingOverlay/>
+  if (isSavingPdf) return <LoadingOverlay />;
   return (
     <div>
       <div className="flex justify-between h-[30px] mt-5 items-center">
@@ -487,7 +490,6 @@ function OverallSalesSummary() {
           </div>
         </div>
       </div>
-      {isSavingPdf && <LoadingOverlay />}
     </div>
   );
 }

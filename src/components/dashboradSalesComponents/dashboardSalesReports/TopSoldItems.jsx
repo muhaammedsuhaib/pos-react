@@ -174,8 +174,8 @@ function TopSoldItems() {
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]  overflow-auto">
-                <div className="w-32">AED {topSoldItems?.total?.amount}</div>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {topSoldItems?.total?.amount}
               </p>
             </div>
           </div>

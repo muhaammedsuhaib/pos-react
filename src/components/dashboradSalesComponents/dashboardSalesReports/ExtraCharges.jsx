@@ -20,7 +20,6 @@ function ExtraCharges() {
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
   const [selectedOption, setSelectedOption] = useState("summary");
-
   const chartOptions = {
     chart: {
       type: "pie",
@@ -41,7 +40,7 @@ function ExtraCharges() {
     extrachargedata?.tip?.count,
     extrachargedata?.service_charge?.count,
     extrachargedata?.other?.count,
-  ]; 
+  ];
 
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
@@ -56,7 +55,7 @@ function ExtraCharges() {
         listExtraChargesSummary({
           startDate: formattedStartDate,
           endDate: formattedEndDate,
-        })  
+        })
       );
     };
 
@@ -246,26 +245,26 @@ function ExtraCharges() {
 
           <div className="w-full pl-[20px] mt-[10px]">
             <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
-             <div className="flex flex-col gap-y-[20px] justify-between">
-                  <div className="flex items-center space-x-[10px]">
-                    <Radio
-                      className="custom-black-radio"
-                      value="summary"
-                      checked={selectedOption === "summary"}
-                      onChange={() => handleChange("summary")}
-                    />
-                    <h1>Summary</h1>
-                  </div>
-                  <div className="flex items-center space-x-[10px]">
-                    <Radio
-                      className="custom-black-radio"
-                      value="details"
-                      checked={selectedOption === "details"}
-                      onChange={() => handleChange("details")}
-                    />
-                    <h1>Details</h1>
-                  </div>
+              <div className="flex flex-col gap-y-[20px] justify-between">
+                <div className="flex items-center space-x-[10px]">
+                  <Radio
+                    className="custom-black-radio"
+                    value="summary"
+                    checked={selectedOption === "summary"}
+                    onChange={() => handleChange("summary")}
+                  />
+                  <h1>Summary</h1>
                 </div>
+                <div className="flex items-center space-x-[10px]">
+                  <Radio
+                    className="custom-black-radio"
+                    value="details"
+                    checked={selectedOption === "details"}
+                    onChange={() => handleChange("details")}
+                  />
+                  <h1>Details</h1>
+                </div>
+              </div>
               <div className="flex flex-col gap-y-[20px]">
                 <div className="flex items-center space-x-[10px]">
                   <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">

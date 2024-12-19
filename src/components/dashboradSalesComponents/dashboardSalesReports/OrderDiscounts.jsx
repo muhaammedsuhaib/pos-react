@@ -26,7 +26,6 @@ function OrderDiscountsExtraCharges() {
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
   };
-
   useEffect(() => {
     const fetchOrderDiscountData = () => {
       const formattedStartDate = convertDateFormat(selectedDate[0]);
