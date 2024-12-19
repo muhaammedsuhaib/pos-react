@@ -65,7 +65,7 @@ function ItemDiscounts() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475];
+  const chartSeries = [data?.dine_in?.count, data?.take_away?.count, data?.booking?.count, data?.other?.count];
 
   return (
     <div>
@@ -107,7 +107,7 @@ function ItemDiscounts() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {data?.dine_in?.total}
+                AED {data?.dine_in?.amount}
               </p>
             </div>
           </div>
@@ -134,7 +134,7 @@ function ItemDiscounts() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {data?.delivery?.total}
+                AED {data?.delivery?.amount}
               </p>
             </div>
           </div>
@@ -161,7 +161,7 @@ function ItemDiscounts() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {data?.booking?.total}
+                AED {data?.booking?.amount}
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ function ItemDiscounts() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {data?.take_away?.total}
+                AED {data?.take_away?.amount}
               </p>
             </div>
           </div>
@@ -215,7 +215,7 @@ function ItemDiscounts() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {data?.aggregator?.total}
+                AED {data?.aggregator?.amount}
               </p>
             </div>
           </div>
@@ -233,7 +233,7 @@ function ItemDiscounts() {
                   className="w-[100%] h-full rounded-[30px] pregress-bar-orange "
                   style={{ width: `${data?.total?.percentage}` }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold hidden">
+                <p className="text-[#3C6325] font-semibold ">
                   {data?.total?.percentage}
                 </p>
               </div>
@@ -241,9 +241,9 @@ function ItemDiscounts() {
                 {data?.total?.count}
               </p>
             </div>
-            <div className="w-[20%] flex justify-end overflow-auto">
+            <div className="w-[20%] flex justify-end">
               <p className="w-20 font-bold text-sm xl:text-[16px]">
-                {data?.total?.total}
+                AED {data?.total?.amount}
               </p>
             </div>
           </div>
