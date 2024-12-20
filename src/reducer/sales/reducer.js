@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import * as actions from "./actions";
 
-export const createInitialState = (
+  export const createInitialState = (
   message = "Not Loaded",
   loading = false
 ) => ({
@@ -474,7 +474,7 @@ const salesSlice = createSlice({
 });
 
 export default salesSlice.reducer;
-export const selectSalesTrend = (state) => state.sales.SalesTrend;
+export const selectSalesTrend = (state) => state?.sales?.SalesTrend;
 export const selectSalesSummary = (state) => state?.sales?.SalesSummary;
 export const selectSalesPaymentSummary = (state) =>
   state?.sales?.SalesPaymentSummary;

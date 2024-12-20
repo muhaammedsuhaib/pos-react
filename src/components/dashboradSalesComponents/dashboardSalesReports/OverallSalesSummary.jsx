@@ -139,7 +139,7 @@ function OverallSalesSummary() {
             <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
               <div className="w-[30%]">
                 <p className="uppercase font-medium text-sm xl:text-[16px]">
-                  other sales
+                GROSS SALES 
                 </p>
               </div>
               <div className="w-[52%]">

@@ -42,8 +42,8 @@ function DashboardReportContent({ saleSub, setSaleSub }) {
   return (
     <div
       className="flex flex-col gap-y-[70px] px-[20px] bg-[#283d62]  rounded-2xl overflow-y-scroll scrollBarHidden"
-      style={{ height: "calc(100vh - 19.5rem)" }}
-    >  
+      style={{ height: "calc(108vh - 19.5rem)" }}
+    >
       <div ref={refs["sales-trend"]}>
         <SalesTrends />
       </div>

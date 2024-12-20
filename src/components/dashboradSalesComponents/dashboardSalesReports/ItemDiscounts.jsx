@@ -6,15 +6,18 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { selectItemDiscounts } from "../../../reducer/sales/reducer";
 import { listItemDiscounts } from "../../../reducer/sales/actions";
+import useExportPdf from "./hooks/useExportPdf";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 function ItemDiscounts() {
+  const { isSavingPdf, exportPdf } = useExportPdf();
   const dispatch = useDispatch();
   const ItemDiscountssummary = useSelector(selectItemDiscounts);
   const data = ItemDiscountssummary?.data;
 
   const currentDate = dayjs();
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
-
+  const [selectedOption, setSelectedOption] = useState("summary");
   const convertDateFormat = (date) => {
     return date.format("YYYY-MM-DD");
   };
@@ -34,22 +37,6 @@ function ItemDiscounts() {
     fetchItemDiscountData();
   }, [selectedDate, dispatch]);
 
-  useEffect(() => {
-    const fetchpaymentsummary = () => {
-      const formattedStartDate = convertDateFormat(selectedDate[0]);
-      const formattedEndDate = convertDateFormat(selectedDate[1]);
-
-      // dispatch(
-      //   listPaymentSummary({
-      //     startDate: formattedStartDate,
-      //     endDate: formattedEndDate,
-      //   })
-      // );
-    };
-
-    fetchpaymentsummary();
-  }, [selectedDate, dispatch]);
-
   const chartOptions = {
     chart: {
       type: "pie",
@@ -65,7 +52,32 @@ function ItemDiscounts() {
     },
   };
 
-  const chartSeries = [data?.dine_in?.count, data?.take_away?.count, data?.booking?.count, data?.other?.count];
+  const chartSeries = [
+    data?.dine_in?.count,
+    data?.take_away?.count,
+    data?.booking?.count,
+    data?.other?.count,
+  ];
+
+  const handleExportPdf = () => {
+    try {
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+
+      exportPdf(
+        formattedStartDate,
+        formattedEndDate,
+        selectedOption,
+        "get-item-discount-url"
+      );
+    } catch (error) {
+      console.log("Export error item discount", error);
+    }
+  };
+
+  const handleChange = (value) => {
+    setSelectedOption(value);
+  };
 
   return (
     <div>
@@ -252,11 +264,21 @@ function ItemDiscounts() {
             <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
               <div className="flex flex-col gap-y-[20px] justify-between">
                 <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
+                  <Radio
+                    className="custom-black-radio"
+                    value="summary"
+                    checked={selectedOption === "summary"}
+                    onChange={() => handleChange("summary")}
+                  />
                   <h1>Summary</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <Radio className="custom-black-radio" />
+                  <Radio
+                    className="custom-black-radio"
+                    value="details"
+                    checked={selectedOption === "details"}
+                    onChange={() => handleChange("details")}
+                  />
                   <h1>Details</h1>
                 </div>
               </div>
@@ -294,7 +316,10 @@ function ItemDiscounts() {
                   <h1>Share WhatsApp</h1>
                 </div>
                 <div className="flex items-center space-x-[10px]">
-                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                  <div
+                    className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                    onClick={() => handleExportPdf()}
+                  >
                     <img
                       src="/public/images/dashboradSales/folder.svg"
                       alt=""
@@ -361,6 +386,7 @@ function ItemDiscounts() {
           </div>
         </div>
       </div>
+      {isSavingPdf && <LoadingOverlay />}
     </div>
   );
 }

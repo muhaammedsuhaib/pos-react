@@ -21,7 +21,7 @@ export const listAllSalesTrend = createAsyncThunk(
         base_url + "/sales/trends",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       if (error.response) {
         console.error(error.response);
@@ -42,7 +42,7 @@ export const listOverallSalesSummary = createAsyncThunk(
         base_url + "/sales/summary",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       if (error.response) {
         return error.response.data;
@@ -61,7 +61,7 @@ export const listPaymentSummary = createAsyncThunk(
         base_url + "/sales/payment-summary",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       if (error.response) {
         return error.response.data;
@@ -80,7 +80,7 @@ export const listOrderSummary = createAsyncThunk(
         base_url + "/sales/order-summary",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       if (error.response) {
         return error.response.data;
@@ -99,7 +99,7 @@ export const listExtraChargesSummary = createAsyncThunk(
         base_url + "/sales/extra-charges-summary",
         createAxiosConfig(data, "multipart/form-data")
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       if (error.response) {
         return error.response.data;
@@ -118,7 +118,7 @@ export const listTopSoldItems = createAsyncThunk(
         base_url + "/sales/top-sold-items-summary",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.error(error, "Error fetching top sold items");
       if (error.response) {
@@ -138,7 +138,7 @@ export const listOrderDiscounts = createAsyncThunk(
         base_url + "/sales/order-discount-summary",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.error(error, "Error fetching top sold items");
       if (error.response) {
@@ -158,7 +158,7 @@ export const listItemDiscounts = createAsyncThunk(
         base_url + "/sales/item-discounts-summary",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.error(error, "Error fetching top sold items");
       if (error.response) {
@@ -178,7 +178,7 @@ export const listOrdersCancelled = createAsyncThunk(
         base_url + "/sales/orders-cancelled",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.error(error, "Error fetching order cancelled");
       if (error.response) {
@@ -198,7 +198,7 @@ export const listCustomerCredit = createAsyncThunk(
         base_url + "/sales/customer-credit",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.error(error, "Error fetching customer credit");
       if (error.response) {
@@ -218,7 +218,7 @@ export const listItemCancelled = createAsyncThunk(
         base_url + "/sales/items-cancelled",
         createAxiosConfig(data)
       );
-      return response.data;
+      return response?.data;
     } catch (error) {
       console.error(error, "Error fetching items cancelled");
       if (error.response) {
@@ -241,7 +241,7 @@ export const listItemCancelled = createAsyncThunk(
 //           'Authorization': `Bearer ${getLoginToken()}`,
 //         }
 //       });
-//       return response.data;
+//       return response?.data;
 //     } catch (error) {
 //       if (error.response && error.response.data) {
 //         return error.response.data;
@@ -263,7 +263,7 @@ export const listItemCancelled = createAsyncThunk(
 //           'Authorization': `Bearer ${getLoginToken()}`,
 //         }
 //       });
-//       return response.data;
+//       return response?.data;
 //     } catch (error) {
 //       if (error.response) {
 //         return error.response.data;

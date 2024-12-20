@@ -346,7 +346,7 @@ function ExtraCharges() {
             </div>
             <div className="flex flex-col items-start mt-3 p-2 space-y-2 ml-10">
               {/* First Row */}
-              <div className="flex items-center space-x-10">
+              <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
                   <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
                   <span className="text-white text-sm uppercase">

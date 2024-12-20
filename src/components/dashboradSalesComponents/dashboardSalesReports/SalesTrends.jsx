@@ -1,17 +1,15 @@
+import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
-import DateBar from "../dateBar/DateBar";
-import dayjs from "dayjs";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesTrend } from "../../../reducer/sales/reducer";
 import { listAllSalesTrend } from "../../../reducer/sales/actions";
+import DateBar from "../dateBar/DateBar";
 
 function SalesTrends() {
   const dispatch = useDispatch();
   const salestrenddatas = useSelector(selectSalesTrend);
-  
 
-  console.log(salestrenddatas.data, "im shu");
   const [categories, setCategories] = useState([]);
   const [data, setData] = useState([]);
   const currentDate = dayjs();
@@ -91,7 +89,7 @@ function SalesTrends() {
   useEffect(() => {
     if (salestrenddatas?.data) {
       const responseData = salestrenddatas?.data;
-      console.log(responseData,'hello daaaa')
+      console.log(responseData, "hello daaaa");
 
       // Generate data based on the response
       const data = categories.map((category) => {
@@ -104,39 +102,47 @@ function SalesTrends() {
     }
   }, [salestrenddatas, categories]);
 
-  if(!data) return <h1>Data not found</h1>
+  if (!data) return <h1>Data not found</h1>;
   const options = {
     chart: {
       type: "line",
       toolbar: {
-        show: false,
+        show: true,
+        tools: {
+          zoom: true,
+          zoomin: true,
+          zoomout: true,
+          pan: true,
+          reset: true,
+        },
+      },
+      zoom: {
+        enabled: true,
+        type: "x",
+        autoScaleYaxis: true,
+      },
+      selection: {
+        enabled: true,
       },
     },
     xaxis: {
       type: "category",
-      categories: categories, // Use dynamic categories
+      categories: categories,
       labels: {
         rotate: -45,
       },
     },
     yaxis: {
-      title: {
-        text: "Sales",
-      },
       labels: {
-        formatter: (value) => `${value}`, // Format y-axis labels as numbers
+        formatter: (value) => `${value}`,
       },
     },
     stroke: {
       curve: "smooth",
       width: 2,
-      color: "#FF5534",
     },
     markers: {
       size: 5,
-      colors: ["#FF5534"],
-      strokeColors: "#fff",
-      strokeWidth: 2,
       hover: {
         size: 7,
       },
@@ -146,7 +152,7 @@ function SalesTrends() {
         format: "HH:mm",
       },
       y: {
-        formatter: (value) => `${value}`, // Format tooltip data
+        formatter: (value) => `${value}`,
       },
     },
   };
@@ -159,7 +165,6 @@ function SalesTrends() {
       width: "1px",
     },
   ];
-
   return (
     <div>
       <div className="flex justify-between h-[30px] mt-5 items-center">
@@ -175,8 +180,7 @@ function SalesTrends() {
           />
         </div>
       </div>
-
-      <div className="w-full px-[10px] mt-[20px]">
+      <div className="w-full px-[10px] mt-[15px]">
         <div className="w-full bg-[#EEEEF1] h-[400px] rounded-[20px] p-[10px]">
           <div className="w-full h-full bg-white rounded-[10px] salesTrendChart">
             <Chart
