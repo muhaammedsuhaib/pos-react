@@ -15,10 +15,7 @@ function OverallSalesSummary() {
   const dispatch = useDispatch();
   const data = useSelector(selectSalesSummary);
 
-  console.log(data.loading, "hello im njan suhiab");
-
   const salesData = data?.data;
-
   const currentDate = dayjs();
 
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -115,7 +112,6 @@ function OverallSalesSummary() {
     saveAs(file, `expense_${dayjs().format("YYYY_MM_DD")}.xlsx`);
   };
 
-  // if(data?.loading) return <LoadingOverlay/>
   if (isSavingPdf) return <LoadingOverlay />;
   return (
     <div>
@@ -139,23 +135,23 @@ function OverallSalesSummary() {
             <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
               <div className="w-[30%]">
                 <p className="uppercase font-medium text-sm xl:text-[16px]">
-                GROSS SALES 
+                  GROSS SALES
                 </p>
               </div>
               <div className="w-[52%]">
                 <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                   <div
                     className=" h-full rounded-[30px] pregress-bar "
-                    style={{ width: `${salesData?.other?.percentage}` }}
+                    style={{ width: `${salesData?.gross_total?.percentage}` }}
                   ></div>
                   <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.other?.percentage}
+                    {salesData?.gross_total?.percentage}
                   </p>
                 </div>
               </div>
               <div className="w-[20%] flex justify-end">
                 <p className="font-bold text-sm xl:text-[16px]">
-                  AED {`${salesData?.other?.amount}`}
+                  AED {`${salesData?.gross_total?.amount}`}
                 </p>
               </div>
             </div>
@@ -287,16 +283,16 @@ function OverallSalesSummary() {
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
                       className=" h-full rounded-[30px] pregress-bar "
-                      style={{ width: `${salesData?.tip?.percentage}` }}
+                      style={{ width: `${salesData?.tips?.percentage}` }}
                     ></div>
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.tip?.percentage}
+                      {salesData?.tips?.percentage}
                     </p>
                   </div>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.tip?.amount}
+                    AED {salesData?.tips?.amount}
                   </p>
                 </div>
               </div>
@@ -344,17 +340,17 @@ function OverallSalesSummary() {
                   <div
                     className="h-full rounded-[30px] pregress-bar "
                     style={{
-                      width: `${salesData?.sales_before_tax?.percentage}`,
+                      width: `${salesData?.net_sale_before_tax?.percentage}`,
                     }}
                   ></div>
                   <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.sales_before_tax?.percentage}
+                    {salesData?.net_sale_before_tax?.percentage}
                   </p>
                 </div>
               </div>
               <div className="w-[20%] flex justify-end">
                 <p className="font-bold text-sm xl:text-[16px]">
-                  AED {salesData?.sales_before_tax?.amount}
+                  AED {salesData?.net_sale_before_tax?.amount}
                 </p>
               </div>
             </div>
@@ -369,11 +365,11 @@ function OverallSalesSummary() {
                 <div className="w-[50%]">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
                     <p className="text-[#3C6325] font-semibold">
-                      {salesData?.vat_amount?.percentage}
+                      {salesData?.vat?.percentage}
                     </p>
                     <div
                       className="h-full rounded-[30px] pregress-bar-orange "
-                      style={{ width: `${salesData?.vat_amount?.percentage}` }}
+                      style={{ width: `${salesData?.vat?.percentage}` }}
                     ></div>
                   </div>
                 </div>
@@ -381,7 +377,7 @@ function OverallSalesSummary() {
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
                 <div className="w-[20%] flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.vat_amount?.amount}
+                    AED {salesData?.vat?.amount}
                   </p>
                 </div>
               </div>
@@ -398,17 +394,17 @@ function OverallSalesSummary() {
                   <div
                     className=" h-full rounded-[30px] pregress-bar "
                     style={{
-                      width: `${salesData?.sales_after_tax?.percentage}`,
+                      width: `${salesData?.net_sale_with_tax?.percentage}`,
                     }}
                   ></div>
                   <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.sales_after_tax?.percentage}
+                    {salesData?.net_sale_with_tax?.percentage}
                   </p>
                 </div>
               </div>
               <div className="w-[20%] flex justify-end">
                 <p className="font-bold text-sm xl:text-[16px]">
-                  AED {salesData?.sales_after_tax?.amount}
+                  AED {salesData?.net_sale_with_tax?.amount}
                 </p>
               </div>
             </div>
