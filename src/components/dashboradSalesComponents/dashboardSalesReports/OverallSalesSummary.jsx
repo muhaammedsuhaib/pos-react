@@ -359,7 +359,7 @@ function OverallSalesSummary() {
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    vat (5%) :
+                    vat ({salesData?.vat?.percentage}) :
                   </p>
                 </div>
                 <div className="w-[50%]">
@@ -386,7 +386,7 @@ function OverallSalesSummary() {
             <div className="h-[35px] bg-black text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3 mt-[10px]">
               <div className="w-[30%]">
                 <p className="uppercase font-medium text-sm xl:text-[16px]">
-                  net sales (with 5% vat)
+                  net sales (with {salesData?.vat?.percentage} vat)
                 </p>
               </div>
               <div className="w-[52%]">
