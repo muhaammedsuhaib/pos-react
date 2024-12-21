@@ -17,6 +17,9 @@ function PaymentSummary() {
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
   const SummaryData = paymentSummarydatas?.data;
 
+  console.log(SummaryData,'im payment summary ');
+  
+
   const [isSvavingPdf, setIsSavingPdf] = useState(false);
   const currentDate = dayjs();
 
@@ -61,9 +64,9 @@ function PaymentSummary() {
 
   const chartSeries = [
     SummaryData?.cash?.count,
-    SummaryData?.aggregatorNoon?.count,
-    SummaryData?.cardMastercard?.count + SummaryData?.cardVisa?.count,
-    SummaryData?.overallSales?.count,
+    SummaryData?.aggregator_noon?.count,
+    SummaryData?.card_mastarrd?.count + SummaryData?.card_visa?.count,
+    SummaryData?.total?.count,
   ];
 
   const handleExportPdf = () => {
@@ -122,7 +125,7 @@ function PaymentSummary() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.cash?.value}
+               AED {SummaryData?.cash?.amount}
               </p>
             </div>
           </div>
@@ -138,20 +141,20 @@ function PaymentSummary() {
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${SummaryData?.cardMastercard?.percentage}`,
+                    width: `${SummaryData?.card_mastarrd?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {SummaryData?.cardMastercard?.percentage}
+                  {SummaryData?.card_mastarrd?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {SummaryData?.cardMastercard?.count}
+                {SummaryData?.card_mastarrd?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.cardMastercard?.value}
+               AED {SummaryData?.card_mastarrd?.amount}
               </p>
             </div>
           </div>
@@ -166,19 +169,19 @@ function PaymentSummary() {
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div
                   className="h-full rounded-[30px] pregress-bar "
-                  style={{ width: `${SummaryData?.cardVisa?.percentage}` }}
+                  style={{ width: `${SummaryData?.card_visa?.percentage}` }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {SummaryData?.cardVisa?.percentage}
+                  {SummaryData?.card_visa?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {SummaryData?.cardVisa?.count}
+                {SummaryData?.card_visa?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.cardVisa?.value}
+               AED {SummaryData?.card_visa?.amount}
               </p>
             </div>
           </div>
@@ -194,20 +197,20 @@ function PaymentSummary() {
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${SummaryData?.aggregatorTalabat?.percentage}`,
+                    width: `${SummaryData?.aggregator_talabat?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {SummaryData?.aggregatorTalabat?.percentage}
+                  {SummaryData?.aggregator_talabat?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {SummaryData?.aggregatorTalabat?.count}
+                {SummaryData?.aggregator_talabat?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.aggregatorTalabat?.value}
+                AED {SummaryData?.aggregator_talabat?.amount}
               </p>
             </div>
           </div>
@@ -223,20 +226,20 @@ function PaymentSummary() {
                 <div
                   className="h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${SummaryData?.aggregatorNoon?.percentage}`,
+                    width: `${SummaryData?.aggregator_noon?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {SummaryData?.aggregatorNoon?.percentage}
+                  {SummaryData?.aggregator_noon?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {SummaryData?.aggregatorNoon?.count}
+                {SummaryData?.aggregator_noon?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.aggregatorNoon?.value}
+               AED {SummaryData?.aggregator_noon?.amount}
               </p>
             </div>
           </div>
@@ -252,20 +255,20 @@ function PaymentSummary() {
                 <div
                   className="h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${SummaryData?.creditCustomers?.percentage}`,
+                    width: `${SummaryData?.credit_customers?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {SummaryData?.creditCustomers?.percentage}
+                  {SummaryData?.credit_customers?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {SummaryData?.creditCustomers?.count}
+                {SummaryData?.credit_customers?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.creditCustomers?.value}
+                AED {SummaryData?.credit_customers?.amount}
               </p>
             </div>
           </div>
@@ -281,20 +284,20 @@ function PaymentSummary() {
                 <div
                   className=" h-full rounded-[30px] pregress-bar "
                   style={{
-                    width: `${SummaryData?.overallSales?.percentage || "0%"}`,
+                    width: `${SummaryData?.total?.percentage || "0%"}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold">
-                  {SummaryData?.overallSales?.percentage}
+                  {SummaryData?.total?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {SummaryData?.overallSales?.count}
+                {SummaryData?.total?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                {SummaryData?.overallSales?.value}
+               AED {SummaryData?.total?.amount}
               </p>
             </div>
           </div>
