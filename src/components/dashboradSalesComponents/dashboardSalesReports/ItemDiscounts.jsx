@@ -245,7 +245,7 @@ function ItemDiscounts() {
                   className="w-[100%] h-full rounded-[30px] pregress-bar-orange "
                   style={{ width: `${data?.total?.percentage}` }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold ">
+                <p className="text-[#3C6325] font-semibold hidden">
                   {data?.total?.percentage}
                 </p>
               </div>

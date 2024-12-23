@@ -219,7 +219,7 @@ function OrderDiscountsExtraCharges() {
                   className="h-full rounded-[30px] pregress-bar-orange "
                   style={{ width: `${datas?.total?.percentage}` }}
                 ></div>
-                <p className="text-[#3C6325] font-semibold ">
+                <p className="text-[#3C6325] font-semibold hidden">
                   {datas?.total?.percentage}
                 </p>
               </div>
@@ -229,7 +229,7 @@ function OrderDiscountsExtraCharges() {
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-              AED {datas?.total?.amount}
+                AED {datas?.total?.amount}
               </p>
             </div>
           </div>

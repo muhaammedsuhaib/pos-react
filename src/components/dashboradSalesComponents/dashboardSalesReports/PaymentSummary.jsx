@@ -64,7 +64,7 @@ function PaymentSummary() {
 
   const chartSeries = [
     SummaryData?.cash?.count,
-    SummaryData?.aggregator_noon?.count,
+    SummaryData?.aggregator_noon?.count+ SummaryData?.aggregator_talabat?.count,
     SummaryData?.card_mastarrd?.count + SummaryData?.card_visa?.count,
     SummaryData?.total?.count,
   ];

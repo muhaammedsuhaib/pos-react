@@ -40,7 +40,7 @@ function OrdersCancelled() {
     chart: {
       type: "pie",
     },
-    labels: ["DINE-IN", "TAKE-AWAY", "BOOKING", "OTHERS"],
+    labels: ["CASH", "AGGREGATORS", "CARD", "OTHERS"],
     colors: ["#f97316", "#22c55e", "#ef4444", "#3b82f6"],
     legend: {
       show: false,
@@ -51,7 +51,7 @@ function OrdersCancelled() {
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475];
+  const chartSeries = [data?.cash?.count,data?.aggregator?.count, data?.card?.count, data?.other?.count];
 
   return (
     <div>
@@ -83,21 +83,21 @@ function OrdersCancelled() {
                 <div
                   className=" h-full rounded-[30px] pregress-bar-orange "
                   style={{
-                    width: `${data?.rejected?.percentage}`,
+                    width: `${data?.cash?.percentage}`,
                   }}
                 ></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {data?.rejected?.percentage}
+                  {data?.cash?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {data?.rejected?.count}
+                {data?.cash?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
                 {" "}
-                AED {data?.rejected?.amount}
+                AED {data?.cash?.amount}
               </p>
             </div>
           </div>
@@ -111,19 +111,19 @@ function OrdersCancelled() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div className=" h-full rounded-[30px] pregress-bar-orange " style={{
-                    width: `${data?.cardPayments?.percentage}`,
+                    width: `${data?.card?.percentage}`,
                   }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {data?.cardPayments?.percentage}
+                  {data?.card?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {data?.cardPayments?.count}
+                {data?.card?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                AED {data?.cardPayments?.amount}
+                AED {data?.card?.amount}
               </p>
             </div>
           </div>
@@ -137,19 +137,19 @@ function OrdersCancelled() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div className=" h-full rounded-[30px] pregress-bar-orange "  style={{
-                    width: `${data?.aggregatorPayments?.percentage}`,
+                    width: `${data?.aggregator?.percentage}`,
                   }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {data?.aggregatorPayments?.percentage}
+                  {data?.aggregator?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {data?.aggregatorPayments?.count}
+                {data?.aggregator?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                AED {data?.aggregatorPayments?.amount}
+                AED {data?.aggregator?.amount}
               </p>
             </div>
           </div>
@@ -163,19 +163,19 @@ function OrdersCancelled() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div className=" h-full rounded-[30px] pregress-bar-orange " style={{
-                    width: `${data?.others?.percentage}`,
+                    width: `${data?.other?.percentage}`,
                   }}></div>
                 <p className="text-[#3C6325] font-semibold ">
-                  {data?.others?.percentage}
+                  {data?.other?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {data?.others?.count}
+                {data?.other?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                AED {data?.others?.amount}
+                AED {data?.other?.amount}
               </p>
             </div>
           </div>
@@ -190,19 +190,19 @@ function OrdersCancelled() {
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                 <div className="h-full rounded-[30px] pregress-bar-orange " style={{
-                    width: `${data?.totalPercentage}`,
+                    width: `${data?.total?.percentage}`,
                   }}></div>
                 <p className="text-[#3C6325] font-semibold hidden">
-                  {data?.totalPercentage}
+                  {data?.total?.percentage}
                 </p>
               </div>
               <p className="font-semibold text-primeryFirst">
-                {data?.totalOrders}
+                {data?.total?.count}
               </p>
             </div>
             <div className="w-[20%] flex justify-end">
               <p className="font-bold text-sm xl:text-[16px]">
-                AED {data?.totalAmount}
+                AED {data?.total?.amount}
               </p>
             </div>
           </div>
