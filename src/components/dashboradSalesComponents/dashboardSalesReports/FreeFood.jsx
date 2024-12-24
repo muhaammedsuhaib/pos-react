@@ -1,16 +1,41 @@
 import { Radio } from "antd";
 import dayjs from "dayjs";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DateBar from "../dateBar/DateBar";
 import Chart from "react-apexcharts";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFreeFood } from "../../../reducer/sales/reducer";
+import { listFreeFood } from "../../../reducer/sales/actions";
 
 function FreeFood() {
-  const currentDate = dayjs();
+  // const { isSavingPdf, exportPdf } = useExportPdf();
+  const dispatch = useDispatch();
+  const freeFoodData = useSelector(selectFreeFood);
+  const data = freeFoodData?.data;
 
-  const [selectedDate, setSelectedDate] = useState([
-    currentDate,
-    currentDate,
-  ]);
+  console.log(data, "im free food ");
+
+  const currentDate = dayjs();
+  const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
+  const [selectedOption, setSelectedOption] = useState("summary");
+  const convertDateFormat = (date) => {
+    return date.format("YYYY-MM-DD");
+  };
+
+  useEffect(() => {
+    const fetchFreeFoodData = () => {
+      const formattedStartDate = convertDateFormat(selectedDate[0]);
+      const formattedEndDate = convertDateFormat(selectedDate[1]);
+      dispatch(
+        listFreeFood({
+          startDate: formattedStartDate,
+          endDate: formattedEndDate,
+        })
+      );
+    };
+
+    fetchFreeFoodData();
+  }, [selectedDate, dispatch]);
 
   const chartOptions = {
     chart: {
@@ -23,11 +48,11 @@ function FreeFood() {
       position: "bottom",
     },
     dataLabels: {
-      enabled: false, 
+      enabled: false,
     },
   };
 
-  const chartSeries = [525, 5000, 1579, 3475]; 
+  const chartSeries = [525, 5000, 1579, 3475];
 
   return (
     <div className="">
@@ -54,13 +79,22 @@ function FreeFood() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[65%] h-full rounded-[30px] pregress-bar-orange "></div>
-                <p className="text-[#3C6325] font-semibold ">65%</p>
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${data?.staff?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {data?.staff?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">75</p>
+              <p className="font-semibold text-primeryFirst">
+                {data?.staff?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {data?.staff?.amount}
+              </p>
             </div>
           </div>
           {/* bar */}
@@ -72,13 +106,22 @@ function FreeFood() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[13%] h-full rounded-[30px] pregress-bar-orange "></div>
-                <p className="text-[#3C6325] font-semibold ">13%</p>
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${data?.marketing?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {data?.marketing?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">15</p>
+              <p className="font-semibold text-primeryFirst">
+                {data?.marketing?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {data?.marketing?.amount}
+              </p>
             </div>
           </div>
           {/* bar */}
@@ -90,13 +133,22 @@ function FreeFood() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[21%] h-full rounded-[30px] pregress-bar-orange "></div>
-                <p className="text-[#3C6325] font-semibold ">25%</p>
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${data?.marketing?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {data?.marketing?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">25</p>
+              <p className="font-semibold text-primeryFirst">
+                {data?.marketing?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {data?.marketing?.amount}
+              </p>
             </div>
           </div>
           {/* bar */}
@@ -108,13 +160,22 @@ function FreeFood() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[15%] h-full rounded-[30px] pregress-bar-orange "></div>
-                <p className="text-[#3C6325] font-semibold ">15%</p>
+                <div
+                  className="w-[15%] h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${data?.other?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {data?.other?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">15</p>
+              <p className="font-semibold text-primeryFirst">
+                {data?.other?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {data?.other?.amount}
+              </p>
             </div>
           </div>
 
@@ -127,13 +188,22 @@ function FreeFood() {
             </div>
             <div className="w-[52%] flex gap-[5px] items-center">
               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                <div className="w-[100%] h-full rounded-[30px] pregress-bar-orange "></div>
-                <p className="text-[#3C6325] font-semibold hidden">100%</p>
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${data?.total?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold hidden">
+                  {data?.total?.percentage}
+                </p>
               </div>
-              <p className="font-semibold text-primeryFirst">150</p>
+              <p className="font-semibold text-primeryFirst">
+                {data?.total?.count}
+              </p>
             </div>
             <div className="w-[20%] flex justify-end">
-              <p className="font-bold text-sm xl:text-[16px]">AED 533.95</p>
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {data?.total?.amount}
+              </p>
             </div>
           </div>
 
@@ -196,7 +266,7 @@ function FreeFood() {
             </div>
           </div>
         </div>
-        
+
         <div className="h-[250px] w-[320px] relative ml-32">
           <img
             src="./public/images/dashboradSales/Pie chart base-2.png"
@@ -222,39 +292,32 @@ function FreeFood() {
                   textAlign: "center",
                 }}
               />
-              
             </div>
-            
           </div>
           <div className="flex flex-col items-start mt-3 p-2 space-y-2 ml-10">
-  {/* First Row */}
-  <div className="flex items-center space-x-10">
-    <div className="flex items-center space-x-2">
-      <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm">EMPLOYEES</span>
-    </div>
-    <div className="flex items-center space-x-2">
-      <div className="bg-green-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm"> MARKETING</span>
-    </div>
-  </div>
-  {/* Second Row */}
-  <div className="flex items-center space-x-10">
-    <div className="flex items-center space-x-2">
-      <div className="bg-red-500 w-4 h-4 rounded-md"></div>
-      <span className="text-white text-sm"> MANAGEMENT</span>
-    </div>
-    <div className="flex items-center space-x-2">
-      <div className="bg-blue-500 w-4 h-4 rounded-md -ml-5"></div>
-      <span className="text-white text-sm">OTHERS</span>
-    </div>
-  </div>
-</div>
-
-
-
-
-
+            {/* First Row */}
+            <div className="flex items-center space-x-10">
+              <div className="flex items-center space-x-2">
+                <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
+                <span className="text-white text-sm">EMPLOYEES</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="bg-green-500 w-4 h-4 rounded-md"></div>
+                <span className="text-white text-sm"> MARKETING</span>
+              </div>
+            </div>
+            {/* Second Row */}
+            <div className="flex items-center space-x-10">
+              <div className="flex items-center space-x-2">
+                <div className="bg-red-500 w-4 h-4 rounded-md"></div>
+                <span className="text-white text-sm"> MANAGEMENT</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="bg-blue-500 w-4 h-4 rounded-md -ml-5"></div>
+                <span className="text-white text-sm">OTHERS</span>
+              </div>
+            </div>
+          </div>
         </div>
         {/* <div className="pt-2 2xl:pt-0 flex-grow">
             <div className="gap-y-2 2xl:space-y-4 grid grid-cols-2 2xl:block">
@@ -297,7 +360,6 @@ function FreeFood() {
               </div>
             </div>
           </div> */}
-         
       </div>
     </div>
   );

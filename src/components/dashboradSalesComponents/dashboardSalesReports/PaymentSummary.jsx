@@ -17,7 +17,7 @@ function PaymentSummary() {
   const paymentSummarydatas = useSelector(selectSalesPaymentSummary);
   const SummaryData = paymentSummarydatas?.data;
 
-  console.log(SummaryData,'im payment summary ');
+
   
 
   const [isSvavingPdf, setIsSavingPdf] = useState(false);

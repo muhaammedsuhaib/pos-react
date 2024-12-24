@@ -9,7 +9,7 @@ const createAxiosConfig = (data, contentType = "application/json") => ({
     "Content-Type": contentType,
     Accept: "application/json",
     // Uncomment the line below to add Authorization token
-    'Authorization': `Bearer ${getLoginToken()}`,
+    Authorization: `Bearer ${getLoginToken()}`,
   },
 });
 
@@ -230,6 +230,25 @@ export const listItemCancelled = createAsyncThunk(
   }
 );
 
+export const listFreeFood = createAsyncThunk(
+  "sales/free-food-summary",
+  async (data) => {
+    try {
+      const response = await axios.get(
+        base_url + "/sales/free-food-summary",
+        createAxiosConfig(data)
+      );
+      return response?.data;
+    } catch (error) {
+      console.error(error, "Error fetching free food cancelled");
+      if (error.response) {
+        return error.response.data;
+      } else {
+        return false;
+      }
+    }
+  }
+);
 // export const changeVendorStatus = createAsyncThunk(
 //   'pettycash/change-vendor-status',
 //   async (data) => {

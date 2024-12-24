@@ -138,16 +138,19 @@ function OverallSalesSummary() {
                   GROSS SALES
                 </p>
               </div>
-              <div className="w-[52%]">
+              <div className="w-[52%] flex gap-x-2">
                 <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
                   <div
                     className=" h-full rounded-[30px] pregress-bar "
                     style={{ width: `${salesData?.gross_total?.percentage}` }}
                   ></div>
-                  <p className="text-[#3C6325] font-semibold ">
+                  <p className="text-[#3C6325] font-semibold hidden">
                     {salesData?.gross_total?.percentage}
                   </p>
                 </div>
+                <p className="font-semibold text-white">
+                  {salesData?.gross_total?.count}
+                </p>
               </div>
               <div className="w-[20%] flex justify-end">
                 <p className="font-bold text-sm xl:text-[16px]">
@@ -156,91 +159,106 @@ function OverallSalesSummary() {
               </div>
             </div>
             <div className="w-full grid grid-flow-row grid-cols-2 gap-[10px] mt-[10px]">
-              {/* grid */}
+              {/*  item discounts : */}
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
                     item discounts :
                   </p>
                 </div>
-                <div className="w-[50%]">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.item_discount?.percentage}
-                    </p>
+                <div className="w-[50%]"></div>
+              </div>
+              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+                <div className="w-[60%] flex gap-x-2">
+                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
-                      className="h-full rounded-[30px] pregress-bar-orange"
+                      className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
                       style={{
                         width: `${salesData?.item_discount?.percentage}`,
                       }}
                     ></div>
+                    <p className="text-[#3C6325] font-semibold">
+                      {salesData?.item_discount?.percentage}
+                    </p>
                   </div>
+                  <p className="font-semibold text-primeryFirst">
+                    {salesData?.item_discount?.count}
+                  </p>
                 </div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
-                <div className="w-[20%] flex justify-end">
+                <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
                     AED {salesData?.item_discount?.amount}
                   </p>
                 </div>
               </div>
-              {/* grid */}
+
+              {/* order discounts :  salesData?.order_discount?.percentage */}
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
                     order discounts :
                   </p>
                 </div>
-                <div className="w-[50%]">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.order_discount?.percentage}
-                    </p>
+                <div className="w-[50%]"></div>
+              </div>
+              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+                <div className="w-[60%] flex gap-x-2">
+                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
-                      className="w-[21%] h-full rounded-[30px] pregress-bar-orange"
+                      className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
                       style={{
                         width: `${salesData?.order_discount?.percentage}`,
                       }}
                     ></div>
+                    <p className="text-[#3C6325] font-semibold">
+                      {salesData?.order_discount?.percentage}
+                    </p>
                   </div>
+                  <p className="font-semibold text-primeryFirst">
+                    {salesData?.order_discount?.count}
+                  </p>
                 </div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
-                <div className="w-[20%] flex justify-end">
+                <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
                     AED {salesData?.order_discount?.amount}
                   </p>
                 </div>
               </div>
-              {/* grid */}
+
+              {/* coupon discounts :  salesData?.coupon_discount?.percentage */}
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
                     coupon discounts :
                   </p>
                 </div>
-                <div className="w-[50%]">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.coupon_discount?.percentage}
-                    </p>
+                <div className="w-[50%]"></div>
+              </div>
+              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+                <div className="w-[60%] flex gap-x-2">
+                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
-                      className=" h-full rounded-[30px] pregress-bar-orange"
+                      className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
                       style={{
                         width: `${salesData?.coupon_discount?.percentage}`,
                       }}
                     ></div>
+                    <p className="text-[#3C6325] font-semibold">
+                      {salesData?.coupon_discount?.percentage}
+                    </p>
                   </div>
+                  <p className="font-semibold text-primeryFirst">
+                    {salesData?.coupon_discount?.count}
+                  </p>
                 </div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
-                <div className="w-[20%] flex justify-end">
+                <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
                     AED {salesData?.coupon_discount?.amount}
                   </p>
                 </div>
               </div>
-              {/* grid */}
+
+              {/* delivery charges :*/}
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
@@ -250,7 +268,7 @@ function OverallSalesSummary() {
                 <div className="w-[50%]"></div>
               </div>
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[50%]">
+                <div className="w-[60%] flex gap-x-2">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
                       className="h-full rounded-[30px] pregress-bar "
@@ -262,6 +280,9 @@ function OverallSalesSummary() {
                       {salesData?.delivery_charge?.percentage}
                     </p>
                   </div>
+                  <p className="font-semibold text-primeryFirst">
+                    {salesData?.delivery_charge?.count}
+                  </p>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
@@ -269,7 +290,8 @@ function OverallSalesSummary() {
                   </p>
                 </div>
               </div>
-              {/* grid */}
+
+              {/* tips : */}
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
@@ -279,7 +301,7 @@ function OverallSalesSummary() {
                 <div className="w-[50%]"></div>
               </div>
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[50%]">
+                <div className="w-[60%] flex gap-x-2">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
                       className=" h-full rounded-[30px] pregress-bar "
@@ -289,6 +311,10 @@ function OverallSalesSummary() {
                       {salesData?.tips?.percentage}
                     </p>
                   </div>
+
+                  <p className="font-semibold text-primeryFirst">
+                    {salesData?.tips?.count}
+                  </p>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">
@@ -296,7 +322,7 @@ function OverallSalesSummary() {
                   </p>
                 </div>
               </div>
-              {/* grid */}
+              {/* service charges : */}
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
                 <div className="">
                   <p className="uppercase font-medium text-sm xl:text-[16px]">
@@ -306,7 +332,7 @@ function OverallSalesSummary() {
                 <div className="w-[50%]"></div>
               </div>
               <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[50%]">
+                <div className="w-[60%] flex gap-x-2">
                   <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
                     <div
                       className="w-[13%] h-full rounded-[30px] pregress-bar "
@@ -318,6 +344,9 @@ function OverallSalesSummary() {
                       {salesData?.service_charge?.percentage}
                     </p>
                   </div>
+                  <p className="font-semibold text-primeryFirst">
+                    {salesData?.service_charge?.count}
+                  </p>
                 </div>
                 <div className="flex justify-end">
                   <p className="font-bold text-sm xl:text-[16px]">

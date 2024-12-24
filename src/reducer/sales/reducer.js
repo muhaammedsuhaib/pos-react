@@ -23,6 +23,7 @@ const initialState = {
   OrdersCancelled: createInitialState(),
   CustomerCredit: createInitialState(),
   ItemsCancelled: createInitialState(),
+  FreeFoodSummary: createInitialState(),
 };
 
 const salesSlice = createSlice({
@@ -470,6 +471,37 @@ const salesSlice = createSlice({
           },
         };
       });
+
+      // free food 
+    builder
+    .addCase(actions.listFreeFood.fulfilled, (state, action) => {
+      const FreeFoodSummary = action.payload;
+      return {
+        ...state,
+        FreeFoodSummary: { ...FreeFoodSummary, loading: false },
+      };
+    })
+    .addCase(actions.listFreeFood.pending, (state) => {
+      return {
+        ...state,
+        FreeFoodSummary: {
+          ...state.FreeFoodSummary,
+          loading: true,
+        },
+      };
+    })
+    .addCase(actions.listFreeFood.rejected, (state, action) => {
+      const error = action.payload;
+      return {
+        ...state,
+        FreeFoodSummary: {
+          data: error,
+          status: false,
+          loading: false,
+          message: "Loaded with error or rejected",
+        },
+      };
+    });
   },
 });
 
@@ -487,3 +519,4 @@ export const selectItemDiscounts = (state) => state?.sales?.ItemDiscounts;
 export const selectOrdersCancelled = (state) => state?.sales?.OrdersCancelled;
 export const selectCustomerCredit = (state) => state?.sales?.CustomerCredit;
 export const selectItemCancelled = (state) => state?.sales?.ItemsCancelled;
+export const selectFreeFood = (state) => state?.sales?.FreeFoodSummary;
