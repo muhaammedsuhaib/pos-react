@@ -16,6 +16,7 @@ function OverallSalesSummary() {
   const data = useSelector(selectSalesSummary);
 
   const salesData = data?.data;
+  
   const currentDate = dayjs();
 
   const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
@@ -114,8 +115,410 @@ function OverallSalesSummary() {
 
   if (isSavingPdf) return <LoadingOverlay />;
   return (
+    // <div>
+    //   <div className="flex justify-between h-[30px] mt-5 items-center">
+    //     <div className="flex space-x-[10px] items-center">
+    //       <div className="w-[7px] h-9 bg-primeryFirst "></div>
+    //       <h1 className="text-white text-[1rem] font-medium">
+    //         Overall Sales Summary
+    //       </h1>
+    //     </div>
+    //     <div className="ml-auto">
+    //       <DateBar
+    //         selectedDate={selectedDate}
+    //         setSelectedDate={setSelectedDate}
+    //       />
+    //     </div>
+    //   </div>
+    //   <div className="w-full px-[10px] mt-[20px]">
+    //     <div className="w-full bg-[#EEEEF1]  rounded-[20px] p-[10px] overflow-hidden">
+    //       <div className="w-full h-full ">
+    //         <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //           <div className="w-[30%]">
+    //             <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //               GROSS SALES
+    //             </p>
+    //           </div>
+    //           <div className="w-[52%] flex gap-x-2">
+    //             <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+    //               <div
+    //                 className=" h-full rounded-[30px] pregress-bar "
+    //                 style={{ width: `${salesData?.gross_total?.percentage}` }}
+    //               ></div>
+    //               <p className="text-[#3C6325] font-semibold hidden">
+    //                 {salesData?.gross_total?.percentage}
+    //               </p>
+    //             </div>
+    //             <p className="font-semibold text-white">
+    //               {salesData?.gross_total?.count}
+    //             </p>
+    //           </div>
+    //           <div className="w-[20%] flex justify-end">
+    //             <p className="font-bold text-sm xl:text-[16px]">
+    //               AED {`${salesData?.gross_total?.amount}`}
+    //             </p>
+    //           </div>
+    //         </div>
+    //         <div className="w-full grid grid-flow-row grid-cols-2 gap-[10px] mt-[10px]">
+    //           {/*  item discounts : */}
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 item discounts :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]"></div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="w-[60%] flex gap-x-2">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
+    //                 <div
+    //                   className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
+    //                   style={{
+    //                     width: `${salesData?.item_discount?.percentage}`,
+    //                   }}
+    //                 ></div>
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.item_discount?.percentage}
+    //                 </p>
+    //               </div>
+    //               <p className="font-semibold text-primeryFirst">
+    //                 {salesData?.item_discount?.count}
+    //               </p>
+    //             </div>
+    //             <div className="flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.item_discount?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+
+    //           {/* order discounts :  salesData?.order_discount?.percentage */}
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 order discounts :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]"></div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="w-[60%] flex gap-x-2">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
+    //                 <div
+    //                   className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
+    //                   style={{
+    //                     width: `${salesData?.order_discount?.percentage}`,
+    //                   }}
+    //                 ></div>
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.order_discount?.percentage}
+    //                 </p>
+    //               </div>
+    //               <p className="font-semibold text-primeryFirst">
+    //                 {salesData?.order_discount?.count}
+    //               </p>
+    //             </div>
+    //             <div className="flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.order_discount?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+
+    //           {/* coupon discounts :  salesData?.coupon_discount?.percentage */}
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 coupon discounts :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]"></div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="w-[60%] flex gap-x-2">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
+    //                 <div
+    //                   className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
+    //                   style={{
+    //                     width: `${salesData?.coupon_discount?.percentage}`,
+    //                   }}
+    //                 ></div>
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.coupon_discount?.percentage}
+    //                 </p>
+    //               </div>
+    //               <p className="font-semibold text-primeryFirst">
+    //                 {salesData?.coupon_discount?.count}
+    //               </p>
+    //             </div>
+    //             <div className="flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.coupon_discount?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+
+    //           {/* delivery charges :*/}
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 delivery charges :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]"></div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="w-[60%] flex gap-x-2">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
+    //                 <div
+    //                   className="h-full rounded-[30px] pregress-bar "
+    //                   style={{
+    //                     width: `${salesData?.delivery_charge?.percentage}`,
+    //                   }}
+    //                 ></div>
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.delivery_charge?.percentage}
+    //                 </p>
+    //               </div>
+    //               <p className="font-semibold text-primeryFirst">
+    //                 {salesData?.delivery_charge?.count}
+    //               </p>
+    //             </div>
+    //             <div className="flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.delivery_charge?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+
+    //           {/* tips : */}
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 tips :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]"></div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="w-[60%] flex gap-x-2">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
+    //                 <div
+    //                   className=" h-full rounded-[30px] pregress-bar "
+    //                   style={{ width: `${salesData?.tips?.percentage}` }}
+    //                 ></div>
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.tips?.percentage}
+    //                 </p>
+    //               </div>
+
+    //               <p className="font-semibold text-primeryFirst">
+    //                 {salesData?.tips?.count}
+    //               </p>
+    //             </div>
+    //             <div className="flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.tips?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+    //           {/* service charges : */}
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 service charges :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]"></div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="w-[60%] flex gap-x-2">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
+    //                 <div
+    //                   className="w-[13%] h-full rounded-[30px] pregress-bar "
+    //                   style={{
+    //                     width: `${salesData?.service_charge?.percentage}`,
+    //                   }}
+    //                 ></div>
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.service_charge?.percentage}
+    //                 </p>
+    //               </div>
+    //               <p className="font-semibold text-primeryFirst">
+    //                 {salesData?.service_charge?.count}
+    //               </p>
+    //             </div>
+    //             <div className="flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.service_charge?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+
+    //           {/* grid close */}
+    //         </div>
+
+    //         <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3 mt-[10px]">
+    //           <div className="w-[30%]">
+    //             <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //               net sales (before tax)
+    //             </p>
+    //           </div>
+    //           <div className="w-[52%]">
+    //             <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+    //               <div
+    //                 className="h-full rounded-[30px] pregress-bar "
+    //                 style={{
+    //                   width: `${salesData?.net_sale_before_tax?.percentage}`,
+    //                 }}
+    //               ></div>
+    //               <p className="text-[#3C6325] font-semibold ">
+    //                 {salesData?.net_sale_before_tax?.percentage}
+    //               </p>
+    //             </div>
+    //           </div>
+    //           <div className="w-[20%] flex justify-end">
+    //             <p className="font-bold text-sm xl:text-[16px]">
+    //               AED {salesData?.net_sale_before_tax?.amount}
+    //             </p>
+    //           </div>
+    //         </div>
+
+    //         <div className="w-full grid grid-flow-row grid-cols-2 gap-[10px] mt-[10px]">
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
+    //             <div className="">
+    //               <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //                 vat ({salesData?.vat?.percentage}) :
+    //               </p>
+    //             </div>
+    //             <div className="w-[50%]">
+    //               <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
+    //                 <p className="text-[#3C6325] font-semibold">
+    //                   {salesData?.vat?.percentage}
+    //                 </p>
+    //                 <div
+    //                   className="h-full rounded-[30px] pregress-bar-orange "
+    //                   style={{ width: `${salesData?.vat?.percentage}` }}
+    //                 ></div>
+    //               </div>
+    //             </div>
+    //           </div>
+    //           <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
+    //             <div className="w-[20%] flex justify-end">
+    //               <p className="font-bold text-sm xl:text-[16px]">
+    //                 AED {salesData?.vat?.amount}
+    //               </p>
+    //             </div>
+    //           </div>
+    //         </div>
+
+    //         <div className="h-[35px] bg-black text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3 mt-[10px]">
+    //           <div className="w-[30%]">
+    //             <p className="uppercase font-medium text-sm xl:text-[16px]">
+    //               net sales (with {salesData?.vat?.percentage} vat)
+    //             </p>
+    //           </div>
+    //           <div className="w-[52%]">
+    //             <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+    //               <div
+    //                 className=" h-full rounded-[30px] pregress-bar "
+    //                 style={{
+    //                   width: `${salesData?.net_sale_with_tax?.percentage}`,
+    //                 }}
+    //               ></div>
+    //               <p className="text-[#3C6325] font-semibold ">
+    //                 {salesData?.net_sale_with_tax?.percentage}
+    //               </p>
+    //             </div>
+    //           </div>
+    //           <div className="w-[20%] flex justify-end">
+    //             <p className="font-bold text-sm xl:text-[16px]">
+    //               AED {salesData?.net_sale_with_tax?.amount}
+    //             </p>
+    //           </div>
+    //         </div>
+
+    //         <div className="w-full pl-[20px] mt-[30px]">
+    //           <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
+    //             <div className="flex flex-col gap-y-[20px] justify-between">
+    //               <div className="flex items-center space-x-[10px]">
+    //                 <Radio
+    //                   className="custom-black-radio"
+    //                   value="summary"
+    //                   checked={selectedOption === "summary"}
+    //                   onChange={() => handleChange("summary")}
+    //                 />
+    //                 <h1>Summary</h1>
+    //               </div>
+    //               <div className="flex items-center space-x-[10px]">
+    //                 <Radio
+    //                   className="custom-black-radio"
+    //                   value="details"
+    //                   checked={selectedOption === "details"}
+    //                   onChange={() => handleChange("details")}
+    //                 />
+    //                 <h1>Details</h1>
+    //               </div>
+    //             </div>
+    //             <div className="flex flex-col gap-y-[20px]">
+    //               <div className="flex items-center space-x-[10px]">
+    //                 <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+    //                   <img
+    //                     src="/public/images/dashboradSales/screen_5621734.svg"
+    //                     alt=""
+    //                     className="w-[20px]"
+    //                   />
+    //                 </div>
+    //                 <h1>Show & Print</h1>
+    //               </div>
+    //               <div className="flex items-center space-x-[10px]">
+    //                 <div
+    //                   className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+    //                   onClick={() => handleExportExl()}
+    //                 >
+    //                   <img
+    //                     src="/public/images/dashboradSales/folder.svg"
+    //                     alt=""
+    //                     className="w-[20px]"
+    //                   />
+    //                 </div>
+    //                 <h1>Export to Excel</h1>
+    //               </div>
+    //             </div>
+    //             <div className="flex flex-col gap-y-[20px]">
+    //               <div className="flex items-center space-x-[10px]">
+    //                 <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+    //                   <img
+    //                     src="/public/images/dashboradSales/whatsapp.svg"
+    //                     alt=""
+    //                     className="w-[20px]"
+    //                   />
+    //                 </div>
+    //                 <h1>Share WhatsApp</h1>
+    //               </div>
+    //               <div className="flex items-center space-x-[10px]">
+    //                 <div
+    //                   className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+    //                   onClick={() => handleExportPdf()}
+    //                 >
+    //                   <img
+    //                     src="/public/images/dashboradSales/folder.svg"
+    //                     alt=""
+    //                     className="w-[20px]"
+    //                   />
+    //                 </div>
+    //                 <h1>Export to PDF</h1>
+    //               </div>
+    //             </div>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
     <div>
-      <div className="flex justify-between h-[30px] mt-5 items-center">
+      <div className="flex w-[70%] justify-between h-[30px] mt-5 items-center">
         <div className="flex space-x-[10px] items-center">
           <div className="w-[7px] h-9 bg-primeryFirst "></div>
           <h1 className="text-white text-[1rem] font-medium">
@@ -129,386 +532,417 @@ function OverallSalesSummary() {
           />
         </div>
       </div>
-      <div className="w-full px-[10px] mt-[20px]">
-        <div className="w-full bg-[#EEEEF1]  rounded-[20px] p-[10px] overflow-hidden">
-          <div className="w-full h-full ">
-            <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
-              <div className="w-[30%]">
-                <p className="uppercase font-medium text-sm xl:text-[16px]">
-                  GROSS SALES
-                </p>
-              </div>
-              <div className="w-[52%] flex gap-x-2">
-                <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                  <div
-                    className=" h-full rounded-[30px] pregress-bar "
-                    style={{ width: `${salesData?.gross_total?.percentage}` }}
-                  ></div>
-                  <p className="text-[#3C6325] font-semibold hidden">
-                    {salesData?.gross_total?.percentage}
-                  </p>
-                </div>
-                <p className="font-semibold text-white">
-                  {salesData?.gross_total?.count}
-                </p>
-              </div>
-              <div className="w-[20%] flex justify-end">
-                <p className="font-bold text-sm xl:text-[16px]">
-                  AED {`${salesData?.gross_total?.amount}`}
-                </p>
-              </div>
+      <div className="mt-[20px] w-full flex items-center">
+        <div className="w-[70%] bg-[#EEEEF1] rounded-[20px] p-[10px] flex flex-col gap-y-[10px]">
+          {/* GROSS SALES */}
+          <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                GROSS SALES
+              </p>
             </div>
-            <div className="w-full grid grid-flow-row grid-cols-2 gap-[10px] mt-[10px]">
-              {/*  item discounts : */}
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    item discounts :
-                  </p>
-                </div>
-                <div className="w-[50%]"></div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[60%] flex gap-x-2">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
-                    <div
-                      className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
-                      style={{
-                        width: `${salesData?.item_discount?.percentage}`,
-                      }}
-                    ></div>
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.item_discount?.percentage}
-                    </p>
-                  </div>
-                  <p className="font-semibold text-primeryFirst">
-                    {salesData?.item_discount?.count}
-                  </p>
-                </div>
-                <div className="flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.item_discount?.amount}
-                  </p>
-                </div>
-              </div>
-
-              {/* order discounts :  salesData?.order_discount?.percentage */}
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    order discounts :
-                  </p>
-                </div>
-                <div className="w-[50%]"></div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[60%] flex gap-x-2">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
-                    <div
-                      className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
-                      style={{
-                        width: `${salesData?.order_discount?.percentage}`,
-                      }}
-                    ></div>
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.order_discount?.percentage}
-                    </p>
-                  </div>
-                  <p className="font-semibold text-primeryFirst">
-                    {salesData?.order_discount?.count}
-                  </p>
-                </div>
-                <div className="flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.order_discount?.amount}
-                  </p>
-                </div>
-              </div>
-
-              {/* coupon discounts :  salesData?.coupon_discount?.percentage */}
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    coupon discounts :
-                  </p>
-                </div>
-                <div className="w-[50%]"></div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[60%] flex gap-x-2">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
-                    <div
-                      className="w-[13%] h-full rounded-[30px]  pregress-bar-orange "
-                      style={{
-                        width: `${salesData?.coupon_discount?.percentage}`,
-                      }}
-                    ></div>
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.coupon_discount?.percentage}
-                    </p>
-                  </div>
-                  <p className="font-semibold text-primeryFirst">
-                    {salesData?.coupon_discount?.count}
-                  </p>
-                </div>
-                <div className="flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.coupon_discount?.amount}
-                  </p>
-                </div>
-              </div>
-
-              {/* delivery charges :*/}
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    delivery charges :
-                  </p>
-                </div>
-                <div className="w-[50%]"></div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[60%] flex gap-x-2">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
-                    <div
-                      className="h-full rounded-[30px] pregress-bar "
-                      style={{
-                        width: `${salesData?.delivery_charge?.percentage}`,
-                      }}
-                    ></div>
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.delivery_charge?.percentage}
-                    </p>
-                  </div>
-                  <p className="font-semibold text-primeryFirst">
-                    {salesData?.delivery_charge?.count}
-                  </p>
-                </div>
-                <div className="flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.delivery_charge?.amount}
-                  </p>
-                </div>
-              </div>
-
-              {/* tips : */}
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    tips :
-                  </p>
-                </div>
-                <div className="w-[50%]"></div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[60%] flex gap-x-2">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
-                    <div
-                      className=" h-full rounded-[30px] pregress-bar "
-                      style={{ width: `${salesData?.tips?.percentage}` }}
-                    ></div>
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.tips?.percentage}
-                    </p>
-                  </div>
-
-                  <p className="font-semibold text-primeryFirst">
-                    {salesData?.tips?.count}
-                  </p>
-                </div>
-                <div className="flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.tips?.amount}
-                  </p>
-                </div>
-              </div>
-              {/* service charges : */}
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    service charges :
-                  </p>
-                </div>
-                <div className="w-[50%]"></div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="w-[60%] flex gap-x-2">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-start progress-container">
-                    <div
-                      className="w-[13%] h-full rounded-[30px] pregress-bar "
-                      style={{
-                        width: `${salesData?.service_charge?.percentage}`,
-                      }}
-                    ></div>
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.service_charge?.percentage}
-                    </p>
-                  </div>
-                  <p className="font-semibold text-primeryFirst">
-                    {salesData?.service_charge?.count}
-                  </p>
-                </div>
-                <div className="flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.service_charge?.amount}
-                  </p>
-                </div>
-              </div>
-
-              {/* grid close */}
-            </div>
-
-            <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3 mt-[10px]">
-              <div className="w-[30%]">
-                <p className="uppercase font-medium text-sm xl:text-[16px]">
-                  net sales (before tax)
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className=" h-full rounded-[30px] pregress-bar "
+                  style={{ width: `${salesData?.gross_total?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold hidden">
+                  {salesData?.gross_total?.percentage}
                 </p>
               </div>
-              <div className="w-[52%]">
-                <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                  <div
-                    className="h-full rounded-[30px] pregress-bar "
-                    style={{
-                      width: `${salesData?.net_sale_before_tax?.percentage}`,
-                    }}
-                  ></div>
-                  <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.net_sale_before_tax?.percentage}
-                  </p>
-                </div>
-              </div>
-              <div className="w-[20%] flex justify-end">
-                <p className="font-bold text-sm xl:text-[16px]">
-                  AED {salesData?.net_sale_before_tax?.amount}
+              <p className="font-semibold text-white">
+                {salesData?.gross_total?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.gross_total?.amount}
+              </p>
+            </div>
+          </div>
+          {/* item discounts : */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                item discounts :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange"
+                  style={{
+                    width: `${salesData?.item_discount?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.item_discount?.percentage}
                 </p>
               </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.item_discount?.count}
+              </p>
             </div>
-
-            <div className="w-full grid grid-flow-row grid-cols-2 gap-[10px] mt-[10px]">
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-l-[30px] flex justify-between items-center w-full  px-5 pr-3">
-                <div className="">
-                  <p className="uppercase font-medium text-sm xl:text-[16px]">
-                    vat ({salesData?.vat?.percentage}) :
-                  </p>
-                </div>
-                <div className="w-[50%]">
-                  <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center justify-end progress-container">
-                    <p className="text-[#3C6325] font-semibold">
-                      {salesData?.vat?.percentage}
-                    </p>
-                    <div
-                      className="h-full rounded-[30px] pregress-bar-orange "
-                      style={{ width: `${salesData?.vat?.percentage}` }}
-                    ></div>
-                  </div>
-                </div>
-              </div>
-              <div className="h-[35px] bg-[#FFDDD4] text-black rounded-r-[30px] flex justify-end items-center w-full  px-5 pr-3">
-                <div className="w-[20%] flex justify-end">
-                  <p className="font-bold text-sm xl:text-[16px]">
-                    AED {salesData?.vat?.amount}
-                  </p>
-                </div>
-              </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.item_discount?.amount}
+              </p>
             </div>
-
-            <div className="h-[35px] bg-black text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3 mt-[10px]">
-              <div className="w-[30%]">
-                <p className="uppercase font-medium text-sm xl:text-[16px]">
-                  net sales (with {salesData?.vat?.percentage} vat)
+          </div>
+          {/* order discounts : */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                order discounts :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className="h-full rounded-[30px] pregress-bar-orange "
+                  style={{ width: `${salesData?.order_discount?.percentage}` }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.order_discount?.percentage}
                 </p>
               </div>
-              <div className="w-[52%]">
-                <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
-                  <div
-                    className=" h-full rounded-[30px] pregress-bar "
-                    style={{
-                      width: `${salesData?.net_sale_with_tax?.percentage}`,
-                    }}
-                  ></div>
-                  <p className="text-[#3C6325] font-semibold ">
-                    {salesData?.net_sale_with_tax?.percentage}
-                  </p>
-                </div>
-              </div>
-              <div className="w-[20%] flex justify-end">
-                <p className="font-bold text-sm xl:text-[16px]">
-                  AED {salesData?.net_sale_with_tax?.amount}
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.order_discount?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.order_discount?.amount}
+              </p>
+            </div>
+          </div>
+          {/* coupon discounts : */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                coupon discounts :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className=" h-full rounded-[30px] pregress-bar-orange"
+                  style={{
+                    width: `${salesData?.coupon_discount?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.coupon_discount?.percentage}
                 </p>
               </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.coupon_discount?.count}
+              </p>
             </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.coupon_discount?.amount}
+              </p>
+            </div>
+          </div>
+          {/* delivery charges : */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                delivery charges :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className="h-full rounded-[30px] pregress-bar "
+                  style={{
+                    width: `${salesData?.delivery_charge?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.delivery_charge?.percentage}
+                </p>
+              </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.delivery_charge?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.delivery_charge?.amount}
+              </p>
+            </div>
+          </div>
+          {/* tips */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                tips :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className="h-full rounded-[30px] pregress-bar "
+                  style={{
+                    width: `${salesData?.tips?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.tips?.percentage}
+                </p>
+              </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.tips?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.tips?.amount}
+              </p>
+            </div>
+          </div>
+          {/* service charges : */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                service charges :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className="h-full rounded-[30px] pregress-bar "
+                  style={{
+                    width: `${salesData?.service_charge?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.service_charge?.percentage}
+                </p>
+              </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.service_charge?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.service_charge?.amount}
+              </p>
+            </div>
+          </div>
+          {/* net sales (before tax) */}
+          <div className="h-[35px] bg-primeryFirst text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                net sales (before tax) :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className="h-full rounded-[30px] pregress-bar "
+                  style={{
+                    width: `${salesData?.net_sale_before_tax?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.net_sale_before_tax?.percentage}
+                </p>
+              </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.net_sale_before_tax?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.net_sale_before_tax?.amount}
+              </p>
+            </div>
+          </div>
+          {/*  vat ({salesData?.vat?.percentage}) : */}
+          <div className="h-[35px] bg-[#FFDDD4] text-black rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                vat ({salesData?.vat?.percentage}) :
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className="h-full rounded-[30px] pregress-bar-orange "
+                  style={{
+                    width: `${salesData?.vat?.percentage}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold ">
+                  {salesData?.vat?.percentage}
+                </p>
+              </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.vat?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.vat?.amount}
+              </p>
+            </div>
+          </div>
+          {/* net_sale_with_tax */}
+          <div className="h-[35px] bg-black text-white rounded-[30px] flex justify-between items-center w-full  px-5 pr-3">
+            <div className="w-[30%]">
+              <p className="uppercase font-medium text-sm xl:text-[16px]">
+                net sales (with {salesData?.vat?.percentage} vat) :{" "}
+              </p>
+            </div>
+            <div className="w-[52%] flex gap-[5px] items-center">
+              <div className="w-full h-[20px] rounded-[30px] bg-[#DDEAD2] flex gap-2 items-center progress-container">
+                <div
+                  className=" h-full rounded-[30px] pregress-bar "
+                  style={{
+                    width: `${salesData?.net_sale_with_tax?.percentage || "0%"}`,
+                  }}
+                ></div>
+                <p className="text-[#3C6325] font-semibold">
+                  {salesData?.net_sale_with_tax?.percentage}
+                </p>
+              </div>
+              <p className="font-semibold text-primeryFirst">
+                {salesData?.net_sale_with_tax?.count}
+              </p>
+            </div>
+            <div className="w-[20%] flex justify-end">
+              <p className="font-bold text-sm xl:text-[16px]">
+                AED {salesData?.net_sale_with_tax?.amount}
+              </p>
+            </div>
+          </div>
 
-            <div className="w-full pl-[20px] mt-[30px]">
-              <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
-                <div className="flex flex-col gap-y-[20px] justify-between">
-                  <div className="flex items-center space-x-[10px]">
-                    <Radio
-                      className="custom-black-radio"
-                      value="summary"
-                      checked={selectedOption === "summary"}
-                      onChange={() => handleChange("summary")}
+          <div className="w-full pl-[20px] mt-[10px]">
+            <div className="w-[100%] grid grid-flow-row grid-cols-3 gap-[20px] pb-[10px]">
+              <div className="flex flex-col gap-y-[20px] justify-between">
+                <div className="flex items-center space-x-[10px]">
+                  <Radio
+                    className="custom-black-radio"
+                    value="summary"
+                    checked={selectedOption === "summary"}
+                    onChange={() => handleChange("summary")}
+                  />
+                  <h1>Summary</h1>
+                </div>
+                <div className="flex items-center space-x-[10px]">
+                  <Radio
+                    className="custom-black-radio"
+                    value="details"
+                    checked={selectedOption === "details"}
+                    onChange={() => handleChange("details")}
+                  />
+                  <h1>Details</h1>
+                </div>
+              </div>
+              <div className="flex flex-col gap-y-[20px]">
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/screen_5621734.svg"
+                      alt=""
+                      className="w-[20px]"
                     />
-                    <h1>Summary</h1>
                   </div>
-                  <div className="flex items-center space-x-[10px]">
-                    <Radio
-                      className="custom-black-radio"
-                      value="details"
-                      checked={selectedOption === "details"}
-                      onChange={() => handleChange("details")}
+                  <h1>Show & Print</h1>
+                </div>
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/folder.svg"
+                      alt=""
+                      className="w-[20px]"
                     />
-                    <h1>Details</h1>
                   </div>
+                  <h1>Export to Excel</h1>
                 </div>
-                <div className="flex flex-col gap-y-[20px]">
-                  <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
-                      <img
-                        src="/public/images/dashboradSales/screen_5621734.svg"
-                        alt=""
-                        className="w-[20px]"
-                      />
-                    </div>
-                    <h1>Show & Print</h1>
+              </div>
+              <div className="flex flex-col gap-y-[20px]">
+                <div className="flex items-center space-x-[10px]">
+                  <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
+                    <img
+                      src="/public/images/dashboradSales/whatsapp.svg"
+                      alt=""
+                      className="w-[20px]"
+                    />
                   </div>
-                  <div className="flex items-center space-x-[10px]">
-                    <div
-                      className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
-                      onClick={() => handleExportExl()}
-                    >
-                      <img
-                        src="/public/images/dashboradSales/folder.svg"
-                        alt=""
-                        className="w-[20px]"
-                      />
-                    </div>
-                    <h1>Export to Excel</h1>
-                  </div>
+                  <h1>Share WhatsApp</h1>
                 </div>
-                <div className="flex flex-col gap-y-[20px]">
-                  <div className="flex items-center space-x-[10px]">
-                    <div className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center">
-                      <img
-                        src="/public/images/dashboradSales/whatsapp.svg"
-                        alt=""
-                        className="w-[20px]"
-                      />
-                    </div>
-                    <h1>Share WhatsApp</h1>
+                <div className="flex items-center space-x-[10px]">
+                  <div
+                    className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
+                    onClick={() => handleExportPdf()}
+                  >
+                    <img
+                      src="/public/images/dashboradSales/folder.svg"
+                      alt=""
+                      className="w-[20px]"
+                    />
                   </div>
-                  <div className="flex items-center space-x-[10px]">
-                    <div
-                      className="w-[30px] h-[30px] bg-white p-[2px] rounded-md flex items-center justify-center"
-                      onClick={() => handleExportPdf()}
-                    >
-                      <img
-                        src="/public/images/dashboradSales/folder.svg"
-                        alt=""
-                        className="w-[20px]"
-                      />
-                    </div>
-                    <h1>Export to PDF</h1>
-                  </div>
+                  <h1>Export to PDF</h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-20  grid place-content-center">
+          <div className="h-[295px] w-auto relative ml-32">
+            <img
+              src="./public/images/dashboradSales/Pie chart base-1.png"
+              alt=""
+              className="h-full w-full"
+            />
+            <div className="absolute top-[55px] left-[37px]">
+              <div
+                style={{
+                  display: "inline-block",
+                  // transform: `rotateX(65deg)`,
+                  transformOrigin: "center center",
+                  // transition: "transform 0.5s ease",
+                }}
+              >
+                {/* <Chart
+                  options={chartOptions}
+                  series={chartSeries}
+                  type="pie"
+                  style={{
+                    width: "220px",
+                    margin: "auto",
+                    textAlign: "center",
+                  }}
+                /> */}
+              </div>
+            </div>
+            <div className="flex flex-col items-start mt-3 p-2 space-y-2 ml-10">
+              {/* First Row */}
+              <div className="flex items-center space-x-10">
+                <div className="flex items-center space-x-2">
+                  <div className="bg-orange-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm">CASH</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-green-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm"> AGGREGATORS </span>
+                </div>
+              </div>
+              {/* Second Row */}
+              <div className="flex items-center space-x-10">
+                <div className="flex items-center space-x-2">
+                  <div className="bg-red-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm">CARD</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-blue-500 w-4 h-4 rounded-md"></div>
+                  <span className="text-white text-sm">OTHERS</span>
                 </div>
               </div>
             </div>

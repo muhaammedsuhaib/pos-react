@@ -60,7 +60,7 @@ function DashboardReportContent({ saleSub, setSaleSub }) {
         <ExtraCharges />
       </div>
       <div ref={refs["top-selers"]}>
-        <TopSoldItems />
+        {/* <TopSoldItems /> */}
       </div>
       <div ref={refs["order-discounts"]}>
         <OrderDiscountsExtraCharges />
@@ -75,7 +75,7 @@ function DashboardReportContent({ saleSub, setSaleSub }) {
         <ItemsCancelled />
       </div>
       <div ref={refs["customer-credits"]}>
-        <CustomerCredit />
+        {/* <CustomerCredit />  */}
       </div>
       <div ref={refs["free-food"]}>
         <FreeFood />
