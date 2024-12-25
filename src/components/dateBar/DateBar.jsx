@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { DatePicker } from "antd";
 import { useState } from "react";
 import dayjs from "dayjs";
-import { dateRangePreset } from "../../utils/utils";
+import { dateRangePreset } from "../utils/utils";
 
 const { RangePicker } = DatePicker;
 function DateBar({ selectedDate, setSelectedDate }) {

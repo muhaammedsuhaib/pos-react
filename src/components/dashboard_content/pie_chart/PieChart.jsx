@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
+import topicon from "../../../../public/images/mainDashbord/topicon.svg"
 
 function PieChart() {
   const chartOptions = {
@@ -12,7 +13,7 @@ function PieChart() {
         startAngle: 0,
         endAngle: 360,
         hollow: {
-          size: "40%",
+          size: "45%",
         },
         track: {
           show: true,
@@ -21,7 +22,7 @@ function PieChart() {
         dataLabels: {
           name: {
             show: true,
-            fontSize: "18px", // Reduced font size for smaller screens
+            fontSize: "30px", // Reduced font size for smaller screens
             color: "#6FA747",
             offsetY: -10,
           },
@@ -48,7 +49,7 @@ function PieChart() {
       },
     },
     stroke: {
-      dashArray: 4,
+      dashArray: 20,
     },
     labels: ["4573"],
     responsive: [
@@ -111,7 +112,7 @@ function PieChart() {
           </div> */}
              {[1, 2, 3].map((chart, index) => (
             <div key={index} className="relative w-full sm:w-[30%]">
-              <div className="absolute w-[45px] h-[45px] border-[3px] border-primeryFirst rounded-full right-[-12%] top-[10px]"></div>
+              <div className="absolute w-[45px] h-[45px] border-[3px] border-primeryFirst rounded-full right-[8%] top-[10px]"><img src={topicon} alt="" /></div>
               <Chart
                 options={chartOptions}
                 series={chartOptions.series}

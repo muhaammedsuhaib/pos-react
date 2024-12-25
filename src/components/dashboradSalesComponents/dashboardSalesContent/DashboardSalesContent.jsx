@@ -1,5 +1,5 @@
 import StatisticCards from "../statisticCards/StatisticCards";
-import DateBar from "../dateBar/DateBar";
+import DateBar from "../../dateBar/DateBar";
 import DashboardReportContent from "../DashboardReportContent/DashboardReportContent";
 import { useState } from "react";
 import dayjs from "dayjs";

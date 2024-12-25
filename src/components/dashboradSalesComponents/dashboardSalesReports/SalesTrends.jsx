@@ -4,7 +4,7 @@ import Chart from "react-apexcharts";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSalesTrend } from "../../../reducer/sales/reducer";
 import { listAllSalesTrend } from "../../../reducer/sales/actions";
-import DateBar from "../dateBar/DateBar";
+import DateBar from "../../dateBar/DateBar";
 
 function SalesTrends() {
   const dispatch = useDispatch();

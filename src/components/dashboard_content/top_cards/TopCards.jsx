@@ -1,5 +1,6 @@
 import React from "react";
-
+import topone from '../../../../public/images/mainDashbord/topone.png';
+import toptwo from '../../../../public/images/mainDashbord/toptwo.png';
 function TopCards() {
   return (
     <>
@@ -7,7 +8,9 @@ function TopCards() {
         {/* card 1 */}
 
         <div className="h-[150px] 3xl:h-[180px] rounded-[15px] p-[5px] pl-[20px] gap-y-[5px] xl:gap-y-[8px] relative flex flex-col">
-          <div className="w-[50px] h-[50px]  xl:w-[60px] xl:h-[60px] 3xl:w-[80px] 3xl:h-[80px] rounded-full absolute z-10 left-[-10px] xl:left-[-15px] 3xl:left-[-30px] top-[50px] xl:top-[45px] 3xl:top-[50px] bg-[#537E31] border-[5px] 3xl:border-[10px] border-white"></div>
+          <div className="w-[50px] h-[50px] grid place-content-center  xl:w-[60px] xl:h-[60px] 3xl:w-[80px] 3xl:h-[80px] rounded-full absolute z-10 left-[-10px] xl:left-[-15px] 3xl:left-[-30px] top-[50px] xl:top-[45px] 3xl:top-[50px] bg-[#537E31] border-[5px] 3xl:border-[10px] border-white ">
+            <img src={topone} alt=""  className="invert brightness-150 contrast-125" />
+          </div>
           <div
             className="rounded-[10px] w-full bg-[#A5CD8D] h-[90px] flex justify-end"
             style={{ boxShadow: "0 0 8px rgba(0,0,0,0.5)" }}
@@ -53,8 +56,10 @@ function TopCards() {
         {/* card 2 */}
 
         <div className="h-[150px] 3xl:h-[180px] rounded-[15px] p-[5px] pl-[20px] gap-y-[8px] relative flex flex-col">
-          <div className="w-[50px] h-[50px]  xl:w-[60px] xl:h-[60px] 3xl:w-[80px] 3xl:h-[80px] rounded-full absolute z-10 left-[-10px] xl:left-[-15px] 3xl:left-[-30px] top-[50px] xl:top-[45px] 3xl:top-[50px] bg-[#378792] border-[5px] 3xl:border-[10px] border-white"></div>
-          <div
+          <div className="w-[50px] h-[50px]  xl:w-[60px] xl:h-[60px] 3xl:w-[80px] 3xl:h-[80px] rounded-full absolute z-10 left-[-10px] xl:left-[-15px] 3xl:left-[-30px] top-[50px] xl:top-[45px] 3xl:top-[50px] bg-[#378792] border-[5px] 3xl:border-[10px] border-white grid place-content-center p-3">
+            <img src={toptwo} alt=""  className="invert brightness-150 contrast-125" />
+          </div>
+          <div 
             className="rounded-[10px] w-full bg-[#64B9C2] h-[90px] flex justify-end"
             style={{ boxShadow: "0 0 8px rgba(0,0,0,0.5)" }}
           >
