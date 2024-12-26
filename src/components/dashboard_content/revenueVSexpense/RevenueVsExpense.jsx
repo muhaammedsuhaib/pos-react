@@ -1,10 +1,17 @@
 import { DatePicker } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import PieDiagram from "../piediagram/PieDiagram";
 import Chart from "react-apexcharts";
+import DateBar from "../../dateBar/DateBar";
+import dayjs from "dayjs";
 
 const { RangePicker } = DatePicker;
 function RevenueVsExpense() {
+
+
+  const currentDate = dayjs();
+
+  const [selectedDate, setSelectedDate] = useState([currentDate, currentDate]);
   // Chart Data
   const areaData = [31, 40, 28, 51, 42, 109];
   const barData = [11, 32, 45, 32, 34, 52];
@@ -104,23 +111,10 @@ function RevenueVsExpense() {
     <>
       <div className="bg-[#0B1A33] p-5 pb-10 w-full rounded-[30px] relative ">
         <PieDiagram />
-        <div className="bg-primeryFirst w-full flex gap-3 p-2 rounded-[30px] mb-4">
-          <div className="w-[40%]">
-            <RangePicker className="rounded-[30px]  h-[35px]" />
-          </div>
-          <div className="w-[60%] flex 3xl:gap-3 justify-between bg-white rounded-[30px] h-[35px] p-[5px]">
-            <div className="rounded-[30px] w-[32%] bg-[#ffdfdb] hover:bg-primeryFirst hover:text-white hover:shadow-lg active:bg-transparent  cursor-pointer text-[12px] 3xl:text-[15px] text-center border border-[#EEBBAF]">
-              Today
-            </div>
-            <div className="rounded-[30px] w-[32%] bg-[#ffdfdb]  hover:bg-primeryFirst hover:text-white hover:shadow-lg active:bg-transparent  cursor-pointer text-[12px] 3xl:text-[15px] text-center border border-[#EEBBAF] ">
-              This Week{" "}
-            </div>
-            <div className="rounded-[30px] w-[32%] bg-[#ffdfdb]  hover:bg-primeryFirst hover:text-white hover:shadow-lg active:bg-transparent  cursor-pointer text-[12px] 3xl:text-[15px] text-center border border-[#EEBBAF] ">
-              {" "}
-              This Month
-            </div>
-          </div>
-        </div>
+        <DateBar
+         selectedDate={selectedDate}
+         setSelectedDate={setSelectedDate}
+        />
         <div className="bg-white 3xl:w-[90%] h-[300px] rounded-[30px] mx-auto">
           <Chart
             options={chartOptions}
